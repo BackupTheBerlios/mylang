@@ -1,3 +1,7 @@
+2003-11-28  Michal Dabrowski <herrmic@users.berlios.de>
+
+	* Open/Save dialogs remember last used path.
+
 2003-11-23  Michal Dabrowski <herrmic@users.berlios.de>
 
 	* Initial public release.
