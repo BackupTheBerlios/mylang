@@ -498,13 +498,13 @@ public class DictionaryEditor extends JComponent implements WordsContainer,
 				break;
 			}
 			case KeyEvent.VK_V:
-				if (e.isControlDown()) this.paste();
+				if (e.isControlDown() && !e.isAltDown()) this.paste();
 				break;
 			case KeyEvent.VK_C:
-				if (e.isControlDown()) this.copy();
+				if (e.isControlDown() && !e.isAltDown()) this.copy();
 				break;
 			case KeyEvent.VK_X:
-				if (e.isControlDown()) this.cut();
+				if (e.isControlDown() && !e.isAltDown()) this.cut();
 				break;
 			}
 		}
@@ -797,11 +797,13 @@ public class DictionaryEditor extends JComponent implements WordsContainer,
 	}
 
 	public void cut() {
-		this.transferSelectionToClipboard(true);
+		if (m_selectionOrigin != null)
+			this.transferSelectionToClipboard(true);
 	}
 
 	public void copy() {
-		this.transferSelectionToClipboard(false);
+		if (m_selectionOrigin != null)
+			this.transferSelectionToClipboard(false);
 	}
 
 	public void paste() {
