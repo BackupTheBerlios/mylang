@@ -334,10 +334,14 @@ public class FrameEditor extends javax.swing.JFrame
 	
 	private void m_menuFileSaveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuFileSaveActionPerformed
 	{//GEN-HEADEREND:event_m_menuFileSaveActionPerformed
+		m_filechooserDictionary.setCurrentDirectory(
+		new File(MyLang.getPrefDictionariesPath()));
 		if(m_dict.getFile() != null)
 			saveFile(m_dict.getFile());
 		else if(m_filechooserDictionary.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
+			MyLang.setPrefDictionariesPath(m_filechooserDictionary
+			.getSelectedFiles()[0].getAbsolutePath());
 			saveFile(m_filechooserDictionary.getSelectedFile());
 		}
 	}//GEN-LAST:event_m_menuFileSaveActionPerformed
@@ -370,8 +374,12 @@ public class FrameEditor extends javax.swing.JFrame
 	
 	private void m_menuFileSaveasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuFileSaveasActionPerformed
 	{//GEN-HEADEREND:event_m_menuFileSaveasActionPerformed
+		m_filechooserDictionary.setCurrentDirectory(
+		new File(MyLang.getPrefDictionariesPath()));
 		if(m_filechooserDictionary.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
+			MyLang.setPrefDictionariesPath(m_filechooserDictionary
+			.getSelectedFiles()[0].getAbsolutePath());
 			saveFile(m_filechooserDictionary.getSelectedFile());
 		}
 	}//GEN-LAST:event_m_menuFileSaveasActionPerformed
@@ -380,8 +388,12 @@ public class FrameEditor extends javax.swing.JFrame
 	{//GEN-HEADEREND:event_m_menuFileOpenActionPerformed
 		if(canFileBeClosed())
 		{
+			m_filechooserDictionary.setCurrentDirectory(
+			new File(MyLang.getPrefDictionariesPath()));
 			if(m_filechooserDictionary.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
 			{
+				MyLang.setPrefDictionariesPath(m_filechooserDictionary
+				.getSelectedFiles()[0].getAbsolutePath());
 				loadFile(m_filechooserDictionary.getSelectedFile());
 			}
 		}

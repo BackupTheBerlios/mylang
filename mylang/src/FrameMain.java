@@ -527,8 +527,12 @@ public class FrameMain extends javax.swing.JFrame
 
 	private void m_buttonLoadActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonLoadActionPerformed
 	{//GEN-HEADEREND:event_m_buttonLoadActionPerformed
+		m_filechooserDictionary.setCurrentDirectory(
+		new File(MyLang.getPrefDictionariesPath()));
 		if(m_filechooserDictionary.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
+			MyLang.setPrefDictionariesPath(m_filechooserDictionary
+			.getSelectedFiles()[0].getAbsolutePath());
 			loadDictionaries(m_filechooserDictionary.getSelectedFiles());
 		}
 	}//GEN-LAST:event_m_buttonLoadActionPerformed

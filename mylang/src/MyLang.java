@@ -34,6 +34,8 @@ public class MyLang
 {
 	private static final String PREF_REQUIREALLTRANSLATIONS = "Require All Translations";
 	private static final String PREF_EMPHASIZEMISTAKES = "Emphasize Mistakes";
+	private static final String PREF_DICTIONARIESPATH = "Dictionaries Path";
+	
 	private static Preferences m_prefs;
 	
 	public static boolean getPrefRequireAllTranslations()
@@ -52,6 +54,15 @@ public class MyLang
 	public static void setPrefEmphasizeMistakes(boolean value)
 	{
 		m_prefs.putBoolean(PREF_EMPHASIZEMISTAKES, value);
+	}
+	
+	public static String getPrefDictionariesPath()
+	{
+		return m_prefs.get(PREF_DICTIONARIESPATH, "");
+	}
+	public static void setPrefDictionariesPath(String value)
+	{
+		m_prefs.put(PREF_DICTIONARIESPATH, value);
 	}
 
 	/** Creates a new instance of MyLang */
