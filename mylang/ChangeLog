@@ -1,4 +1,9 @@
-2003-12-10  Michal Dabrowski <herrmic@users.berlios.de>
+2003-12-12  Michal Dabrowski <herrmic@users.berlios.de>
+
+	* Changed logo, added icons to frames
+	* Bumped version number to 1.0 RC1
+
+2003-12-11  Michal Dabrowski <herrmic@users.berlios.de>
 
 	* Removed unused menu entries
 	* Added tooltips everywhere
