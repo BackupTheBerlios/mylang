@@ -8,7 +8,7 @@ import java.util.prefs.*;
 /*
  * MyLang.java
  *
- * Created on 10 pa¼dziernik 2003, 19:43
+ * Created on 10 paï¿½dziernik 2003, 19:43
  *
  * Copyright 2003 Michal Dabrowski
  *
@@ -35,7 +35,7 @@ import java.util.prefs.*;
  */
 public class MyLang
 {
-	private static final String PROGRAMVERSION = "1.1";
+	private static final String PROGRAMVERSION = "1.2";
 	private static final String PREF_REQUIREALLTRANSLATIONS = "Require All Translations";
 	private static final String PREF_EMPHASIZEMISTAKES = "Emphasize Mistakes";
 	private static final String PREF_DICTIONARIESPATH = "Dictionaries Path";
