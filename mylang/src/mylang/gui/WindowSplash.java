@@ -26,6 +26,19 @@ public class WindowSplash extends Window
 		super(owner);
 		m_splashImage = splashImage;
 		
+		addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent e)
+			{
+				synchronized(WindowSplash.this)
+				{
+					WindowSplash.this.m_paintCalled = true;
+					WindowSplash.this.notifyAll();
+				}
+				dispose();
+			}
+		});
+		
 		MediaTracker mt = new MediaTracker(this);
 		mt.addImage(m_splashImage, 0);
 		try
