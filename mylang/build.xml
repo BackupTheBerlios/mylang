@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="MyLang">
+
+    <target name="init">
+        <property name="srcdir" value="src"/>
+        <property name="classdir" value="${srcdir}"/>
+        <property name="libdir" value="lib"/>
+        <filelist id="lib-jars" dir="${libdir}" files="dom4j.jar,looks-1.1.2.jar"/>
+    </target>
+    
+    <target name="compile" depends="init">
+        <javac srcdir="${srcdir}" destdir="${classdir}">
+            <classpath>
+                <filelist refid="lib-jars"/>
+            </classpath>
+        </javac>
+    </target>
+    
+    <target name="jar" depends="init,compile">
+        <jar basedir="${classdir}" compress="true" jarfile="${libdir}/MyLang.jar">
+            <include name="**/*.class"/>
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="MyLang"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="all" depends="init,jar">
+    </target>
+    
+    <target name="clean" depends="init">
+        <delete>
+            <fileset dir="${classdir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+        <delete file="${libdir}/MyLang.jar"/>
+    </target>
+    
+</project>
