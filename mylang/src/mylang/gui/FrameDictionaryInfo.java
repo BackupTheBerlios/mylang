@@ -1,5 +1,7 @@
 package mylang.gui;
 
+import mylang.data.*;
+import mylang.gui.models.*;
 import java.io.*;
 import javax.swing.*;
 

@@ -1,5 +1,8 @@
 package mylang.gui;
 
+import mylang.MyLang;
+import mylang.data.*;
+import mylang.gui.models.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
@@ -37,7 +40,7 @@ public class FrameMain extends javax.swing.JFrame
 {
 	
 	private ArrayList m_editors;
-	private DictionarySet m_dset;
+	private mylang.data.DictionarySet m_dset;
 	
 	/** Creates new form FrameMain */
 	public FrameMain()
@@ -464,7 +467,7 @@ public class FrameMain extends javax.swing.JFrame
 		if(m_tableDictionaries.getSelectedRow() == -1)
 			return;
 		FrameDictionaryInfo fdi = new FrameDictionaryInfo(
-		(Dictionary)m_dset.getDictionaries().get(m_tableDictionaries.getSelectedRow())
+		(mylang.data.Dictionary)m_dset.getDictionaries().get(m_tableDictionaries.getSelectedRow())
 		);
 		fdi.show();
 	}//GEN-LAST:event_m_buttonInfoActionPerformed
@@ -519,9 +522,9 @@ public class FrameMain extends javax.swing.JFrame
 	private void m_buttonUnloadActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonUnloadActionPerformed
 	{//GEN-HEADEREND:event_m_buttonUnloadActionPerformed
 		int[] rows = m_tableDictionaries.getSelectedRows();
-		Dictionary[] dicts = new Dictionary[rows.length];
+		mylang.data.Dictionary[] dicts = new mylang.data.Dictionary[rows.length];
 		for(int i = 0; i < rows.length; i++)
-			dicts[i] = (Dictionary)m_dset.getDictionaries().get(rows[i]);
+			dicts[i] = (mylang.data.Dictionary)m_dset.getDictionaries().get(rows[i]);
 		for(int i = 0; i < dicts.length; i++)
 			m_dset.unloadDictionary(dicts[i]);
 		((DictionarySetTableModel)m_tableDictionaries.getModel()).setDictionarySet(m_dset);
@@ -673,7 +676,7 @@ public class FrameMain extends javax.swing.JFrame
 		m_comboDirection.removeAllItems();
 		if(m_dset.getWordsList().size() > 0)
 		{
-			String[] ln = ((Dictionary)m_dset.getDictionaries().get(0))
+			String[] ln = ((mylang.data.Dictionary)m_dset.getDictionaries().get(0))
 			.getLanguageNames();
 			
 			m_comboDirection.addItem(ln[0] + " -> " + ln[1]);
@@ -717,14 +720,14 @@ public class FrameMain extends javax.swing.JFrame
 		else
 		{
 			m_tableWords.getColumnModel().getColumn(m_tableWords
-			.convertColumnIndexToView(0)).setHeaderValue(((Dictionary)m_dset
+			.convertColumnIndexToView(0)).setHeaderValue(((mylang.data.Dictionary)m_dset
 			.getDictionaries().get(0)).getLanguageNames()[0]);
 			m_tableWords.getColumnModel().getColumn(m_tableWords
-			.convertColumnIndexToView(1)).setHeaderValue(((Dictionary)m_dset
+			.convertColumnIndexToView(1)).setHeaderValue(((mylang.data.Dictionary)m_dset
 			.getDictionaries().get(0)).getLanguageNames()[1]);
-			m_checkboxLanguage1.setText(((Dictionary)m_dset
+			m_checkboxLanguage1.setText(((mylang.data.Dictionary)m_dset
 			.getDictionaries().get(0)).getLanguageNames()[0]);
-			m_checkboxLanguage2.setText(((Dictionary)m_dset
+			m_checkboxLanguage2.setText(((mylang.data.Dictionary)m_dset
 			.getDictionaries().get(0)).getLanguageNames()[1]);
 		}
 		m_tableWords.getTableHeader().resizeAndRepaint();

@@ -1,5 +1,7 @@
 package mylang.gui.models;
 
+import mylang.data.*;
+import mylang.gui.DialogSession;
 import java.text.*;
 import java.util.*;
 import javax.swing.table.*;

@@ -44,7 +44,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
-                  <Image iconType="3" name="/resources/logoBig.png"/>
+                  <Image iconType="3" name="/mylang/gui/resources/logoBig.png"/>
                 </Property>
               </Properties>
               <Constraints>

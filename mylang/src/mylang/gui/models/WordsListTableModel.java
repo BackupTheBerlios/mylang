@@ -1,5 +1,6 @@
 package mylang.gui.models;
 
+import mylang.data.*;
 import java.util.*;
 import javax.swing.table.*;
 

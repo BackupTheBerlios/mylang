@@ -1,5 +1,7 @@
 package mylang.gui;
 
+import mylang.MyLang;
+
 /*
  * DialogPreferences.java
  *

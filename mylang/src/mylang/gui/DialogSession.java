@@ -1,5 +1,7 @@
 package mylang.gui;
 
+import mylang.MyLang;
+import mylang.data.*;
 import java.awt.event.*;
 import java.text.*;
 import java.util.*;
@@ -444,7 +446,7 @@ public class DialogSession extends javax.swing.JDialog
 		boolean correct = false;
 		if(MyLang.getPrefRequireAllTranslations())
 		{
-			if(isArraySubsetOf(userTab, answerTab) 
+			if(isArraySubsetOf(userTab, answerTab)
 			&& isArraySubsetOf(answerTab, userTab))
 				correct = true;
 		}
@@ -528,7 +530,7 @@ public class DialogSession extends javax.swing.JDialog
 		}
 		for(Iterator i = m_dset.getDictionaries().iterator(); i.hasNext();)
 		{
-			Dictionary dict = (Dictionary)i.next();
+			mylang.data.Dictionary dict = (mylang.data.Dictionary)i.next();
 			try
 			{
 				int failures;

@@ -68,7 +68,7 @@ public class FrameAbout extends javax.swing.JFrame
 		
 		jLabel1.setFont(new java.awt.Font("SansSerif", 1, 36));
 		jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logoBig.png")));
+		jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/logoBig.png")));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel1.add(jLabel1, gridBagConstraints);

@@ -1,5 +1,6 @@
 package mylang.gui.models;
 
+import mylang.data.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.table.*;
@@ -86,7 +87,7 @@ public class DictionarySetTableModel extends AbstractTableModel
 	
 	public Object getValueAt(int rowIndex, int columnIndex)
 	{
-		Dictionary d = (Dictionary)m_dset.getDictionaries().get(rowIndex);
+		mylang.data.Dictionary d = (mylang.data.Dictionary)m_dset.getDictionaries().get(rowIndex);
 		Stat stat = null;
 		if(!d.getStats().isEmpty())
 			stat = (Stat)d.getStats().get(d.getStats().size() - 1);

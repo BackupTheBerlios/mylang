@@ -1,5 +1,6 @@
 package mylang;
 
+import mylang.gui.*;
 import com.jgoodies.plaf.plastic.*;
 import javax.swing.*;
 import java.util.prefs.*;
