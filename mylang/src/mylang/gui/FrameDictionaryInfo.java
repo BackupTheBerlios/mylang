@@ -90,17 +90,19 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		getContentPane().add(jLabel1, gridBagConstraints);
 		
 		m_textLanguage0.setEditable(false);
+		m_textLanguage0.setToolTipText("<HTML>Name of the first language.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(m_textLanguage0, gridBagConstraints);
 		
 		m_textLanguage1.setEditable(false);
+		m_textLanguage1.setToolTipText("<HTML>Name of the second language.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(m_textLanguage1, gridBagConstraints);
 		
 		jLabel2.setText("Description");
@@ -112,15 +114,17 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		getContentPane().add(jLabel2, gridBagConstraints);
 		
 		m_textDescription.setEditable(false);
+		m_textDescription.setToolTipText("<HTML>Short description of the dictionary.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 1;
 		gridBagConstraints.gridwidth = 2;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(m_textDescription, gridBagConstraints);
 		
+		jScrollPane1.setToolTipText("<HTML>Table displaying all available stats for the dictionary.<BR>\nEach row in the table represents a single session:<BR>\n<B>Date</B> - date of the session,<BR>\n<B>Mode</B> - mode,<BR>\n<B>Score</B> - number of mistakes,<BR>\n<B>Duration</B> - duration.\n</HTML>");
 		m_tableStats.setModel(new StatsListTableModel(m_dict.getStats()));
 		m_tableStats.setRowSelectionAllowed(false);
 		jScrollPane1.setViewportView(m_tableStats);
@@ -130,9 +134,9 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		gridBagConstraints.gridy = 2;
 		gridBagConstraints.gridwidth = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
 		gridBagConstraints.weighty = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(jScrollPane1, gridBagConstraints);
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -149,14 +153,15 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		jLabel3.setText("Leave last");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 2);
 		jPanel1.add(jLabel3, gridBagConstraints);
 		
+		m_spinnerLeaveStats.setToolTipText("<HTML>Allows to select how many stats you want to keep.<BR>\n<I>The remaining stats will be deleted only if you use the <B>\"Clear stats\"</B> button.</I>\n</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
 		gridBagConstraints.weightx = 0.2;
+		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
 		jPanel1.add(m_spinnerLeaveStats, gridBagConstraints);
 		
 		jLabel4.setText("stats");
@@ -165,6 +170,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		jPanel1.add(jLabel4, gridBagConstraints);
 		
 		m_buttonClearStats.setText("Clear stats");
+		m_buttonClearStats.setToolTipText("<HTML>Deletes all stats except the selected number of the last ones.<BR>\nAdjust the number of stats to keep with the <B>\"Lave last <I>n</I> stats\"</B> control.\n</HTML>");
 		m_buttonClearStats.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -178,6 +184,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		jPanel1.add(m_buttonClearStats, gridBagConstraints);
 		
 		m_buttonClose.setText("Close");
+		m_buttonClose.setToolTipText("<HTML>Closes this window.</HTML>");
 		m_buttonClose.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)

@@ -133,6 +133,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="m_textLanguage0">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Name of the first language of the dictionary.&lt;/HTML&gt;"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="2" insetsLeft="2" insetsBottom="2" insetsRight="2" anchor="10" weightX="1.0" weightY="0.0"/>
@@ -150,6 +153,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="m_textLanguage1">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Name of the second language of the dictionary.&lt;/HTML&gt;"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="2" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="2" insetsLeft="2" insetsBottom="2" insetsRight="2" anchor="10" weightX="1.0" weightY="0.0"/>
@@ -157,6 +163,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="m_textDescription">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Short description of the dictionary.&lt;/HTML&gt;"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="1" gridY="1" gridWidth="2" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="2" insetsLeft="2" insetsBottom="2" insetsRight="2" anchor="10" weightX="1.0" weightY="0.0"/>
@@ -183,6 +192,9 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Table of all words contained in the dictionary.&lt;/HTML&gt;"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="3" fill="1" ipadX="0" ipadY="0" insetsTop="2" insetsLeft="2" insetsBottom="2" insetsRight="2" anchor="10" weightX="1.0" weightY="1.0"/>
@@ -203,6 +215,7 @@
             <Component class="javax.swing.JButton" name="m_buttonAdd">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
+                <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Adds new word to the table.&lt;/HTML&gt;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_buttonAddActionPerformed"/>
@@ -216,6 +229,7 @@
             <Component class="javax.swing.JButton" name="m_buttonRemove">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Remove"/>
+                <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Removes all selected words from the table.&lt;/HTML&gt;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_buttonRemoveActionPerformed"/>

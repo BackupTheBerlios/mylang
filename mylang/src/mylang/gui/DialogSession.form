@@ -32,6 +32,7 @@
     <Component class="javax.swing.JTextField" name="m_textQuestion">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Question is displayed here.&lt;BR&gt;&#xa;This is the word you are asked to translate.&lt;/HTML&gt;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -52,6 +53,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="m_textAnswer">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Type your answer here.&lt;BR&gt;&#xa;Here you type translation of the word displayed in the &lt;B&gt;&quot;Question&quot;&lt;/B&gt; field.&#xa;&lt;/HTML&gt;"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[508, 21]"/>
         </Property>
@@ -79,6 +81,7 @@
     <Component class="javax.swing.JTextField" name="m_textTranslator">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Comment of your last answer.&lt;/HTML&gt;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -123,6 +126,7 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="0"/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Number of the question.&lt;/HTML&gt;"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -145,6 +149,7 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Number of the words left.&lt;/HTML&gt;"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -168,6 +173,7 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="0"/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Number of your correct answers.&lt;/HTML&gt;"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -191,6 +197,7 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="00:00"/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Time that has ellapsed during this session.&lt;/HTML&gt;"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -212,6 +219,7 @@
         <Component class="javax.swing.JButton" name="m_buttonCheck">
           <Properties>
             <Property name="text" type="java.lang.String" value="Check"/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Use this button to acknowledge your answer.&lt;BR&gt;&#xa;&lt;I&gt;Note: it is usually better to hit Enter instead.&lt;/I&gt;&#xa;&lt;/HTML&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_buttonCheckActionPerformed"/>
@@ -225,6 +233,7 @@
         <Component class="javax.swing.JButton" name="m_buttonCancel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Interrupts this session.&lt;BR&gt;&#xa;&lt;I&gt;Note: cancelled session is not counted into the dictioraies stats.&lt;/I&gt;&#xa;&lt;/HTML&gt;"/>
             <Property name="defaultCapable" type="boolean" value="false"/>
           </Properties>
           <Events>

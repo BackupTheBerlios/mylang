@@ -132,6 +132,7 @@ public class DialogSession extends javax.swing.JDialog
 		getContentPane().add(jLabel1, gridBagConstraints);
 		
 		m_textQuestion.setEditable(false);
+		m_textQuestion.setToolTipText("<HTML>Question is displayed here.<BR>\nThis is the word you are asked to translate.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.weightx = 1.0;
@@ -147,6 +148,7 @@ public class DialogSession extends javax.swing.JDialog
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(jLabel2, gridBagConstraints);
 		
+		m_textAnswer.setToolTipText("<HTML>Type your answer here.<BR>\nHere you type translation of the word displayed in the <B>\"Question\"</B> field.\n</HTML>");
 		m_textAnswer.setPreferredSize(new java.awt.Dimension(508, 21));
 		m_textAnswer.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -174,6 +176,7 @@ public class DialogSession extends javax.swing.JDialog
 		getContentPane().add(jLabel3, gridBagConstraints);
 		
 		m_textTranslator.setEditable(false);
+		m_textTranslator.setToolTipText("<HTML>Comment of your last answer.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 2;
@@ -208,6 +211,7 @@ public class DialogSession extends javax.swing.JDialog
 		m_textStatAnswers.setEditable(false);
 		m_textStatAnswers.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		m_textStatAnswers.setText("0");
+		m_textStatAnswers.setToolTipText("<HTML>Number of the question.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 1;
@@ -228,6 +232,7 @@ public class DialogSession extends javax.swing.JDialog
 		
 		m_textStatLeft.setEditable(false);
 		m_textStatLeft.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+		m_textStatLeft.setToolTipText("<HTML>Number of the words left.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 2;
@@ -249,6 +254,7 @@ public class DialogSession extends javax.swing.JDialog
 		m_textStatCorrect.setEditable(false);
 		m_textStatCorrect.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		m_textStatCorrect.setText("0");
+		m_textStatCorrect.setToolTipText("<HTML>Number of your correct answers.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 3;
@@ -270,6 +276,7 @@ public class DialogSession extends javax.swing.JDialog
 		m_textStatTime.setEditable(false);
 		m_textStatTime.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		m_textStatTime.setText("00:00");
+		m_textStatTime.setToolTipText("<HTML>Time that has ellapsed during this session.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 4;
@@ -291,6 +298,7 @@ public class DialogSession extends javax.swing.JDialog
 		jPanel2.setLayout(new java.awt.GridBagLayout());
 		
 		m_buttonCheck.setText("Check");
+		m_buttonCheck.setToolTipText("<HTML>Use this button to acknowledge your answer.<BR>\n<I>Note: it is usually better to hit Enter instead.</I>\n</HTML>");
 		m_buttonCheck.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -306,6 +314,7 @@ public class DialogSession extends javax.swing.JDialog
 		jPanel2.add(m_buttonCheck, gridBagConstraints);
 		
 		m_buttonCancel.setText("Cancel");
+		m_buttonCancel.setToolTipText("<HTML>Interrupts this session.<BR>\n<I>Note: cancelled session is not counted into the dictioraies stats.</I>\n</HTML>");
 		m_buttonCancel.setDefaultCapable(false);
 		m_buttonCancel.addActionListener(new java.awt.event.ActionListener()
 		{

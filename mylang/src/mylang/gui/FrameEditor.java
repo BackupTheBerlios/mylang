@@ -133,6 +133,7 @@ public class FrameEditor extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(jLabel1, gridBagConstraints);
 		
+		m_textLanguage0.setToolTipText("<HTML>Name of the first language of the dictionary.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 0;
@@ -149,6 +150,7 @@ public class FrameEditor extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(jLabel3, gridBagConstraints);
 		
+		m_textLanguage1.setToolTipText("<HTML>Name of the second language of the dictionary.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 0;
@@ -157,6 +159,7 @@ public class FrameEditor extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(m_textLanguage1, gridBagConstraints);
 		
+		m_textDescription.setToolTipText("<HTML>Short description of the dictionary.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 1;
@@ -177,6 +180,7 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		jPanel1.setLayout(new java.awt.GridBagLayout());
 		
+		jScrollPane1.setToolTipText("<HTML>Table of all words contained in the dictionary.</HTML>");
 		m_tableWords.setModel(new WordsEditorTableModel());
 		jScrollPane1.setViewportView(m_tableWords);
 		
@@ -189,6 +193,7 @@ public class FrameEditor extends javax.swing.JFrame
 		jPanel1.add(jScrollPane1, gridBagConstraints);
 		
 		m_buttonAdd.setText("Add");
+		m_buttonAdd.setToolTipText("<HTML>Adds new word to the table.</HTML>");
 		m_buttonAdd.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -203,6 +208,7 @@ public class FrameEditor extends javax.swing.JFrame
 		jPanel1.add(m_buttonAdd, gridBagConstraints);
 		
 		m_buttonRemove.setText("Remove");
+		m_buttonRemove.setToolTipText("<HTML>Removes all selected words from the table.</HTML>");
 		m_buttonRemove.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)

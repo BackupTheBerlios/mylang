@@ -26,6 +26,7 @@
     <Component class="javax.swing.JTextField" name="m_textLanguage0">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Name of the first language.&lt;/HTML&gt;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -36,6 +37,7 @@
     <Component class="javax.swing.JTextField" name="m_textLanguage1">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Name of the second language.&lt;/HTML&gt;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -56,6 +58,7 @@
     <Component class="javax.swing.JTextField" name="m_textDescription">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Short description of the dictionary.&lt;/HTML&gt;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -64,6 +67,9 @@
       </Constraints>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Table displaying all available stats for the dictionary.&lt;BR&gt;&#xa;Each row in the table represents a single session:&lt;BR&gt;&#xa;&lt;B&gt;Date&lt;/B&gt; - date of the session,&lt;BR&gt;&#xa;&lt;B&gt;Mode&lt;/B&gt; - mode,&lt;BR&gt;&#xa;&lt;B&gt;Score&lt;/B&gt; - number of mistakes,&lt;BR&gt;&#xa;&lt;B&gt;Duration&lt;/B&gt; - duration.&#xa;&lt;/HTML&gt;"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
           <GridBagConstraints gridX="0" gridY="2" gridWidth="3" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="2" insetsLeft="2" insetsBottom="2" insetsRight="2" anchor="10" weightX="1.0" weightY="1.0"/>
@@ -111,9 +117,7 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="m_spinnerLeaveStats">
           <Properties>
-            <Property name="editor" type="javax.swing.JComponent" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="default"/>
-            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Allows to select how many stats you want to keep.&lt;BR&gt;&#xa;&lt;I&gt;The remaining stats will be deleted only if you use the &lt;B&gt;&quot;Clear stats&quot;&lt;/B&gt; button.&lt;/I&gt;&#xa;&lt;/HTML&gt;"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -134,6 +138,7 @@
         <Component class="javax.swing.JButton" name="m_buttonClearStats">
           <Properties>
             <Property name="text" type="java.lang.String" value="Clear stats"/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Deletes all stats except the selected number of the last ones.&lt;BR&gt;&#xa;Adjust the number of stats to keep with the &lt;B&gt;&quot;Lave last &lt;I&gt;n&lt;/I&gt; stats&quot;&lt;/B&gt; control.&#xa;&lt;/HTML&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_buttonClearStatsActionPerformed"/>
@@ -147,6 +152,7 @@
         <Component class="javax.swing.JButton" name="m_buttonClose">
           <Properties>
             <Property name="text" type="java.lang.String" value="Close"/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Closes this window.&lt;/HTML&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_buttonCloseActionPerformed"/>

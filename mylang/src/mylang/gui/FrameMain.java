@@ -118,6 +118,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel1.setLayout(new java.awt.GridBagLayout());
 		
 		jPanel1.setBorder(new javax.swing.border.TitledBorder("Dictionaries"));
+		jScrollPane1.setToolTipText("<HTML>Table displaying short information about each loaded dictionary:<BR>\n<B>Name</B> - file name,<BR>\n<B>Last (date)</B> - date of the last session,<BR>\n<B>Last (score)</B> - number of mistakes during the last session,<BR>\n<B>Size</B> - number of words,<BR>\n<B>Description</B> - short description.\n</HTML>");
 		jScrollPane1.setPreferredSize(new java.awt.Dimension(453, 150));
 		m_tableDictionaries.setModel(new DictionarySetTableModel());
 		m_tableDictionaries.setShowHorizontalLines(false);
@@ -133,7 +134,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel1.add(jScrollPane1, gridBagConstraints);
 		
 		m_buttonLoad.setText("Load...");
-		m_buttonLoad.setToolTipText("<HTML>Loads dictionary file(s).</HTML>");
+		m_buttonLoad.setToolTipText("<HTML>Loads dictionary files.</HTML>");
 		m_buttonLoad.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -150,7 +151,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel1.add(m_buttonLoad, gridBagConstraints);
 		
 		m_buttonUnload.setText("Unload");
-		m_buttonUnload.setToolTipText("Unloads selected dictionaries.");
+		m_buttonUnload.setToolTipText("<HTML>Unloads selected dictionary.</HTML>");
 		m_buttonUnload.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -167,7 +168,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel1.add(m_buttonUnload, gridBagConstraints);
 		
 		m_buttonInfo.setText("Info...");
-		m_buttonInfo.setToolTipText("Displays additional information about selected dictionary.");
+		m_buttonInfo.setToolTipText("<HTML>Displays additional information about selected dictionary.</HTML>");
 		m_buttonInfo.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -200,6 +201,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel2.setLayout(new java.awt.GridBagLayout());
 		
 		jPanel2.setBorder(new javax.swing.border.TitledBorder("Words"));
+		jScrollPane2.setToolTipText("<HTML>Table of words that are contained in loaded dictionaries.<BR>\nFor each word the following information is available:<BR>\n<B>Language <I>n</I></B> - the word in both languages,<BR>\n<B>Last (date)</B> - date of the last session,<BR>\n<B>Last (score)</B> - number of mistakes during the last session,<BR>\n<B>Enabled</B> - indicates if the word is enabled.\n</HTML>");
 		jScrollPane2.setPreferredSize(new java.awt.Dimension(453, 200));
 		m_tableWords.setModel(new WordsListTableModel());
 		m_tableWords.setShowHorizontalLines(false);
@@ -215,7 +217,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel2.add(jScrollPane2, gridBagConstraints);
 		
 		m_buttonEnable.setText("Enable");
-		m_buttonEnable.setToolTipText("Enables selected word(s).");
+		m_buttonEnable.setToolTipText("<HTML>Enables selected words.<BR>\n<I>Note: enable the words that you want<BR>\nto appear during the next session.</I></HTML>");
 		m_buttonEnable.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -230,7 +232,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel2.add(m_buttonEnable, gridBagConstraints);
 		
 		m_buttonDisable.setText("Disable");
-		m_buttonDisable.setToolTipText("Disables selected word(s).");
+		m_buttonDisable.setToolTipText("<HTML>Disables selected words.<BR>\n<I>Note: disable the words that you want <B>not</B><BR>\nto appear during the next session.</I></HTML>");
 		m_buttonDisable.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -250,6 +252,7 @@ public class FrameMain extends javax.swing.JFrame
 		
 		jPanel5.setBorder(new javax.swing.border.TitledBorder("Shadow"));
 		m_checkboxLanguage1.setText("Language 1");
+		m_checkboxLanguage1.setToolTipText("<HTML>Hides the contents of the appropriate column in the words table.<HTML>");
 		m_checkboxLanguage1.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -266,6 +269,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel5.add(m_checkboxLanguage1, gridBagConstraints);
 		
 		m_checkboxLanguage2.setText("Language 2");
+		m_checkboxLanguage2.setToolTipText("<HTML>Hides the contents of the appropriate column in the words table.<HTML>");
 		m_checkboxLanguage2.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -325,7 +329,7 @@ public class FrameMain extends javax.swing.JFrame
 		
 		m_comboMode.setModel(new javax.swing.DefaultComboBoxModel(new String[]
 		{ "Teach", "Test" }));
-		m_comboMode.setToolTipText("Switches session mode. See documentation for details.");
+		m_comboMode.setToolTipText("<HTML>Mode of the next session.</HTML>");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 0;
@@ -343,7 +347,7 @@ public class FrameMain extends javax.swing.JFrame
 		m_panelSessionControls.add(m_comboDirection, gridBagConstraints);
 		
 		m_buttonStart.setText("START");
-		m_buttonStart.setToolTipText("Begins the session.");
+		m_buttonStart.setToolTipText("<HTML>Begins the session.</HTML>");
 		m_buttonStart.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
