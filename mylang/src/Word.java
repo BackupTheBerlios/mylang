@@ -71,19 +71,29 @@ public class Word
 	
 	public void write(Element el)
 	{
-		Element w = el.addElement("word");
+		Element w = el.addElement("word").addAttribute("rev", "2");
 		if(m_lastStat != null)
 			m_lastStat.write(w.addElement("stats"));
-		w.addElement(m_dict.getLanguageNames()[0])
+		w.addElement("language0")
 			.addText(m_language[0]);
-		w.addElement(m_dict.getLanguageNames()[1])
+		w.addElement("language1")
 			.addText(m_language[1]);
 	}
 	
 	private void read(Element w)
 	{
-		m_language[0] = w.elementText(m_dict.getLanguageNames()[0]);
-		m_language[1] = w.elementText(m_dict.getLanguageNames()[1]);
+		int rev;
+		rev = Integer.parseInt(w.attributeValue("rev", "1"));
+		if(rev == 1)
+		{
+			m_language[0] = w.elementText(m_dict.getLanguageNames()[0]);
+			m_language[1] = w.elementText(m_dict.getLanguageNames()[1]);
+		}
+		else
+		{
+			m_language[0] = w.elementText("language0");
+			m_language[1] = w.elementText("language1");
+		}
 		if(w.element("stats") != null)
 			m_lastStat = new Stat((Element)w.element("stats").elements().get(0));
 	}

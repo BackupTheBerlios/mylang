@@ -341,7 +341,7 @@ public class FrameEditor extends javax.swing.JFrame
 		else if(m_filechooserDictionary.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
 			MyLang.setPrefDictionariesPath(m_filechooserDictionary
-			.getSelectedFiles()[0].getAbsolutePath());
+			.getSelectedFile().getAbsolutePath());
 			saveFile(m_filechooserDictionary.getSelectedFile());
 		}
 	}//GEN-LAST:event_m_menuFileSaveActionPerformed
@@ -379,7 +379,7 @@ public class FrameEditor extends javax.swing.JFrame
 		if(m_filechooserDictionary.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
 			MyLang.setPrefDictionariesPath(m_filechooserDictionary
-			.getSelectedFiles()[0].getAbsolutePath());
+			.getSelectedFile().getAbsolutePath());
 			saveFile(m_filechooserDictionary.getSelectedFile());
 		}
 	}//GEN-LAST:event_m_menuFileSaveasActionPerformed
@@ -393,7 +393,7 @@ public class FrameEditor extends javax.swing.JFrame
 			if(m_filechooserDictionary.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
 			{
 				MyLang.setPrefDictionariesPath(m_filechooserDictionary
-				.getSelectedFiles()[0].getAbsolutePath());
+				.getSelectedFile().getAbsolutePath());
 				loadFile(m_filechooserDictionary.getSelectedFile());
 			}
 		}

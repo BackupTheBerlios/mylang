@@ -498,6 +498,8 @@ public class FrameMain extends javax.swing.JFrame
 			w.setEnabled(false);
 		}
 		((WordsListTableModel)m_tableWords.getModel()).setWordsContainer(m_dset);
+		for(int i = 0; i < rows.length; i++)
+			m_tableWords.addRowSelectionInterval(rows[i], rows[i]);
 	}//GEN-LAST:event_m_buttonDisableActionPerformed
 
 	private void m_buttonEnableActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonEnableActionPerformed
@@ -509,6 +511,8 @@ public class FrameMain extends javax.swing.JFrame
 			w.setEnabled(true);
 		}
 		((WordsListTableModel)m_tableWords.getModel()).setWordsContainer(m_dset);
+		for(int i = 0; i < rows.length; i++)
+			m_tableWords.addRowSelectionInterval(rows[i], rows[i]);
 	}//GEN-LAST:event_m_buttonEnableActionPerformed
 
 	private void m_buttonUnloadActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonUnloadActionPerformed
@@ -633,6 +637,24 @@ public class FrameMain extends javax.swing.JFrame
 			"Message", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		
+		boolean nothingIsEnabled = true;
+		for(Iterator i = m_dset.getWordsList().iterator(); i.hasNext();)
+		{
+			Word w = (Word)i.next();
+			if(w.getEnabled())
+			{
+				nothingIsEnabled = false;
+				break;
+			}
+		}
+		if(nothingIsEnabled)
+		{
+			JOptionPane.showMessageDialog(this, "Please enable some words first.",
+			"Message", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		
 		DialogSession ds = new DialogSession(this, true);
 		int mode;
 		switch(m_comboMode.getSelectedIndex())
@@ -653,8 +675,8 @@ public class FrameMain extends javax.swing.JFrame
 			String[] ln = ((Dictionary)m_dset.getDictionaries().get(0))
 			.getLanguageNames();
 			
-			m_comboDirection.addItem(ln[0] + "-" + ln[1]);
-			m_comboDirection.addItem(ln[1] + "-" + ln[0]);
+			m_comboDirection.addItem(ln[0] + " -> " + ln[1]);
+			m_comboDirection.addItem(ln[1] + " -> " + ln[0]);
 			m_comboMode.setEnabled(true);
 			m_comboDirection.setEnabled(true);
 			m_buttonStart.setEnabled(true);
