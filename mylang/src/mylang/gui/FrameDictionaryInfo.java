@@ -143,6 +143,8 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
         jScrollPane1.setToolTipText("<HTML>Table displaying all available stats for the dictionary.<BR>\nEach row in the table represents a single session:<BR>\n<B>Date</B> - date of the session,<BR>\n<B>Mode</B> - mode,<BR>\n<B>Score</B> - number of mistakes,<BR>\n<B>Duration</B> - duration.\n</HTML>");
         m_tableStats.setModel(new StatsListTableModel(m_dict.getStats()));
         m_tableStats.setRowSelectionAllowed(false);
+        m_tableStats.setShowHorizontalLines(false);
+        m_tableStats.setShowVerticalLines(false);
         jScrollPane1.setViewportView(m_tableStats);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
