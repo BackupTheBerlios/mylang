@@ -40,6 +40,9 @@ public class FrameEditor extends javax.swing.JFrame
 	private boolean m_modified;
 	private Dictionary m_dict;
 	
+	// The lastest searched word
+	private String m_lastWordSearch = "";
+	
 	/** Creates new form FrameEditor */
 	public FrameEditor()
 	{
@@ -118,7 +121,10 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuEditAdd = new javax.swing.JMenuItem();
 		m_menuEditRemove = new javax.swing.JMenuItem();
 		jSeparator2 = new javax.swing.JSeparator();
-		jMenuItem1 = new javax.swing.JMenuItem();
+		m_menuEditAddwordsfromanotherdictionary = new javax.swing.JMenuItem();
+		jSeparator3 = new javax.swing.JSeparator();
+		m_menuEditFind = new javax.swing.JMenuItem();
+		m_menuEditFindAgain = new javax.swing.JMenuItem();
 		
 		
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -201,6 +207,7 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		jScrollPane1.setToolTipText("<HTML>Table of all words contained in the dictionary.</HTML>");
 		m_tableWords.setModel(new WordsEditorTableModel());
+		m_tableWords.setSurrendersFocusOnKeystroke(true);
 		jScrollPane1.setViewportView(m_tableWords);
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -270,8 +277,8 @@ public class FrameEditor extends javax.swing.JFrame
 		jPanel4.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.LineBorder(javax.swing.UIManager.getDefaults().getColor("controlShadow")), new javax.swing.border.EmptyBorder(new java.awt.Insets(1, 1, 1, 1))));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 1, 2, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 1, 2, 2);
 		jPanel3.add(jPanel4, gridBagConstraints);
 		
 		getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
@@ -374,16 +381,44 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		jMenu1.add(jSeparator2);
 		
-		jMenuItem1.setText("Add words from another dictionary...");
-		jMenuItem1.addActionListener(new java.awt.event.ActionListener()
+		m_menuEditAddwordsfromanotherdictionary.setText("Add words from another dictionary...");
+		m_menuEditAddwordsfromanotherdictionary.addActionListener(new java.awt.event.ActionListener()
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
 			{
-				jMenuItem1ActionPerformed(evt);
+				m_menuEditAddwordsfromanotherdictionaryActionPerformed(evt);
 			}
 		});
 		
-		jMenu1.add(jMenuItem1);
+		jMenu1.add(m_menuEditAddwordsfromanotherdictionary);
+		
+		jMenu1.add(jSeparator3);
+		
+		m_menuEditFind.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+		m_menuEditFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/Find16.gif")));
+		m_menuEditFind.setText("Find...");
+		m_menuEditFind.addActionListener(new java.awt.event.ActionListener()
+		{
+			public void actionPerformed(java.awt.event.ActionEvent evt)
+			{
+				m_menuEditFindActionPerformed(evt);
+			}
+		});
+		
+		jMenu1.add(m_menuEditFind);
+		
+		m_menuEditFindAgain.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+		m_menuEditFindAgain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/FindAgain16.gif")));
+		m_menuEditFindAgain.setText("Find again");
+		m_menuEditFindAgain.addActionListener(new java.awt.event.ActionListener()
+		{
+			public void actionPerformed(java.awt.event.ActionEvent evt)
+			{
+				m_menuEditFindAgainActionPerformed(evt);
+			}
+		});
+		
+		jMenu1.add(m_menuEditFindAgain);
 		
 		jMenuBar2.add(jMenu1);
 		
@@ -392,10 +427,20 @@ public class FrameEditor extends javax.swing.JFrame
 		pack();
 	}//GEN-END:initComponents
 
-	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem1ActionPerformed
-	{//GEN-HEADEREND:event_jMenuItem1ActionPerformed
+	private void m_menuEditFindAgainActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuEditFindAgainActionPerformed
+	{//GEN-HEADEREND:event_m_menuEditFindAgainActionPerformed
+		findWordAgain();
+	}//GEN-LAST:event_m_menuEditFindAgainActionPerformed
+
+	private void m_menuEditFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuEditFindActionPerformed
+	{//GEN-HEADEREND:event_m_menuEditFindActionPerformed
+		findWordNew();
+	}//GEN-LAST:event_m_menuEditFindActionPerformed
+
+	private void m_menuEditAddwordsfromanotherdictionaryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuEditAddwordsfromanotherdictionaryActionPerformed
+	{//GEN-HEADEREND:event_m_menuEditAddwordsfromanotherdictionaryActionPerformed
 		importWords();
-	}//GEN-LAST:event_jMenuItem1ActionPerformed
+	}//GEN-LAST:event_m_menuEditAddwordsfromanotherdictionaryActionPerformed
 				
 	private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
 	{//GEN-HEADEREND:event_formWindowClosing
@@ -457,7 +502,6 @@ public class FrameEditor extends javax.swing.JFrame
 	private javax.swing.JMenu jMenu1;
 	private javax.swing.JMenu jMenu2;
 	private javax.swing.JMenuBar jMenuBar2;
-	private javax.swing.JMenuItem jMenuItem1;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
 	private javax.swing.JPanel jPanel3;
@@ -465,11 +509,15 @@ public class FrameEditor extends javax.swing.JFrame
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JSeparator jSeparator1;
 	private javax.swing.JSeparator jSeparator2;
+	private javax.swing.JSeparator jSeparator3;
 	private javax.swing.JButton m_buttonAdd;
 	private javax.swing.JButton m_buttonRemove;
 	private javax.swing.JFileChooser m_filechooserDictionary;
 	private javax.swing.JLabel m_labelStatusWords;
 	private javax.swing.JMenuItem m_menuEditAdd;
+	private javax.swing.JMenuItem m_menuEditAddwordsfromanotherdictionary;
+	private javax.swing.JMenuItem m_menuEditFind;
+	private javax.swing.JMenuItem m_menuEditFindAgain;
 	private javax.swing.JMenuItem m_menuEditRemove;
 	private javax.swing.JMenuItem m_menuFileClose;
 	private javax.swing.JMenuItem m_menuFileNew;
@@ -735,5 +783,97 @@ public class FrameEditor extends javax.swing.JFrame
 				"Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
+	}
+	
+	private void findWordNew()
+	{
+		// Ask for the search phrase
+		String phrase = (String)JOptionPane.showInputDialog(this, "Please enter word you want to find:", 
+		"Find", JOptionPane.INFORMATION_MESSAGE, 
+		new ImageIcon(getClass().getResource("/mylang/gui/resources/Find24.gif")), null, m_lastWordSearch);
+		// Check if the dialog wasn't cancelled
+		if(phrase != null)
+		{
+			// Trim the phrase then check if it isn't empty
+			phrase = phrase.trim();
+			if(!phrase.equals(""))
+			{
+				// Remember the phrase for later usage
+				m_lastWordSearch = phrase;
+				// Invoke the search, it will not call us back because search phrase is not empty
+				findWordAgain();
+			}
+		}
+	}
+	
+	private void findWordAgain()
+	{
+		// If there were no previous searches, ask for the phrase
+		if(m_lastWordSearch.equals(""))
+		{
+			// findWordAgain() will never call us with empty search phrase,
+			// so there is no risk of depth recurrence.
+			findWordNew();
+			return;
+		}
+		// Search a next occurence of the phrase starting from the
+		// active cell
+		int posStart = m_tableWords.getSelectionModel().getLeadSelectionIndex();
+		int posCurrent = posStart;
+		boolean madeLoop = false;
+		while(!madeLoop)
+		{
+			// Go to next row
+			posCurrent++;
+			// Check if current index is within bounds of the table
+			if(posCurrent == m_tableWords.getRowCount())
+			{
+				// Current index is outside the bounds, need to go to the first row.
+				// However if there were no selected row before the search
+				// was invoked, then it means that loop has been made
+				if(posStart == -1)
+				{
+					madeLoop = true;
+					break;
+				}
+				else
+				{
+					posCurrent = 0;
+				}
+			}
+			// Check if the whole table has been searched
+			if(posCurrent == posStart)
+			{
+				madeLoop = true;
+				break;
+			}
+			else
+			{
+				// Try to match the current word
+				Word w = (Word)m_dict.getWordsList().get(posCurrent);
+				if((w.getLanguage(0).toLowerCase().indexOf(m_lastWordSearch.toLowerCase()) != -1)
+				|| (w.getLanguage(1).toLowerCase().indexOf(m_lastWordSearch.toLowerCase()) != -1))
+				{
+					// The current word matches the phrase, select it then make visible
+					m_tableWords.setRowSelectionInterval(posCurrent, posCurrent);
+					m_tableWords.scrollRectToVisible(m_tableWords.getCellRect(posCurrent, 0, true));
+					break;
+				}
+			}
+		}
+		// Some workaround for JTable behavior causing that cell editor
+		// is created if find was invoked via accelerators
+		if(madeLoop)
+			JOptionPane.showMessageDialog(this, "No matching words found.", 
+			"Information", JOptionPane.INFORMATION_MESSAGE);
+//		SwingUtilities.invokeLater(new Runnable()
+//		{
+//			public void run()
+//			{
+//				if(m_tableWords.getCellEditor() != null)
+//					m_tableWords.getCellEditor().cancelCellEditing();
+//				m_tableWords.requestFocus();
+//			}
+//		});
 	}
 }
