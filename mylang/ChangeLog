@@ -5,6 +5,7 @@
 	* Editor checks if language names are correct.
 	* Ask before overwriting file (FrameEditor).
 	* Refresh tables after each session (FrameMain).
+	* Removed tooltips from the tables themselves (FrameMain).
 
 2004-01-04  Michal Dabrowski <herrmic@users.berlios.de>
 
