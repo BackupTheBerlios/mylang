@@ -56,7 +56,6 @@ public class FrameMain extends javax.swing.JFrame
 		m_tableDictionaries.setModel(new DictionarySetTableModel());
 		m_tableDictionaries.setShowHorizontalLines(false);
 		m_tableDictionaries.setShowVerticalLines(false);
-		m_tableDictionaries.setToolTipText(m_scrollpaneDictionaries.getToolTipText());
 		m_tableDictionaries.getTableHeader().setToolTipText(m_scrollpaneDictionaries.getToolTipText());
 		m_scrollpaneDictionaries.setViewportView(m_tableDictionaries);
 
@@ -64,7 +63,6 @@ public class FrameMain extends javax.swing.JFrame
 		m_tableWords.setModel(new WordsListTableModel());
 		m_tableWords.setShowHorizontalLines(false);
 		m_tableWords.setShowVerticalLines(false);
-		m_tableWords.setToolTipText(m_scrollpaneWords.getToolTipText());
 		m_tableWords.getTableHeader().setToolTipText(m_scrollpaneWords.getToolTipText());
 		m_scrollpaneWords.setViewportView(m_tableWords);
 
