@@ -562,14 +562,18 @@ public class FrameMain extends javax.swing.JFrame
 
 	private void m_checkboxLanguage2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_checkboxLanguage2ActionPerformed
 	{//GEN-HEADEREND:event_m_checkboxLanguage2ActionPerformed
+		int[] rows = m_tableWords.getSelectedRows();
 		((WordsListTableModel)m_tableWords.getModel()).shadowColumn(1,
 		m_checkboxLanguage2.getSelectedObjects() != null);
+		selectWordsTableRows(rows);
 	}//GEN-LAST:event_m_checkboxLanguage2ActionPerformed
 
 	private void m_checkboxLanguage1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_checkboxLanguage1ActionPerformed
 	{//GEN-HEADEREND:event_m_checkboxLanguage1ActionPerformed
+		int[] rows = m_tableWords.getSelectedRows();
 		((WordsListTableModel)m_tableWords.getModel()).shadowColumn(0,
 		m_checkboxLanguage1.getSelectedObjects() != null);
+		selectWordsTableRows(rows);
 	}//GEN-LAST:event_m_checkboxLanguage1ActionPerformed
 
 	private void m_buttonInfoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonInfoActionPerformed
@@ -612,8 +616,7 @@ public class FrameMain extends javax.swing.JFrame
 			w.setEnabled(false);
 		}
 		((WordsListTableModel)m_tableWords.getModel()).setWordsContainer(m_dset);
-		for(int i = 0; i < rows.length; i++)
-			m_tableWords.addRowSelectionInterval(rows[i], rows[i]);
+		selectWordsTableRows(rows);
 	}//GEN-LAST:event_m_buttonDisableActionPerformed
 
 	private void m_buttonEnableActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonEnableActionPerformed
@@ -625,8 +628,7 @@ public class FrameMain extends javax.swing.JFrame
 			w.setEnabled(true);
 		}
 		((WordsListTableModel)m_tableWords.getModel()).setWordsContainer(m_dset);
-		for(int i = 0; i < rows.length; i++)
-			m_tableWords.addRowSelectionInterval(rows[i], rows[i]);
+		selectWordsTableRows(rows);
 	}//GEN-LAST:event_m_buttonEnableActionPerformed
 
 	private void m_buttonUnloadActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonUnloadActionPerformed
@@ -878,5 +880,11 @@ public class FrameMain extends javax.swing.JFrame
 			state = false;
 		m_buttonEnable.setEnabled(state);
 		m_buttonDisable.setEnabled(state);
+	}
+	
+	private void selectWordsTableRows(int[] rows)
+	{
+		for(int i = 0; i < rows.length; i++)
+			m_tableWords.addRowSelectionInterval(rows[i], rows[i]);
 	}
 }
