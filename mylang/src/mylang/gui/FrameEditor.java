@@ -117,6 +117,8 @@ public class FrameEditor extends javax.swing.JFrame
 		jMenu1 = new javax.swing.JMenu();
 		m_menuEditAdd = new javax.swing.JMenuItem();
 		m_menuEditRemove = new javax.swing.JMenuItem();
+		jSeparator2 = new javax.swing.JSeparator();
+		jMenuItem1 = new javax.swing.JMenuItem();
 		
 		
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -370,12 +372,30 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		jMenu1.add(m_menuEditRemove);
 		
+		jMenu1.add(jSeparator2);
+		
+		jMenuItem1.setText("Add words from another dictionary...");
+		jMenuItem1.addActionListener(new java.awt.event.ActionListener()
+		{
+			public void actionPerformed(java.awt.event.ActionEvent evt)
+			{
+				jMenuItem1ActionPerformed(evt);
+			}
+		});
+		
+		jMenu1.add(jMenuItem1);
+		
 		jMenuBar2.add(jMenu1);
 		
 		setJMenuBar(jMenuBar2);
 		
 		pack();
 	}//GEN-END:initComponents
+
+	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem1ActionPerformed
+	{//GEN-HEADEREND:event_jMenuItem1ActionPerformed
+		importWords();
+	}//GEN-LAST:event_jMenuItem1ActionPerformed
 				
 	private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
 	{//GEN-HEADEREND:event_formWindowClosing
@@ -437,12 +457,14 @@ public class FrameEditor extends javax.swing.JFrame
 	private javax.swing.JMenu jMenu1;
 	private javax.swing.JMenu jMenu2;
 	private javax.swing.JMenuBar jMenuBar2;
+	private javax.swing.JMenuItem jMenuItem1;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
 	private javax.swing.JPanel jPanel3;
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JSeparator jSeparator1;
+	private javax.swing.JSeparator jSeparator2;
 	private javax.swing.JButton m_buttonAdd;
 	private javax.swing.JButton m_buttonRemove;
 	private javax.swing.JFileChooser m_filechooserDictionary;
@@ -671,5 +693,47 @@ public class FrameEditor extends javax.swing.JFrame
 	private void updateStatusBar()
 	{
 		m_labelStatusWords.setText("Words: " + m_tableWords.getRowCount());
+	}
+	
+	private void importWords()
+	{
+		// Get the latest used path for the file dialog
+		m_filechooserDictionary.setCurrentDirectory(
+		new File(MyLang.getPrefDictionariesPath()));
+		if(m_filechooserDictionary.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
+		{
+			// Store the path for later use
+			MyLang.setPrefDictionariesPath(m_filechooserDictionary
+			.getSelectedFile().getAbsolutePath());
+
+			try
+			{
+				// Store the language names, they will be needed to
+				// evaluate if the selected dictionary can be loaded
+				m_dict.getLanguageNames()[0] = m_textLanguage0.getText();
+				m_dict.getLanguageNames()[1] = m_textLanguage1.getText();
+				// Create temporary dictionary set that will do language
+				// flipping for us
+				DictionarySet ds = new DictionarySet();
+				ds.addDictionary(m_dict);
+				// Load the selected dictionary 
+				Dictionary dict = new Dictionary(m_filechooserDictionary.getSelectedFile());
+				// Add it to the set if possible
+				ds.addDictionary(dict);
+				// The new dictionary was successfully added to the set;
+				// now extract all of the new words
+				m_dict.getWordsList().addAll(dict.getWordsList());
+				((WordsEditorTableModel)m_tableWords.getModel()).setDictionary(m_dict);
+				updateStatusBar();
+
+				// Remember that some modifications occured
+				m_modified = true;
+			}
+			catch(IOException ex)
+			{
+				JOptionPane.showMessageDialog(this, ex.getMessage(),
+				"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 }
