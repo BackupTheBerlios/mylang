@@ -92,11 +92,6 @@ public class FrameMain extends javax.swing.JFrame
 		m_buttonStart = new javax.swing.JButton();
 		jMenuBar1 = new javax.swing.JMenuBar();
 		jMenu1 = new javax.swing.JMenu();
-		m_menuFileNew = new javax.swing.JMenuItem();
-		m_menuFileOpen = new javax.swing.JMenuItem();
-		m_menuFileSave = new javax.swing.JMenuItem();
-		m_menuFileSaveas = new javax.swing.JMenuItem();
-		jSeparator1 = new javax.swing.JSeparator();
 		m_menuFileQuit = new javax.swing.JMenuItem();
 		jMenu2 = new javax.swing.JMenu();
 		m_menuToolsNeweditor = new javax.swing.JMenuItem();
@@ -214,9 +209,9 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridheight = 4;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
 		gridBagConstraints.weighty = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(jScrollPane2, gridBagConstraints);
 		
 		m_buttonEnable.setText("Enable");
@@ -373,23 +368,6 @@ public class FrameMain extends javax.swing.JFrame
 		getContentPane().add(m_panelSessionControls, gridBagConstraints);
 		
 		jMenu1.setText("File");
-		m_menuFileNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-		m_menuFileNew.setText("New");
-		jMenu1.add(m_menuFileNew);
-		
-		m_menuFileOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-		m_menuFileOpen.setText("Open...");
-		jMenu1.add(m_menuFileOpen);
-		
-		m_menuFileSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-		m_menuFileSave.setText("Save");
-		jMenu1.add(m_menuFileSave);
-		
-		m_menuFileSaveas.setText("Save as...");
-		jMenu1.add(m_menuFileSaveas);
-		
-		jMenu1.add(jSeparator1);
-		
 		m_menuFileQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
 		m_menuFileQuit.setText("Quit");
 		m_menuFileQuit.addActionListener(new java.awt.event.ActionListener()
@@ -569,7 +547,6 @@ public class FrameMain extends javax.swing.JFrame
 	private javax.swing.JPanel jPanel5;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
-	private javax.swing.JSeparator jSeparator1;
 	private javax.swing.JSeparator jSeparator2;
 	private javax.swing.JSeparator jSeparator3;
 	private javax.swing.JMenuItem j_menuToolsPreferences;
@@ -584,11 +561,7 @@ public class FrameMain extends javax.swing.JFrame
 	private javax.swing.JComboBox m_comboDirection;
 	private javax.swing.JComboBox m_comboMode;
 	private javax.swing.JFileChooser m_filechooserDictionary;
-	private javax.swing.JMenuItem m_menuFileNew;
-	private javax.swing.JMenuItem m_menuFileOpen;
 	private javax.swing.JMenuItem m_menuFileQuit;
-	private javax.swing.JMenuItem m_menuFileSave;
-	private javax.swing.JMenuItem m_menuFileSaveas;
 	private javax.swing.JMenuItem m_menuHelpAbout;
 	private javax.swing.JMenuItem m_menuToolsNeweditor;
 	private javax.swing.JPanel m_panelSessionControls;
