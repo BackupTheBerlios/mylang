@@ -74,6 +74,7 @@ public class FrameEditor extends javax.swing.JFrame
 		m_textLanguage0.getDocument().addDocumentListener(dl);
 		m_textLanguage1.getDocument().addDocumentListener(dl);
 		m_textDescription.getDocument().addDocumentListener(dl);
+		m_modified = false;
 		newFile();
 		updateTableHeaders();
 	}
@@ -346,22 +347,12 @@ public class FrameEditor extends javax.swing.JFrame
 	
 	private void m_menuFileSaveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuFileSaveActionPerformed
 	{//GEN-HEADEREND:event_m_menuFileSaveActionPerformed
-		m_filechooserDictionary.setCurrentDirectory(
-		new File(MyLang.getPrefDictionariesPath()));
-		if(m_dict.getFile() != null)
-			saveFile(m_dict.getFile());
-		else if(m_filechooserDictionary.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
-		{
-			MyLang.setPrefDictionariesPath(m_filechooserDictionary
-			.getSelectedFile().getAbsolutePath());
-			saveFile(m_filechooserDictionary.getSelectedFile());
-		}
+		saveFile(m_dict.getFile());
 	}//GEN-LAST:event_m_menuFileSaveActionPerformed
 	
 	private void m_menuFileNewActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuFileNewActionPerformed
 	{//GEN-HEADEREND:event_m_menuFileNewActionPerformed
-		if(canFileBeClosed())
-			newFile();
+		newFile();
 	}//GEN-LAST:event_m_menuFileNewActionPerformed
 	
 	private void m_menuEditRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuEditRemoveActionPerformed
@@ -386,29 +377,12 @@ public class FrameEditor extends javax.swing.JFrame
 	
 	private void m_menuFileSaveasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuFileSaveasActionPerformed
 	{//GEN-HEADEREND:event_m_menuFileSaveasActionPerformed
-		m_filechooserDictionary.setCurrentDirectory(
-		new File(MyLang.getPrefDictionariesPath()));
-		if(m_filechooserDictionary.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
-		{
-			MyLang.setPrefDictionariesPath(m_filechooserDictionary
-			.getSelectedFile().getAbsolutePath());
-			saveFile(m_filechooserDictionary.getSelectedFile());
-		}
+		saveFile(null);
 	}//GEN-LAST:event_m_menuFileSaveasActionPerformed
 	
 	private void m_menuFileOpenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuFileOpenActionPerformed
 	{//GEN-HEADEREND:event_m_menuFileOpenActionPerformed
-		if(canFileBeClosed())
-		{
-			m_filechooserDictionary.setCurrentDirectory(
-			new File(MyLang.getPrefDictionariesPath()));
-			if(m_filechooserDictionary.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
-			{
-				MyLang.setPrefDictionariesPath(m_filechooserDictionary
-				.getSelectedFile().getAbsolutePath());
-				loadFile(m_filechooserDictionary.getSelectedFile());
-			}
-		}
+		loadFile();
 	}//GEN-LAST:event_m_menuFileOpenActionPerformed
 	
 	/** Exit the Application */
@@ -439,54 +413,122 @@ public class FrameEditor extends javax.swing.JFrame
 	private javax.swing.JTextField m_textLanguage1;
 	// End of variables declaration//GEN-END:variables
 	
-	private void loadFile(File f)
+	private void loadFile()
 	{
-		try
+		// Make sure, that we won't close file accidentally
+		if(canFileBeClosed())
 		{
-			m_dict = new Dictionary(f);
-			m_textLanguage0.setText(m_dict.getLanguageNames()[0]);
-			m_textLanguage1.setText(m_dict.getLanguageNames()[1]);
-			m_textDescription.setText(m_dict.getDescription());
-			((WordsEditorTableModel)m_tableWords.getModel()).setDictionary(m_dict);
-			setTitle("MyLang - " + f.getName() + " - Editor");
-			m_modified = false;
-		}
-		catch(IOException ex)
-		{
-			JOptionPane.showMessageDialog(this, ex.getMessage(),
-			"Error", JOptionPane.ERROR_MESSAGE);
+			// Get the latest used path for the file dialog
+			m_filechooserDictionary.setCurrentDirectory(
+			new File(MyLang.getPrefDictionariesPath()));
+			if(m_filechooserDictionary.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
+			{
+				// Store the path for later use
+				MyLang.setPrefDictionariesPath(m_filechooserDictionary
+				.getSelectedFile().getAbsolutePath());
+				
+				try
+				{
+					// Load the selected dictionary then fill the controls
+					// with data
+					m_dict = new Dictionary(m_filechooserDictionary.getSelectedFile());
+					m_textLanguage0.setText(m_dict.getLanguageNames()[0]);
+					m_textLanguage1.setText(m_dict.getLanguageNames()[1]);
+					m_textDescription.setText(m_dict.getDescription());
+					((WordsEditorTableModel)m_tableWords.getModel()).setDictionary(m_dict);
+					updateTitle();
+					
+					// Set that the file is freshly loaded
+					m_modified = false;
+				}
+				catch(IOException ex)
+				{
+					JOptionPane.showMessageDialog(this, ex.getMessage(),
+					"Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		}
 	}
 	
 	private void saveFile(File f)
 	{
-		try
+		// Ensure that entered data is correct
+		if(canFileBeSaved())
 		{
-			m_dict.getLanguageNames()[0] = m_textLanguage0.getText();
-			m_dict.getLanguageNames()[1] = m_textLanguage1.getText();
-			m_dict.setDescription(m_textDescription.getText());
-			m_dict.write(f);
-			setTitle("MyLang - " + f.getName() + " - Editor");
-			m_modified = false;
-		}
-		catch(IOException ex)
-		{
-			JOptionPane.showMessageDialog(this, ex.getMessage(),
-			"Error", JOptionPane.ERROR_MESSAGE);
+			// Make new variable, to avoid changing the param
+			File file = f;
+			
+			// If the file passed as a param is null, then need to ask user
+			// for the file name.
+			if(file == null)
+			{
+				// Get the latest used path for the file dialog
+				m_filechooserDictionary.setCurrentDirectory(
+				new File(MyLang.getPrefDictionariesPath()));				
+				if(m_filechooserDictionary.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
+				{
+					// Store the path for later use
+					MyLang.setPrefDictionariesPath(m_filechooserDictionary
+					.getSelectedFile().getAbsolutePath());
+
+					// Remember the selected file
+					file = m_filechooserDictionary.getSelectedFile();
+					
+					// Check, if the file already exists and display
+					// warning is necessary
+					if(file.exists())
+					{
+						if(JOptionPane.showConfirmDialog(this,
+						"The file already exists. Overwrite it?",
+						"Question", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION)
+						{
+							file = null;
+						}
+					}
+				}
+			}
+			
+			// If the file is still null, it means user did not selected one
+			if(file != null)
+			{
+				try
+				{
+					m_dict.getLanguageNames()[0] = m_textLanguage0.getText();
+					m_dict.getLanguageNames()[1] = m_textLanguage1.getText();
+					m_dict.setDescription(m_textDescription.getText());
+					m_dict.write(file);
+					m_modified = false;
+					updateTitle();
+				}
+				catch(IOException ex)
+				{
+					JOptionPane.showMessageDialog(this, ex.getMessage(),
+					"Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		}
 	}
 	
 	private void newFile()
 	{
-		m_dict = new Dictionary();
-		m_textLanguage0.setText("");
-		m_textLanguage1.setText("");
-		m_textDescription.setText("");
-		((WordsEditorTableModel)m_tableWords.getModel()).setDictionary(m_dict);
-		setTitle("MyLang - Editor");
-		m_modified = false;
+		// Make sure, that we won't close file accidentally
+		if(canFileBeClosed())
+		{
+			// Clean everything
+			m_dict = new Dictionary();
+			m_textLanguage0.setText("");
+			m_textLanguage1.setText("");
+			m_textDescription.setText("");
+			((WordsEditorTableModel)m_tableWords.getModel()).setDictionary(m_dict);
+			m_modified = false;
+			updateTitle();
+		}
 	}
 	
+	/** Ensures it is safe to close the file (to prevent accidental data loss).
+	 * Asks the user if necessary.
+	*/
 	private boolean canFileBeClosed()
 	{
 		if(m_modified)
@@ -502,6 +544,7 @@ public class FrameEditor extends javax.swing.JFrame
 		return true;
 	}
 	
+	/** Updated words table headers according to the language names */
 	private void updateTableHeaders()
 	{
 		String s;
@@ -519,5 +562,48 @@ public class FrameEditor extends javax.swing.JFrame
 		m_tableWords.convertColumnIndexToView(1)).setHeaderValue(s);
 		
 		m_tableWords.getTableHeader().resizeAndRepaint();
+	}
+	
+	/** Evaluates if the languages are entered properly.
+	 * Displays message box if there is something wrong.
+	*/
+	private boolean canFileBeSaved()
+	{
+		// Check if both language names are provided
+		if(m_textLanguage0.getText().compareTo("") == 0 ||
+			m_textLanguage1.getText().compareTo("") == 0)
+		{
+			JOptionPane.showMessageDialog(this,
+				"Language name may not be empty",
+				"Information", JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		}
+		
+		// Check if language names are not equal
+		if(m_textLanguage0.getText().trim().compareToIgnoreCase(
+			m_textLanguage1.getText().trim()) == 0)
+		{
+			JOptionPane.showMessageDialog(this,
+				"Language names must not be same",
+				"Information", JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		}
+		
+		// No errors occured - file can be saved
+		return true;
+	}
+	
+	/** Sets the frame's title depending on file name */
+	private void updateTitle()
+	{
+		// Set the appropriate window title
+		if(m_dict.getFile() != null)
+		{
+			setTitle("MyLang - " + m_dict.getFile().getName() + " - Editor");
+		}
+		else
+		{
+			setTitle("MyLang - Editor");
+		}
 	}
 }
