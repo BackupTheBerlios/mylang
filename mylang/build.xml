@@ -5,6 +5,7 @@
         <property name="srcdir" value="src"/>
         <property name="classdir" value="${srcdir}"/>
         <property name="libdir" value="lib"/>
+		<property name="testdir" value="test"/>
         <filelist dir="${libdir}" files="dom4j.jar,looks-1.1.2.jar" id="lib-jars"/>
     </target>
     
@@ -16,7 +17,28 @@
         </javac>
     </target>
     
-    <target depends="init,compile" name="jar">
+	<target depends="init,compile" name="test-compile">
+		<javac destdir="${testdir}" srcdir="${testdir}">
+			<classpath>
+			    <path path="${classdir}"/>
+                <filelist refid="lib-jars"/>
+				<path path="${libdir}/junit.jar"/>
+			</classpath>
+		</javac>
+	</target>
+	    
+	<target depends="init,test-compile" name="test-execute">
+		<junit haltonfailure="yes" printsummary="yes">
+			<classpath>
+				<pathelement path="test"/>
+			    <path path="${classdir}"/>
+                <filelist refid="lib-jars"/>
+			</classpath>
+			<test name="mylang.data.WordTest"/>
+		</junit>
+	</target>
+	
+    <target depends="init,compile,test-execute" name="jar">
         <jar basedir="${classdir}" compress="true" jarfile="${libdir}/MyLang.jar">
             <include name="**/*.class"/>
             <include name="**/mylang/gui/resources/*.gif"/>
@@ -27,7 +49,7 @@
             </manifest>
         </jar>
     </target>
-    
+
     <target depends="init,jar" name="all">
     </target>
     
@@ -36,8 +58,13 @@
             <fileset dir="${classdir}">
                 <include name="**/*.class"/>
             </fileset>
+			<fileset dir="${testdir}">
+				<include name="**/*.class"/>
+			</fileset>
         </delete>
         <delete file="${libdir}/MyLang.jar"/>
     </target>
     
+	<target depends="init,clean,all" name="rebuild-all">
+	</target>
 </project>
