@@ -461,6 +461,11 @@ public class FrameEditor extends javax.swing.JFrame
 			findWordAgain();
 			e.consume();
 		}
+        if (e.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            insertNewWordUnderCursor();
+            e.consume();
+        }
 	}//GEN-LAST:event_m_tableWordsKeyPressed
 
 	private void m_menuEditFindAgainActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuEditFindAgainActionPerformed
@@ -775,6 +780,14 @@ public class FrameEditor extends javax.swing.JFrame
 		((WordsEditorTableModel)m_tableWords.getModel()).addWord();
 		updateStatusBar();
 	}
+    
+    private void insertNewWordUnderCursor()
+    {
+        insertNewWord();
+        m_tableWords.getSelectionModel().setSelectionInterval(
+            m_tableWords.getRowCount() - 1, m_tableWords.getRowCount() - 1);
+        m_tableWords.editCellAt(m_tableWords.getRowCount() - 1, 0);
+    }
 	
 	private void updateStatusBar()
 	{
