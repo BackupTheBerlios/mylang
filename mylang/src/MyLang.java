@@ -32,9 +32,11 @@ import java.util.prefs.*;
  */
 public class MyLang
 {
+	private static final String PROGRAMVERSION = "0.1beta2";
 	private static final String PREF_REQUIREALLTRANSLATIONS = "Require All Translations";
 	private static final String PREF_EMPHASIZEMISTAKES = "Emphasize Mistakes";
 	private static final String PREF_DICTIONARIESPATH = "Dictionaries Path";
+	private static final String PREF_LASTVERSIONRUNNING = "Last Version Running";
 	
 	private static Preferences m_prefs;
 	
@@ -65,6 +67,15 @@ public class MyLang
 		m_prefs.put(PREF_DICTIONARIESPATH, value);
 	}
 
+	public static String getPrefLastVersionRunning()
+	{
+		return m_prefs.get(PREF_LASTVERSIONRUNNING, "none");
+	}
+	public static void setPrefLastVersionRunning(String value)
+	{
+		m_prefs.put(PREF_LASTVERSIONRUNNING, value);
+	}
+
 	/** Creates a new instance of MyLang */
 	//public MyLang()
 	//{
@@ -85,6 +96,11 @@ public class MyLang
 		
 		m_prefs = Preferences.userRoot().node("MyLang");
 		new FrameMain().show();
+		if(!getPrefLastVersionRunning().equals(PROGRAMVERSION))
+		{
+			FrameAbout.showAboutFrame();
+			setPrefLastVersionRunning(PROGRAMVERSION);
+		}
 	}
 	
 }

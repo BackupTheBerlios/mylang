@@ -48,8 +48,6 @@ public class FrameAbout extends javax.swing.JFrame
 		jTabbedPane1 = new javax.swing.JTabbedPane();
 		jPanel1 = new javax.swing.JPanel();
 		jLabel1 = new javax.swing.JLabel();
-		jLabel2 = new javax.swing.JLabel();
-		jLabel3 = new javax.swing.JLabel();
 		jPanel2 = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTextArea1 = new javax.swing.JTextArea();
@@ -68,28 +66,10 @@ public class FrameAbout extends javax.swing.JFrame
 		
 		jLabel1.setFont(new java.awt.Font("SansSerif", 1, 36));
 		jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		jLabel1.setText("MyLang");
+		jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logoBig.png")));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel1.add(jLabel1, gridBagConstraints);
-		
-		jLabel2.setFont(new java.awt.Font("Dialog", 0, 12));
-		jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		jLabel2.setText("version 0.1 beta 1");
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 1;
-		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-		jPanel1.add(jLabel2, gridBagConstraints);
-		
-		jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		jLabel3.setText("Copyright 2003 by Micha\u0142 D\u0105browski");
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 2;
-		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel1.add(jLabel3, gridBagConstraints);
 		
 		jTabbedPane1.addTab("About", jPanel1);
 		
@@ -118,8 +98,6 @@ public class FrameAbout extends javax.swing.JFrame
 		
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
 	private javax.swing.JScrollPane jScrollPane1;
