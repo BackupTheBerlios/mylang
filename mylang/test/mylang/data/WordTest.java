@@ -5,7 +5,7 @@
  * Created on 20 grudzieñ 2003, 17:12
  */
 
-package test.mylang.data;
+package mylang.data;
 
 import junit.framework.*;
 import mylang.data.Word;

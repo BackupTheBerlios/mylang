@@ -5,7 +5,7 @@
  * Created on 19 styczeñ 2004, 23:56
  */
 
-package test.mylang.data;
+package mylang.data;
 
 import junit.framework.*;
 import mylang.data.Stat;
