@@ -1,5 +1,9 @@
 2003-12-10  Michal Dabrowski <herrmic@users.berlios.de>
 
+	* Removed unused menu entries
+
+2003-12-10  Michal Dabrowski <herrmic@users.berlios.de>
+
 	* Added logo to the about dialog
 	* Reorganized source tree layout
 
