@@ -1,3 +1,7 @@
+2004-01-04  Michal Dabrowski <herrmic@users.berlios.de>
+
+	* Disable appropriate buttons when no dictionary/word is selected (MainFrame)
+
 2003-12-29  Michal Dabrowski <herrmic@users.berlios.de>
 
 	* Added "Selection" buttons to the main frame.
