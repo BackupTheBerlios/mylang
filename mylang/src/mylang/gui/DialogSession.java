@@ -472,6 +472,7 @@ public class DialogSession extends javax.swing.JDialog
 	
 	private void finalizeSession()
 	{
+		m_buttonCancel.requestFocus();
 		m_textQuestion.setText("");
 		m_textAnswer.setEnabled(false);
 		m_textAnswer.setEditable(false);
