@@ -1,3 +1,19 @@
+2004-01-25  Michal Dabrowski <herrmic@users.berlios.de>
+
+	* Removed support for rev/1 words.
+	* Added addDictionary() method to DictionarySet.
+	* Top of license text is now displayed initially (FrameAbout).
+	* Tooltip appears for spinner's editor (FrameDictionaryInfo).
+	* Search possibility added to the editor.
+	* Added possibility to import words from dictionary files (FrameEditor).
+	* Added status bar displaying number of words (FrameEditor).
+	* Selection of words is no longer cleared during (un)shadowing (FrameMain).
+
+2004-01-24  Michal Dabrowski <herrmic@users.berlios.de>
+
+	* Added mnemonics everywhere, centered all Frame*.
+	* Added icons to menu items.
+
 2004-01-20  Michal Dabrowski <herrmic@users.berlios.de>
 
 	* Unit testing: Added mylang.data.StatTest.
