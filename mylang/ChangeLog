@@ -1,4 +1,4 @@
-2004-01-25  Michal Dabrowski <herrmic@users.berlios.de>
+2004-01-28  Michal Dabrowski <herrmic@users.berlios.de>
 
 	* Updated package name (*Test).
 	* Added unit tests execution (build.xml).
