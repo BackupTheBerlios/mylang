@@ -8,6 +8,7 @@
 	* Added possibility to import words from dictionary files (FrameEditor).
 	* Added status bar displaying number of words (FrameEditor).
 	* Selection of words is no longer cleared during (un)shadowing (FrameMain).
+	* Changed version string to "1.1".
 
 2004-01-24  Michal Dabrowski <herrmic@users.berlios.de>
 
