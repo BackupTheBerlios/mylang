@@ -223,6 +223,15 @@ public class Session extends JComponent
 		{
 			// Select then ask next question
 			int num = m_random.nextInt(m_wordsLeft.size());
+			// Try not to repeat the current word
+			if (m_wordsLeft.size() > 1) {
+				if ((Word)m_wordsLeft.get(num) == m_question) {
+					// The selected word repeated, go to next one
+					num++;
+					if (num == m_wordsLeft.size())
+						num = 0;
+				}
+			}
 			m_question = (Word)m_wordsLeft.get(num);
 			
 			return true;
