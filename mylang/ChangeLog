@@ -1,5 +1,11 @@
 2003-11-30  Michal Dabrowski <herrmic@users.berlios.de>
 
+	* Only one about dialog can be opened at once
+	* Fixed license text in about dialog
+	* Minor bug fix in session dialog
+
+2003-11-30  Michal Dabrowski <herrmic@users.berlios.de>
+
 	* Bug fixes
 
 2003-11-28  Michal Dabrowski <herrmic@users.berlios.de>
