@@ -1,3 +1,7 @@
+2004-01-19  Michal Dabrowski <herrmic@users.berlios.de>
+
+	* Updated JavaDocs for the data classes.
+
 2004-01-17  Michal Dabrowski <herrmic@users.berlios.de>
 
 	* Moved session logic to Session class.
