@@ -37,6 +37,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="m_menuToolsNeweditor">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+                  <Image iconType="3" name="/mylang/gui/resources/Edit16.gif"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Open dictionary editor..."/>
               </Properties>
               <Events>
@@ -47,6 +50,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="j_menuToolsPreferences">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+                  <Image iconType="3" name="/mylang/gui/resources/Preferences16.gif"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Preferences..."/>
               </Properties>
               <Events>
@@ -63,6 +69,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="m_menuHelpAbout">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+                  <Image iconType="3" name="/mylang/gui/resources/About16.gif"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="About..."/>
               </Properties>
               <Events>

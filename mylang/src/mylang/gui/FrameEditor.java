@@ -255,6 +255,7 @@ public class FrameEditor extends javax.swing.JFrame
 		jMenu2.setMnemonic('F');
 		jMenu2.setText("File");
 		m_menuFileNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+		m_menuFileNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/New16.gif")));
 		m_menuFileNew.setText("New");
 		m_menuFileNew.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -267,6 +268,7 @@ public class FrameEditor extends javax.swing.JFrame
 		jMenu2.add(m_menuFileNew);
 		
 		m_menuFileOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+		m_menuFileOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/Open16.gif")));
 		m_menuFileOpen.setText("Open...");
 		m_menuFileOpen.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -279,6 +281,7 @@ public class FrameEditor extends javax.swing.JFrame
 		jMenu2.add(m_menuFileOpen);
 		
 		m_menuFileSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+		m_menuFileSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/Save16.gif")));
 		m_menuFileSave.setText("Save");
 		m_menuFileSave.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -290,6 +293,7 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		jMenu2.add(m_menuFileSave);
 		
+		m_menuFileSaveas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/SaveAs16.gif")));
 		m_menuFileSaveas.setText("Save as...");
 		m_menuFileSaveas.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -319,6 +323,7 @@ public class FrameEditor extends javax.swing.JFrame
 		jMenu1.setMnemonic('E');
 		jMenu1.setText("Edit");
 		m_menuEditAdd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_INSERT, 0));
+		m_menuEditAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/RowInsertAfter16.gif")));
 		m_menuEditAdd.setText("Add");
 		m_menuEditAdd.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -331,6 +336,7 @@ public class FrameEditor extends javax.swing.JFrame
 		jMenu1.add(m_menuEditAdd);
 		
 		m_menuEditRemove.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.ALT_MASK));
+		m_menuEditRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/RowDelete16.gif")));
 		m_menuEditRemove.setText("Remove");
 		m_menuEditRemove.addActionListener(new java.awt.event.ActionListener()
 		{

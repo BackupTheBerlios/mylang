@@ -496,6 +496,7 @@ public class FrameMain extends javax.swing.JFrame
 		
 		jMenu2.setMnemonic('T');
 		jMenu2.setText("Tools");
+		m_menuToolsNeweditor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/Edit16.gif")));
 		m_menuToolsNeweditor.setText("Open dictionary editor...");
 		m_menuToolsNeweditor.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -509,6 +510,7 @@ public class FrameMain extends javax.swing.JFrame
 		
 		jMenu2.add(jSeparator3);
 		
+		j_menuToolsPreferences.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/Preferences16.gif")));
 		j_menuToolsPreferences.setText("Preferences...");
 		j_menuToolsPreferences.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -524,6 +526,7 @@ public class FrameMain extends javax.swing.JFrame
 		
 		jMenu3.setMnemonic('H');
 		jMenu3.setText("Help");
+		m_menuHelpAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mylang/gui/resources/About16.gif")));
 		m_menuHelpAbout.setText("About...");
 		m_menuHelpAbout.addActionListener(new java.awt.event.ActionListener()
 		{
