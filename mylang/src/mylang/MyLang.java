@@ -35,7 +35,7 @@ import java.util.prefs.*;
  */
 public class MyLang
 {
-	private static final String PROGRAMVERSION = "0.1beta2";
+	private static final String PROGRAMVERSION = "1.0RC1";
 	private static final String PREF_REQUIREALLTRANSLATIONS = "Require All Translations";
 	private static final String PREF_EMPHASIZEMISTAKES = "Emphasize Mistakes";
 	private static final String PREF_DICTIONARIESPATH = "Dictionaries Path";
