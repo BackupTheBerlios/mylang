@@ -22,7 +22,7 @@
             <include name="**/mylang/gui/resources/*"/>
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="Main-Class" value="MyLang"/>
+                <attribute name="Main-Class" value="mylang.MyLang"/>
             </manifest>
         </jar>
     </target>
