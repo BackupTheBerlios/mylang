@@ -28,13 +28,17 @@
 	</target>
 	    
 	<target depends="init,test-compile" name="test-execute">
-		<junit haltonfailure="yes" printsummary="yes">
+		<junit haltonfailure="yes" haltonerror="yes" printsummary="yes">
 			<classpath>
 				<pathelement path="test"/>
 			    <path path="${classdir}"/>
                 <filelist refid="lib-jars"/>
 			</classpath>
-			<test name="mylang.data.WordTest"/>
+			<batchtest>
+				<fileset dir="${testdir}">
+					<include name="**/*Test.java"/>
+				</fileset>
+			</batchtest>
 		</junit>
 	</target>
 	
