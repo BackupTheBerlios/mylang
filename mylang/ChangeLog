@@ -1,5 +1,6 @@
 2004-01-04  Michal Dabrowski <herrmic@users.berlios.de>
 
+	* Added possibility to sort the tables (FrameMain)
 	* Disable appropriate buttons when no dictionary/word is selected (MainFrame)
 
 2003-12-29  Michal Dabrowski <herrmic@users.berlios.de>
