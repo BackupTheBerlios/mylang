@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.event.*;
 
 /*
  * FrameMain.java
@@ -56,6 +57,25 @@ public class FrameMain extends javax.swing.JFrame
 		m_dset = new DictionarySet();
 		((DictionarySetTableModel)m_tableDictionaries.getModel()).setDictionarySet(m_dset);
 		updateSessionControls();
+		
+		m_tableDictionaries.getSelectionModel().addListSelectionListener(
+			new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent e)
+				{
+					dictionaryTableSelectionChanged();
+				}
+		});
+		dictionaryTableSelectionChanged();
+		
+		m_tableWords.getSelectionModel().addListSelectionListener(
+			new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent e)
+				{
+					wordsTableSelectionChanged();
+				}
+		});
+		wordsTableSelectionChanged();
+		
 	}
 	
 	/** This method is called from within the constructor to
@@ -814,5 +834,23 @@ public class FrameMain extends javax.swing.JFrame
 		for(int i = 0; i < selectedRows.length; i++)
 			m_tableWords.removeRowSelectionInterval(selectedRows[i], selectedRows[i]);
 		m_tableWords.getSelectionModel().setValueIsAdjusting(false);
+	}
+	
+	private void dictionaryTableSelectionChanged()
+	{
+		boolean state = true;
+		if(m_tableDictionaries.getSelectedRowCount() == 0)
+			state = false;
+		m_buttonInfo.setEnabled(state);
+		m_buttonUnload.setEnabled(state);
+	}
+	
+	private void wordsTableSelectionChanged()
+	{
+		boolean state = true;
+		if(m_tableWords.getSelectedRowCount() == 0)
+			state = false;
+		m_buttonEnable.setEnabled(state);
+		m_buttonDisable.setEnabled(state);
 	}
 }
