@@ -1,3 +1,5 @@
+package mylang;
+
 import com.jgoodies.plaf.plastic.*;
 import javax.swing.*;
 import java.util.prefs.*;

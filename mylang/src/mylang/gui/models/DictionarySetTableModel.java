@@ -1,10 +1,13 @@
+package mylang.gui.models;
+
+import java.io.*;
 import java.util.*;
 import javax.swing.table.*;
 
 /*
- * WordsListTableModel.java
+ * DictionariesTableModel.java
  *
- * Created on 25 pa¼dziernik 2003, 19:01
+ * Created on 25 pa¼dziernik 2003, 16:59
  *
  * Copyright 2003 Michal Dabrowski
  *
@@ -29,33 +32,20 @@ import javax.swing.table.*;
  *
  * @author  herrmic
  */
-public class WordsListTableModel extends AbstractTableModel
+public class DictionarySetTableModel extends AbstractTableModel
 {
-	private static ArrayList m_emptyList = new ArrayList();
+	DictionarySet m_dset;
 	
-	public WordsContainer m_wc;
-	
-	private boolean[] m_shadowColumn;
-	
-	/** Creates a new instance of WordsListTableModel */
-	public WordsListTableModel()
+	/** Creates a new instance of DictionariesTableModel */
+	public DictionarySetTableModel()
 	{
-		m_wc = new WordsContainer(){
-			public ArrayList getWordsList()
-			{
-				return m_emptyList;
-			}
-		};
-		
-		m_shadowColumn = new boolean[2];
-		m_shadowColumn[0] = false;
-		m_shadowColumn[1] = false;
+		m_dset = new DictionarySet();
 	}
 	
-	public void shadowColumn(int language, boolean shadow)
+	public void addDictionary(File file) throws IOException
 	{
-		m_shadowColumn[language] = shadow;
-		fireTableDataChanged();
+		m_dset.loadDictionary(file);
+		fireTableRowsInserted(m_dset.getDictionaries().size(), m_dset.getDictionaries().size());
 	}
 	
 	public Class getColumnClass(int columnIndex)
@@ -66,7 +56,7 @@ public class WordsListTableModel extends AbstractTableModel
 			case 1: return String.class;
 			case 2: return String.class;
 			case 3: return String.class;
-			case 4: return Boolean.class;
+			case 4: return String.class;
 		}
 		return null;
 	}
@@ -80,65 +70,59 @@ public class WordsListTableModel extends AbstractTableModel
 	{
 		switch(columnIndex)
 		{
-			case 0: return "Language 1";
-			case 1: return "Language 2";
-			case 2: return "Last (date)";
-			case 3: return "Last (score)";
-			case 4: return "Enabled";
+			case 0: return "Name";
+			case 1: return "Last (date)";
+			case 2: return "Last (score)";
+			case 3: return "Size";
+			case 4: return "Description";
 		}
 		return "";
 	}
 	
 	public int getRowCount()
 	{
-		return m_wc.getWordsList().size();
+		return m_dset.getDictionaries().size();
 	}
 	
 	public Object getValueAt(int rowIndex, int columnIndex)
 	{
-		Word w = (Word)m_wc.getWordsList().get(rowIndex);
-		Stat stat = w.getLastStat();
+		Dictionary d = (Dictionary)m_dset.getDictionaries().get(rowIndex);
+		Stat stat = null;
+		if(!d.getStats().isEmpty())
+			stat = (Stat)d.getStats().get(d.getStats().size() - 1);
 		
 		switch(columnIndex)
 		{
-			case 0: 
-				if(m_shadowColumn[0])
-					return "<HTML><I>shadow</I></HTML>";
-				else
-					return w.getLanguage(0);
-			case 1: 
-				if(m_shadowColumn[1])
-					return "<HTML><I>shadow</I></HTML>";
-				else
-					return w.getLanguage(1);
-			case 2: 
+			case 0: return d.getFile().getName();
+			case 1:
 			{
 				if(stat == null)
 					return "-";
 				else
 				{
-					Calendar cal = w.getLastStat().getDate();
+					Calendar cal = stat.getDate();
 					return cal.get(Calendar.YEAR) + "." +
 					(cal.get(Calendar.MONTH)+1) + "." + 
 					cal.get(Calendar.DATE);
 				}
 			}
-			case 3: 
+			case 2:
 			{
 				if(stat == null)
 					return "-";
 				else
-					return Integer.toString(w.getLastStat().getScore());
+					return Integer.toString(stat.getScore());
+
 			}
-			case 4: 
-				return new Boolean(w.getEnabled());
+			case 3: return String.valueOf(d.getWordsList().size());
+			case 4: return d.getDescription();
 		}
 		return "";
 	}
 	
-	public void setWordsContainer(WordsContainer wc)
+	public void setDictionarySet(DictionarySet dset)
 	{
-		m_wc = wc;
+		m_dset = dset;
 		fireTableDataChanged();
 	}
 }

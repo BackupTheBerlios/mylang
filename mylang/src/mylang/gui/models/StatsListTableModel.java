@@ -1,3 +1,5 @@
+package mylang.gui.models;
+
 import java.text.*;
 import java.util.*;
 import javax.swing.table.*;

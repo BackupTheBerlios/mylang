@@ -1,3 +1,5 @@
+package mylang.data;
+
 import org.dom4j.*;
 
 /*

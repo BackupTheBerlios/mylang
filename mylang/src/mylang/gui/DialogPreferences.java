@@ -1,3 +1,5 @@
+package mylang.gui;
+
 /*
  * DialogPreferences.java
  *

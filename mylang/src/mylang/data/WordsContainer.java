@@ -1,3 +1,5 @@
+package mylang.data;
+
 import java.util.*;
 /*
  * WordsContainer.java

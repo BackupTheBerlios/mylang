@@ -1,3 +1,5 @@
+package mylang.gui;
+
 import java.io.*;
 import javax.swing.*;
 import javax.swing.event.*;
