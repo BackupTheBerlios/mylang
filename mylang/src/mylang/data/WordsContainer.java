@@ -26,10 +26,14 @@ import java.util.*;
  */
 
 /**
- *
- * @author  herrmic
+ * Interface to be implemented by all object that provide their word list.
+ * @author herrmic
  */
 public interface WordsContainer
 {
+	/**
+	 * Gets the object's words list.
+	 * @return List of words that the object contains.
+	 */	
 	public ArrayList getWordsList();
 }

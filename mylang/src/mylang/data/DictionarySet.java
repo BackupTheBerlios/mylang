@@ -28,31 +28,51 @@ import java.util.*;
  */
 
 /**
- *
- * @author  herrmic
+ * Used to group several dictionaries. All dictionaries must contain the same
+ * languages.
+ * @author herrmic
  */
 public class DictionarySet implements WordsContainer
 {
 	private ArrayList m_dictionaries;
 	private ArrayList m_words;
 	
-	/** Creates a new instance of DictionarySet */
+	/**
+	 * Creates empty dictionary set.
+	 */
 	public DictionarySet()
 	{
 		m_dictionaries = new ArrayList();
 		m_words = new ArrayList();
 	}
 	
+	/**
+	 * Gets list of all words contained within the set.
+	 * @return <CODE>ArrayList</CODE> of all <CODE>Word</CODE>s that are contained in the set's
+	 * dictionaries.
+	 */	
 	public java.util.ArrayList getWordsList()
 	{
 		return m_words;
 	}
 	
+	/**
+	 * Gets list of dictionaries that this set contains.
+	 * @return <CODE>ArrayList</CODE> of all dictionaries contained within this set.
+	 * <B>NOTE</B>: Do NOT add/remove dictionaries manually, use the
+	 * [<CODE>un</CODE>]<CODE>loadDictionary()</CODE> methods.
+	 */	
 	public ArrayList getDictionaries()
 	{
 		return m_dictionaries;
 	}
 	
+	/**
+	 * Loads dictionary from the given file then adds it to the set. If the operation
+	 * succeeds all new <CODE>Word</CODE>s are added to the set's words list.
+	 * @param file File that contain the dictionary.
+	 * @throws IOException thrown if the given dictionary can't be loaded.
+	 */	
 	public void loadDictionary(File file) throws IOException
 	{
 		for(Iterator i = m_dictionaries.iterator(); i.hasNext();)
@@ -83,6 +103,11 @@ public class DictionarySet implements WordsContainer
 		m_words.addAll(dict.getWordsList());
 	}
 	
+	/**
+	 * Removes given dictionary from the set. All the dictionary's <CODE>Word</CODE>s
+	 * are removed from the set's words list as well.
+	 * @param dict dictionary to be removed from the set.
+	 */	
 	public void unloadDictionary(Dictionary dict)
 	{
 		m_words.removeAll(dict.getWordsList());

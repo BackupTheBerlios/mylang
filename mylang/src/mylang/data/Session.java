@@ -13,8 +13,9 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 /**
- *
- * @author  herrmic
+ * Stores all information needed to perform a session. Manages questions, checks
+ * correctness of answers, updates words and dictionaries stats, etc.
+ * @author herrmic
  */
 public class Session extends JComponent
 {
@@ -26,6 +27,10 @@ public class Session extends JComponent
 	 *  Test session ends when all words are translated once.
 	 */	
 	public static final int TEST_MODE = 2;
+	/**
+	 * <CODE>Calendar</CODE> object that stores the amount of time that has ellapsed
+	 * since beginning of the session.
+	 */	
 	public static final String TIME_ELAPSED_PROPERTY = "SessionTimeElapsed";
 	
 	// This session mode
@@ -132,37 +137,65 @@ public class Session extends JComponent
 		return m_mode;
 	}
 	
+	/**
+	 * Gets the number of the language that is used to ask the questions.
+	 * @return language of the questions.
+	 */	
 	public int getLanguageOfQuestion()
 	{
 		return m_languageOfQuestion;
 	}
 	
+	/**
+	 * Gets total number of answers during the session.
+	 * @return number of answers that were given during this session.
+	 */	
 	public int getTotalAnswers()
 	{
 		return m_answers;
 	}
 	
+	/**
+	 * Amount of correct answers that were given during this session.
+	 * @return Number of correct answers.
+	 */	
 	public int getCorrectAnswers()
 	{
 		return m_correct;
 	}
 	
+	/**
+	 * Gets minimal amount of questions that will be asked before the session can be
+	 * finished. Usually each answer desreases this number. Exception is teach mode
+	 * where only correct answers affect this number.
+	 * @return Minimal number of questions that will be asked before the session finishes.
+	 */	
 	public int getNumberOfQuestionsLeft()
 	{
 		return m_wordsLeft.size();
 	}
 	
+	/**
+	 * The text of the current question.
+	 * @return The text of the current question.
+	 */	
 	public String getCurrentQuestionText()
 	{
 		return m_question.getLanguage(m_languageOfQuestion);
 	}
 	
+	/**
+	 * The text of the expected (correct) answer.
+	 * @return The text of the expected (correct) answer.
+	 */	
 	public String getExpectedAnswerText()
 	{
 		return m_question.getLanguage(m_languageOfAnswer);
 	}
 
-	/** Begins the session. */
+	/**
+	 * Begins the session. Initializes session data and starts the time counter.
+	 */
 	public void start()
 	{
 		// Clear all stats
@@ -173,6 +206,11 @@ public class Session extends JComponent
 		m_timerElapsed.start();
 	}
 
+	/**
+	 * Picks new question (uses random number generator).
+	 * @return <CODE>true</CODE> if the question was picked successfully, <CODE>false</CODE> if
+	 * there are no more questions left.
+	 */	
 	public boolean askNewQuestion()
 	{
 		// Check if there are any questions left
@@ -191,13 +229,15 @@ public class Session extends JComponent
 		}
 	}
 
-	/** Processes the given answer and compares it to the question. The question is removed from the questions queue and if
-	 * necessary, all counters are modified.
+	/**
+	 * Processes the given answer and compares it to the expected one, then modifies
+	 * appropriate counters. Depending on the session's mode and the correctness of the
+	 * given answer, the question may be removed from the questions list.
 	 * <B>IMPORTANT:</B> each call to this method must be preceded by <CODE>askNewQuestion()</CODE>
 	 * call.
 	 * @param answer User's answer.
 	 * @throws NullPointerException Thrown when there is no question selected. Usually this mean that
-	 * askNewQuestion() wasn't called before.
+	 * <CODE>askNewQuestion()</CODE> wasn't called before.
 	 * @return <CODE>true</CODE> if the answer was correct, <CODE>false</CODE> otherwise.
 	 */	
 	public boolean processAnswer(String answer) throws NullPointerException
@@ -273,6 +313,10 @@ public class Session extends JComponent
 		return true;
 	}
 	
+	/**
+	 * Ends the session, modifies stats of all involved dictionaries and words and
+	 * saves the changed dictionaries back on the disk.
+	 */	
 	public void finalizeSession()
 	{
 		// Stop the timer

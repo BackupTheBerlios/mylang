@@ -30,8 +30,9 @@ import org.dom4j.io.*;
  */
 
 /**
- *
- * @author  herrmic
+ * Object of this class holds information about single dictionary. It manages list
+ * of words, stats and other data.
+ * @author herrmic
  */
 
 public class Dictionary implements WordsContainer
@@ -43,7 +44,9 @@ public class Dictionary implements WordsContainer
 	
 	private File m_file;
 	
-	/** Creates a new instance of Dictionary */
+	/**
+	 * Creates an empty dictionary.
+	 */
 	public Dictionary()
 	{
 		m_words = new ArrayList();
@@ -56,42 +59,84 @@ public class Dictionary implements WordsContainer
 		m_file = null;
 	}
 	
+	/**
+	 * Reads the dictionary from the given file. The <code>file</code> parameter must
+	 * point valid XML dictionary file.
+	 * @param file valid XML file created by <CODE>write()</CODE> method.
+	 * @throws IOException if any error occurs during loading.
+	 */	
 	public Dictionary(File file) throws IOException
 	{
 		this();
 		read(file);
 	}
 	
+	/**
+	 * Retrieves list of all words that this dictionary contains.
+	 * @return <CODE>ArrayList</CODE> containing dictionary's words.
+	 */	
 	public ArrayList getWordsList()
 	{
 		return m_words;
 	}
 	
+	/**
+	 * Retrieves names of the languages this dictionary contains.
+	 * @return <CODE>Array</CODE> of two <CODE>String</CODE>s with names of the languages.
+	 */	
 	public String[] getLanguageNames()
 	{ 
 		return m_languageNames; 
 	}
 	
+	/**
+	 * Retrieves description of the dictionary.
+	 * @return <CODE>String</CODE> containing dictionary description.
+	 */	
 	public String getDescription()
 	{ 
 		return m_description; 
 	}
 	
-	public void  setDescription(String desc)
+	/**
+	 * Sets new description of the dictionary.
+	 * @param desc New description.
+	 * @throws NullPointerException is thrown when null is passed as parameter.
+	 */	
+	public void  setDescription(String desc) throws NullPointerException
 	{ 
+		if(desc == null)
+			throw new NullPointerException();
+		
 		m_description = desc; 
 	}
 	
+	/**
+	 * Gets list of all stats for this dictionary.
+	 * @return <CODE>ArrayList</CODE> containing all <CODE>Stat</CODE>s.
+	 */	
 	public ArrayList getStats()
 	{
 		return m_stats; 
 	}
 	
+	/**
+	 * Gets the file associated with the dictionary.
+	 * @return <CODE>File</CODE> object associated with this dictionary. For newly created
+	 * dictionaries <CODE>null</CODE> is returned until successful call to the
+	 * <CODE>write()</CODE> method.
+	 */	
 	public File getFile()
 	{
 		return m_file; 
 	}
 	
+	/**
+	 * Writes contents of the dictionary to the file. If the method succeeds, object's
+	 * <CODE>File</CODE> property will be set to the value of the parameter.
+	 * @param file <CODE>File</CODE> object that dictionary contents will be written to.
+	 * @throws IOException is thrown when any error occurs during the process.
+	 */	
 	public void write(File file) throws IOException
 	{
 		Document doc = DocumentHelper.createDocument();
@@ -155,6 +200,11 @@ public class Dictionary implements WordsContainer
 		}
 	}
 	
+	/**
+	 * Flips the languages order in the dictionary (1&lt;-&gt;0).
+	 * This method is needed when merging two dictionaries that have the same
+	 * languages, but ordered differently.
+	 */	
 	public void swapLanguages()
 	{
 		String buf;

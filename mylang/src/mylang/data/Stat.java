@@ -28,8 +28,9 @@ import org.dom4j.*;
  */
 
 /**
- *
- * @author  herrmic
+ * Contains single stat related to some <CODE>Word</CODE> or
+ * <CODE>Dictionary</CODE>.
+ * @author herrmic
  */
 public class Stat
 {
@@ -39,11 +40,20 @@ public class Stat
 	private Integer m_mode;
 	private Calendar m_duration;
 	
-	/** Creates a new instance of Stat */
+	/**
+	 * Creates a new <CODE>Stat</CODE> with the given score.
+	 * @param score The score that the stat will contain.
+	 */
 	public Stat(int score)
 	{
 		this(score, null, null);
 	}
+	/**
+	 * Creates new stat with given score, mode and duration.
+	 * @param score Score of the stat.
+	 * @param mode Mode of the stat, same as <CODE>Session</CODE> modes.
+	 * @param duration Duration of the session that caused generation of the stat.
+	 */	
 	public Stat(int score, Integer mode, Calendar duration)
 	{
 		m_date = Calendar.getInstance();
@@ -51,28 +61,52 @@ public class Stat
 		m_mode = mode;
 		m_duration = duration;
 	}
+	/**
+	 * Loads the stat from the XML data.
+	 * @param stat XML <CODE>Element</CODE> containing the stat data.
+	 */	
 	public Stat(Element stat)
 	{
 		read(stat);
 	}
 	
+	/**
+	 * Retrieves the date of the stat creation.
+	 * @return Date of the stat creation.
+	 */	
 	public Calendar getDate()
 	{
 		return m_date;
 	}
+	/**
+	 * Score of the stat.
+	 * @return Score of the stat.
+	 */	
 	public int getScore()
 	{
 		return m_score;
 	}
+	/**
+	 * Gets mode of the session that created the stat.
+	 * @return Mode of the session that created the stat.
+	 */	
 	public Integer getMode()
 	{
 		return m_mode;
 	}
+	/**
+	 * Gets duration of the session that generated the stat.
+	 * @return Duration of the session that generated the stat.
+	 */	
 	public Calendar getDuration()
 	{
 		return m_duration;
 	}
 	
+	/**
+	 * Adds stat's XML representation to the given parent XML element.
+	 * @param doc The parent XML <CODE>Element</CODE> that contains stats.
+	 */	
 	public void write(Element doc)
 	{
 		Element s = doc.addElement("stat")
