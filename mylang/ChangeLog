@@ -3,6 +3,8 @@
 	* Moved session logic to Session class.
 	* Preferences and Session dialogs are centered within the FrameMain.
 	* Editor checks if language names are correct.
+	* Ask before overwriting file (FrameEditor).
+	* Refresh tables after each session (FrameMain).
 
 2004-01-04  Michal Dabrowski <herrmic@users.berlios.de>
 
