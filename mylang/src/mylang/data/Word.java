@@ -36,7 +36,6 @@ public class Word
 	
 	private Stat m_lastStat;
 	
-	private Dictionary m_dict;
 	private boolean m_enabled;
 	
 	/**
@@ -51,7 +50,6 @@ public class Word
 		
 		m_lastStat = null;
 		
-		m_dict = dict;
 		m_enabled = true;
 	}
 	/**
@@ -59,7 +57,7 @@ public class Word
 	 * @param dict Parent dictionary of the word.
 	 * @param w XML <CODE>Element</CODE> containing word's representation.
 	 * @throws DocumentException Thrown in case of invalid XML data.
-	 */	
+	 */
 	public Word(Dictionary dict, Element w) throws DocumentException
 	{
 		this(dict);
@@ -70,7 +68,7 @@ public class Word
 	 * Gets the given content of the word.
 	 * @param numLang Number of the language whose content will be returned.
 	 * @return Content of word's translation to the specified language.
-	 */	
+	 */
 	public String getLanguage(int numLang)
 	{
 		return m_language[numLang];
@@ -79,7 +77,7 @@ public class Word
 	 * Sets the given content of the word.
 	 * @param numLang Number of the language whose content will be affected.
 	 * @param text A new content for the specified language.
-	 */	
+	 */
 	public void setLanguage(int numLang, String text)
 	{
 		m_language[numLang]=text;
@@ -88,40 +86,44 @@ public class Word
 	/**
 	 * Gets the latest stat related to this word.
 	 * @return The latest stat related to this word.
-	 */	
-	public Stat getLastStat() { return m_lastStat; }
+	 */
+	public Stat getLastStat()
+	{ return m_lastStat; }
 	/**
 	 * Sets the new stat related to this word. Currently word can have only one stat
 	 * connected.
 	 * @param s The stat that will be connected to the word.
-	 */	
-	public void setLastStat(Stat s) { m_lastStat = s; }
+	 */
+	public void setLastStat(Stat s)
+	{ m_lastStat = s; }
 	/**
 	 * Checks if the word is enabled. Only enabled words are taken into consideration
 	 * when preforming a session.
 	 * @return <CODE>true</CODE> if the word is enables, <CODE>false</CODE> otherwise.
-	 */	
-	public boolean getEnabled() { return m_enabled; }
+	 */
+	public boolean getEnabled()
+	{ return m_enabled; }
 	/**
 	 * Sets the enabled/disabled state of the word. Only enabled words are taken into
 	 * consideration when preforming a session.
 	 * @param enabled <CODE>true</CODE> to enable the word, <CODE>false</CODE> to disable it.
-	 */	
-	public void setEnabled(boolean enabled) { m_enabled = enabled; }
+	 */
+	public void setEnabled(boolean enabled)
+	{ m_enabled = enabled; }
 	
 	/**
 	 * Writes word XML representation to the XML element.
 	 * @param el Parent XML element; word's own element will be added to it.
-	 */	
+	 */
 	public void write(Element el)
 	{
 		Element w = el.addElement("word").addAttribute("rev", "2");
 		if(m_lastStat != null)
 			m_lastStat.write(w.addElement("stats"));
 		w.addElement("language0")
-			.addText(m_language[0]);
+		.addText(m_language[0]);
 		w.addElement("language1")
-			.addText(m_language[1]);
+		.addText(m_language[1]);
 	}
 	
 	private void read(Element w) throws DocumentException
@@ -130,8 +132,7 @@ public class Word
 		rev = Integer.parseInt(w.attributeValue("rev", "1"));
 		if(rev == 1)
 		{
-			m_language[0] = w.elementText(m_dict.getLanguageNames()[0]);
-			m_language[1] = w.elementText(m_dict.getLanguageNames()[1]);
+			throw new DocumentException("Unsupported file version.");
 		}
 		else
 		{
@@ -147,7 +148,7 @@ public class Word
 	
 	/**
 	 * Flips the order of the languages of the word.
-	 */	
+	 */
 	public void swapLanguages()
 	{
 		String buf;
