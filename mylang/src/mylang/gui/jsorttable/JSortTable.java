@@ -106,5 +106,12 @@ public class JSortTable extends JTable
   public void mouseClicked(MouseEvent event) {}
   public void mouseEntered(MouseEvent event) {}
   public void mouseExited(MouseEvent event) {}
+  
+  public boolean getScrollableTracksViewportHeight() {
+      Component parent = getParent();
+      if (parent instanceof JViewport)
+          return parent.getHeight() > getPreferredSize().getHeight();
+      return false;
+  }
 }
 

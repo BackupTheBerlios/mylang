@@ -93,6 +93,9 @@
             </Property>
             <Property name="rowSelectionAllowed" type="boolean" value="false"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()&#xa;{&#xa;    public boolean getScrollableTracksViewportHeight() {&#xa;    java.awt.Component parent = getParent();&#xa;    if (parent instanceof javax.swing.JViewport)&#xa;        return parent.getHeight() &gt; getPreferredSize().getHeight();&#xa;    return false;&#xa;    }&#xa;};&#xa;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

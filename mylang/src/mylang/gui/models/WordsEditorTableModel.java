@@ -6,7 +6,7 @@ import javax.swing.table.*;
 /*
  * DictionaryTableModel.java
  *
- * Created on 11 pa¼dziernik 2003, 18:56
+ * Created on 11 paï¿½dziernik 2003, 18:56
  *
  * Copyright 2003 Michal Dabrowski
  *
@@ -45,7 +45,7 @@ public class WordsEditorTableModel extends AbstractTableModel
 	{
 		Word w = new Word(m_dict);
 		m_dict.getWordsList().add(w);
-		fireTableRowsInserted(m_dict.getWordsList().size(), m_dict.getWordsList().size());
+		fireTableRowsInserted(m_dict.getWordsList().size() - 1, m_dict.getWordsList().size() - 1);
 	}
 	
 	public void removeWords(int[] indices)
