@@ -1,5 +1,10 @@
 2004-01-25  Michal Dabrowski <herrmic@users.berlios.de>
 
+	* Updated package name (*Test).
+	* Added unit tests execution (build.xml).
+
+2004-01-25  Michal Dabrowski <herrmic@users.berlios.de>
+
 	* Removed support for rev/1 words.
 	* Added addDictionary() method to DictionarySet.
 	* Top of license text is now displayed initially (FrameAbout).
