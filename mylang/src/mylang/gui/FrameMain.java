@@ -758,6 +758,8 @@ public class FrameMain extends javax.swing.JFrame
 		}
 		ds.prepareSession(mode, m_comboDirection.getSelectedIndex(), m_dset);
 		ds.show();
+		((WordsListTableModel)m_tableWords.getModel()).setWordsContainer(m_dset);
+		((DictionarySetTableModel)m_tableDictionaries.getModel()).setDictionarySet(m_dset);
 	}
 	
 	private void updateSessionControls()
