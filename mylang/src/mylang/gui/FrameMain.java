@@ -56,12 +56,16 @@ public class FrameMain extends javax.swing.JFrame
 		m_tableDictionaries.setModel(new DictionarySetTableModel());
 		m_tableDictionaries.setShowHorizontalLines(false);
 		m_tableDictionaries.setShowVerticalLines(false);
+		m_tableDictionaries.setToolTipText(m_scrollpaneDictionaries.getToolTipText());
+		m_tableDictionaries.getTableHeader().setToolTipText(m_scrollpaneDictionaries.getToolTipText());
 		m_scrollpaneDictionaries.setViewportView(m_tableDictionaries);
 
 		m_tableWords = new JSortTable();
 		m_tableWords.setModel(new WordsListTableModel());
 		m_tableWords.setShowHorizontalLines(false);
 		m_tableWords.setShowVerticalLines(false);
+		m_tableWords.setToolTipText(m_scrollpaneWords.getToolTipText());
+		m_tableWords.getTableHeader().setToolTipText(m_scrollpaneWords.getToolTipText());
 		m_scrollpaneWords.setViewportView(m_tableWords);
 
 		m_tableDictionaries.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -748,8 +752,8 @@ public class FrameMain extends javax.swing.JFrame
 		int mode;
 		switch(m_comboMode.getSelectedIndex())
 		{
-			case 0: mode = DialogSession.TEACH_MODE; break;
-			case 1: mode = DialogSession.TEST_MODE; break;
+			case 0: mode = Session.TEACH_MODE; break;
+			case 1: mode = Session.TEST_MODE; break;
 			default: return;
 		}
 		ds.prepareSession(mode, m_comboDirection.getSelectedIndex(), m_dset);

@@ -37,25 +37,11 @@ import javax.swing.*;
  */
 public class DialogSession extends javax.swing.JDialog
 {
-	public static final int TEACH_MODE = 1;
-	public static final int TEST_MODE = 2;
+	// Holds all the session data
+	private Session m_session;
 	
-	private int m_mode;
-	private int m_languageOfQuestion;
-	private int m_languageOfAnswer;
-	private DictionarySet m_dset;
-	
-	private int m_answers;
-	private int m_correct;
-	private ArrayList m_wordsLeft;
-	private ArrayList m_wordsFailed;
-	private Word m_question;
-	
-	private javax.swing.Timer m_timerElapsed;
-	private Calendar m_timeElapsed;
-	
-	private Random m_random;
-	
+	// Few different comments for the correct answer, they will be displayed
+	// in a cycle
 	private final String[] m_correctComments =
 	{"CORRECT", "OK", "GOOD"};
 	private int m_lastCorrectComment;
@@ -66,18 +52,19 @@ public class DialogSession extends javax.swing.JDialog
 		super(parent, modal);
 		initComponents();
 		
-		m_timerElapsed = new javax.swing.Timer(1000, new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				DecimalFormat df = new DecimalFormat("00");
-				m_timeElapsed.add(Calendar.SECOND, 1);
-				m_textStatTime.setText(
-				df.format(m_timeElapsed.get(Calendar.MINUTE)) + ":"
-				+ df.format(m_timeElapsed.get(Calendar.SECOND)));
-			}
-		});
-		m_timeElapsed = Calendar.getInstance();
+		m_session = null;
+		
+//		m_timerElapsed = new javax.swing.Timer(1000, new ActionListener()
+//		{
+//			public void actionPerformed(ActionEvent evt)
+//			{
+//				DecimalFormat df = new DecimalFormat("00");
+//				m_textStatTime.setText(
+//				df.format(m_timeElapsed.get(Calendar.MINUTE)) + ":"
+//				+ df.format(m_timeElapsed.get(Calendar.SECOND)));
+//			}
+//		});
+//		m_timeElapsed = Calendar.getInstance();
 	}
 	
 	/** This method is called from within the constructor to
@@ -405,167 +392,84 @@ public class DialogSession extends javax.swing.JDialog
 	
 	public void prepareSession(int mode, int loq, DictionarySet dset)
 	{
-		m_mode = mode;
-		m_languageOfQuestion = loq;
-		if(loq == 0)
-			m_languageOfAnswer = 1;
-		else
-			m_languageOfAnswer = 0;
-		m_dset = dset;
-		m_wordsLeft = new ArrayList();
-		for(Iterator i = m_dset.getWordsList().iterator(); i.hasNext();)
-		{
-			Word w = (Word)i.next();
-			if(w.getEnabled())
-				m_wordsLeft.add(w);
-		}
-		m_wordsFailed = new ArrayList();
-		m_timeElapsed.set(Calendar.HOUR, 0);
-		m_timeElapsed.set(Calendar.MINUTE, 0);
-		m_timeElapsed.set(Calendar.SECOND, 0);
-		m_random = new Random();
-		m_timerElapsed.restart();
+		// Create new session object and add itself as listener for appropriate
+		// properties
+		m_session = new Session(dset, mode, loq);
+		m_session.addPropertyChangeListener(Session.TIME_ELAPSED_PROPERTY, 
+			new java.beans.PropertyChangeListener()
+			{
+				public void propertyChange(java.beans.PropertyChangeEvent e)
+				{
+					Calendar cal = (Calendar)e.getNewValue();
+					DecimalFormat df = new DecimalFormat("00");
+						m_textStatTime.setText(
+						df.format(cal.get(Calendar.MINUTE)) + ":"
+						+ df.format(cal.get(Calendar.SECOND)));
+				}
+			});
+			
 		m_lastCorrectComment = 0;
+		m_session.start();
 		askNewQuestion();
 	}
 	
 	private void askNewQuestion()
 	{
 		m_textAnswer.setText("");
-		m_textStatAnswers.setText(String.valueOf(m_answers + 1));
-		m_textStatCorrect.setText(String.valueOf(m_correct));
-		m_textStatLeft.setText(String.valueOf(m_wordsLeft.size()));
-		if(m_wordsLeft.size() == 0)
+		m_textStatAnswers.setText(String.valueOf(m_session.getTotalAnswers() + 1));
+		m_textStatCorrect.setText(String.valueOf(m_session.getCorrectAnswers()));
+		m_textStatLeft.setText(String.valueOf(m_session.getNumberOfQuestionsLeft()));
+		if(m_session.askNewQuestion())
 		{
-			finalizeSession();
+			m_textQuestion.setText(m_session.getCurrentQuestionText());
+			m_textAnswer.requestFocus();
 		}
 		else
 		{
-			int num = m_random.nextInt(m_wordsLeft.size());
-			m_question = (Word)m_wordsLeft.get(num);
-			m_textQuestion.setText(m_question.getLanguage(m_languageOfQuestion));
-			m_textAnswer.requestFocus();
+			finalizeSession();
 		}
 	}
 	
 	private void checkAnswer()
 	{
-		String[] userTab = m_textAnswer.getText().trim().split(";");
-		String[] answerTab = m_question.getLanguage(m_languageOfAnswer).split(";");
-		boolean correct = false;
-		if(MyLang.getPrefRequireAllTranslations())
-		{
-			if(isArraySubsetOf(userTab, answerTab)
-			&& isArraySubsetOf(answerTab, userTab))
-				correct = true;
-		}
-		else
-		{
-			if(isArraySubsetOf(userTab, answerTab))
-				correct = true;
-		}
-		
-		if(correct)
+		if(m_session.processAnswer(m_textAnswer.getText()))
 		{
 			m_lastCorrectComment++;
 			if(m_lastCorrectComment >= m_correctComments.length)
 				m_lastCorrectComment = 0;
 			m_textTranslator.setText(m_correctComments[m_lastCorrectComment]);
-			m_wordsLeft.remove(m_question);
-			m_correct++;
 		}
 		else
 		{
-			m_textTranslator.setText(
-			m_question.getLanguage(m_languageOfQuestion) + ": "
-			+ m_question.getLanguage(m_languageOfAnswer));
+			m_textTranslator.setText(m_session.getCurrentQuestionText() + ": " +
+				m_session.getExpectedAnswerText());
 			
 			if(MyLang.getPrefEmphasizeMistakes())
 				JOptionPane.showMessageDialog(this,
 				"<HTML><CENTER>Wrong answer!<BR>The correct translation of:<BR><BR>"
-				+ "<B>" + m_question.getLanguage(m_languageOfQuestion) + "</B><BR><BR>"
+				+ "<B>" + m_session.getCurrentQuestionText() + "</B><BR><BR>"
 				+ "is:<BR><BR>"
-				+ "<B>" + m_question.getLanguage(m_languageOfAnswer) + "</B"
+				+ "<B>" + m_session.getExpectedAnswerText() + "</B"
 				+ "</CENTER></HTML>",
 				"Message", JOptionPane.INFORMATION_MESSAGE);
-			
-			if(m_mode == TEST_MODE)
-				m_wordsLeft.remove(m_question);
-			m_wordsFailed.add(m_question);
 		}
-		m_answers++;
 		askNewQuestion();
-	}
-	
-	private boolean isArraySubsetOf(String[] array, String[] set)
-	{
-		boolean found;
-		for(int i = 0; i < array.length; i++)
-		{
-			found = false;
-			for(int j = 0; j < set.length; j++)
-			{
-				if(array[i].trim().compareToIgnoreCase(set[j].trim()) == 0)
-				{
-					found = true;
-					break;
-				}
-			}
-			if(!found)
-				return false;
-		}
-		return true;
 	}
 	
 	private void finalizeSession()
 	{
-		m_timerElapsed.stop();
 		m_textQuestion.setText("");
 		m_textAnswer.setEnabled(false);
 		m_textAnswer.setEditable(false);
-		m_textStatAnswers.setText(String.valueOf(m_answers));
+		m_textStatAnswers.setText(String.valueOf(m_session.getTotalAnswers()));
 		m_buttonCheck.setEnabled(false);
 		m_buttonCancel.setText("Close");
-		for(Iterator i = m_dset.getWordsList().iterator(); i.hasNext();)
-		{
-			Word w = (Word)i.next();
-			if(w.getEnabled())
-				w.setLastStat(new Stat(0));
-		}
-		for(Iterator i = m_wordsFailed.iterator(); i.hasNext();)
-		{
-			Word w = (Word)i.next();
-			w.setLastStat(new Stat(w.getLastStat().getScore() + 1));
-		}
-		for(Iterator i = m_dset.getDictionaries().iterator(); i.hasNext();)
-		{
-			mylang.data.Dictionary dict = (mylang.data.Dictionary)i.next();
-			try
-			{
-				int failures;
-				failures = 0;
-				for(Iterator j = m_wordsFailed.iterator(); j.hasNext();)
-				{
-					Word w = (Word)j.next();
-					if(dict.getWordsList().contains(w))
-						failures++;
-				}
-				dict.getStats().add(new Stat(failures, new Integer(m_mode), m_timeElapsed));
-				dict.write(dict.getFile());
-			}
-			catch(Exception ex)
-			{
-				JOptionPane.showMessageDialog(this,
-				"Cannot update stats for file \"" + dict.getFile() + "\"\n"
-				+ ex.getMessage(),
-				"Error", JOptionPane.ERROR_MESSAGE);
-			}
-		}
+		m_session.finalizeSession();
 	}
 	
 	private void cancelSession()
 	{
-		if((m_answers > 0) && (m_wordsLeft.size() > 0))
+		if((m_session.getTotalAnswers() > 0) && (m_session.getNumberOfQuestionsLeft() > 0))
 		{
 			if(JOptionPane.showConfirmDialog(this,
 			"Do you really want to interrupt this session?",

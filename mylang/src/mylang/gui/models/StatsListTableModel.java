@@ -85,9 +85,9 @@ public class StatsListTableModel extends AbstractTableModel
 				{
 					switch(mode.intValue())
 					{
-						case DialogSession.TEACH_MODE:
+						case Session.TEACH_MODE:
 							return "Teach";
-						case DialogSession.TEST_MODE:
+						case Session.TEST_MODE:
 							return "Test";
 						default:
 							return "Invalid";
