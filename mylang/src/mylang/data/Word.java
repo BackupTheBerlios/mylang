@@ -58,8 +58,9 @@ public class Word
 	 * Restores the word from the XML representation.
 	 * @param dict Parent dictionary of the word.
 	 * @param w XML <CODE>Element</CODE> containing word's representation.
+	 * @throws DocumentException Thrown in case of invalid XML data.
 	 */	
-	public Word(Dictionary dict, Element w)
+	public Word(Dictionary dict, Element w) throws DocumentException
 	{
 		this(dict);
 		read(w);
@@ -123,7 +124,7 @@ public class Word
 			.addText(m_language[1]);
 	}
 	
-	private void read(Element w)
+	private void read(Element w) throws DocumentException
 	{
 		int rev;
 		rev = Integer.parseInt(w.attributeValue("rev", "1"));
@@ -136,6 +137,9 @@ public class Word
 		{
 			m_language[0] = w.elementText("language0");
 			m_language[1] = w.elementText("language1");
+			
+			if(m_language[0] == null || m_language[1] == null)
+				throw new DocumentException("No contents defined for word");
 		}
 		if(w.element("stats") != null)
 			m_lastStat = new Stat((Element)w.element("stats").elements().get(0));
