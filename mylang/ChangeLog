@@ -2,6 +2,7 @@
 
 	* Updated JavaDocs for the data classes.
 	* Word won't load if XML element lacks "languageX" nodes.
+	* Unit testing: Added mylang.data.WordTest.
 
 2004-01-17  Michal Dabrowski <herrmic@users.berlios.de>
 
