@@ -75,6 +75,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		getContentPane().setLayout(new java.awt.GridBagLayout());
 		
 		setTitle("MyLang - Dictionary Info");
+		setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("resources/logo16x16.png")));
 		addWindowListener(new java.awt.event.WindowAdapter()
 		{
 			public void windowClosing(java.awt.event.WindowEvent evt)

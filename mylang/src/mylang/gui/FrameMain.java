@@ -107,6 +107,7 @@ public class FrameMain extends javax.swing.JFrame
 		
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		setTitle("MyLang - Main Window");
+		setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("resources/logo16x16.png")));
 		addWindowListener(new java.awt.event.WindowAdapter()
 		{
 			public void windowClosing(java.awt.event.WindowEvent evt)

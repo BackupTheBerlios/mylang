@@ -56,6 +56,7 @@ public class FrameAbout extends javax.swing.JFrame
 		
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("MyLang - About");
+		setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("resources/logo16x16.png")));
 		addWindowListener(new java.awt.event.WindowAdapter()
 		{
 			public void windowClosing(java.awt.event.WindowEvent evt)
