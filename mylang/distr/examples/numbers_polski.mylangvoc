@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dictionary languageName0="number" languageName1="polski" description="Numbers: 1-12">
+  <words>
+    <word rev="2">
+      <language0>1</language0>
+      <language1>jeden</language1>
+    </word>
+    <word rev="2">
+      <language0>2</language0>
+      <language1>dwa</language1>
+    </word>
+    <word rev="2">
+      <language0>3</language0>
+      <language1>trzy</language1>
+    </word>
+    <word rev="2">
+      <language0>4</language0>
+      <language1>cztery</language1>
+    </word>
+    <word rev="2">
+      <language0>5</language0>
+      <language1>pięć</language1>
+    </word>
+    <word rev="2">
+      <language0>6</language0>
+      <language1>sześć</language1>
+    </word>
+    <word rev="2">
+      <language0>7</language0>
+      <language1>siedem</language1>
+    </word>
+    <word rev="2">
+      <language0>8</language0>
+      <language1>osiem</language1>
+    </word>
+    <word rev="2">
+      <language0>9</language0>
+      <language1>dziewięć</language1>
+    </word>
+    <word rev="2">
+      <language0>10</language0>
+      <language1>dziesięć</language1>
+    </word>
+  </words>
+  <stats/>
+</dictionary>

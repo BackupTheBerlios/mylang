@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dictionary languageName0="number" languageName1="svenska" description="Numbers: 1-12">
+  <words>
+    <word rev="2">
+      <language0>1</language0>
+      <language1>ett</language1>
+    </word>
+    <word rev="2">
+      <language0>2</language0>
+      <language1>två</language1>
+    </word>
+    <word rev="2">
+      <language0>3</language0>
+      <language1>tre</language1>
+    </word>
+    <word rev="2">
+      <language0>4</language0>
+      <language1>fyra</language1>
+    </word>
+    <word rev="2">
+      <language0>5</language0>
+      <language1>fem</language1>
+    </word>
+    <word rev="2">
+      <language0>6</language0>
+      <language1>sex</language1>
+    </word>
+    <word rev="2">
+      <language0>7</language0>
+      <language1>sju</language1>
+    </word>
+    <word rev="2">
+      <language0>8</language0>
+      <language1>åtta</language1>
+    </word>
+    <word rev="2">
+      <language0>9</language0>
+      <language1>nio</language1>
+    </word>
+    <word rev="2">
+      <language0>10</language0>
+      <language1>tio</language1>
+    </word>
+  </words>
+  <stats/>
+</dictionary>

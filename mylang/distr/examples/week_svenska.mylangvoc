@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dictionary languageName0="english" languageName1="svenska" description="Week">
+  <words>
+    <word rev="2">
+      <language0>monday</language0>
+      <language1>måndag</language1>
+    </word>
+    <word rev="2">
+      <language0>tuesday</language0>
+      <language1>tisdag</language1>
+    </word>
+    <word rev="2">
+      <language0>wednesday</language0>
+      <language1>onsdag</language1>
+    </word>
+    <word rev="2">
+      <language0>thursday</language0>
+      <language1>torsdag</language1>
+    </word>
+    <word rev="2">
+      <language0>friday</language0>
+      <language1>fredag</language1>
+    </word>
+    <word rev="2">
+      <language0>saturday</language0>
+      <language1>lördag</language1>
+    </word>
+    <word rev="2">
+      <language0>sunday</language0>
+      <language1>söndag</language1>
+    </word>
+  </words>
+  <stats/>
+</dictionary>
