@@ -6,6 +6,7 @@ import mylang.gui.models.*;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.awt.event.*;
 
 /*
  * FrameEditor.java
@@ -80,7 +81,7 @@ public class FrameEditor extends javax.swing.JFrame
 		m_modified = false;
 		newFile();
 		updateTableHeaders();
-		
+
 		setLocationRelativeTo(null);
 	}
 	
@@ -132,9 +133,9 @@ public class FrameEditor extends javax.swing.JFrame
 		setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("resources/logo16x16.png")));
 		addWindowListener(new java.awt.event.WindowAdapter()
 		{
-			public void windowClosing(java.awt.event.WindowEvent evt)
+			public void windowClosing(java.awt.event.WindowEvent e)
 			{
-				formWindowClosing(evt);
+				formWindowClosing(e);
 			}
 		});
 		
@@ -208,6 +209,14 @@ public class FrameEditor extends javax.swing.JFrame
 		jScrollPane1.setToolTipText("<HTML>Table of all words contained in the dictionary.</HTML>");
 		m_tableWords.setModel(new WordsEditorTableModel());
 		m_tableWords.setSurrendersFocusOnKeystroke(true);
+		m_tableWords.addKeyListener(new java.awt.event.KeyAdapter()
+		{
+			public void keyPressed(java.awt.event.KeyEvent e)
+			{
+				m_tableWordsKeyPressed(e);
+			}
+		});
+		
 		jScrollPane1.setViewportView(m_tableWords);
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -223,9 +232,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_buttonAdd.setToolTipText("<HTML>Adds new word to the table.</HTML>");
 		m_buttonAdd.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_buttonAddActionPerformed(evt);
+				m_buttonAddActionPerformed(e);
 			}
 		});
 		
@@ -239,9 +248,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_buttonRemove.setToolTipText("<HTML>Removes all selected words from the table.</HTML>");
 		m_buttonRemove.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_buttonRemoveActionPerformed(evt);
+				m_buttonRemoveActionPerformed(e);
 			}
 		});
 		
@@ -290,9 +299,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuFileNew.setText("New");
 		m_menuFileNew.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuFileNewActionPerformed(evt);
+				m_menuFileNewActionPerformed(e);
 			}
 		});
 		
@@ -303,9 +312,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuFileOpen.setText("Open...");
 		m_menuFileOpen.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuFileOpenActionPerformed(evt);
+				m_menuFileOpenActionPerformed(e);
 			}
 		});
 		
@@ -316,9 +325,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuFileSave.setText("Save");
 		m_menuFileSave.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuFileSaveActionPerformed(evt);
+				m_menuFileSaveActionPerformed(e);
 			}
 		});
 		
@@ -328,9 +337,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuFileSaveas.setText("Save as...");
 		m_menuFileSaveas.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuFileSaveasActionPerformed(evt);
+				m_menuFileSaveasActionPerformed(e);
 			}
 		});
 		
@@ -341,9 +350,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuFileClose.setText("Close");
 		m_menuFileClose.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuFileCloseActionPerformed(evt);
+				m_menuFileCloseActionPerformed(e);
 			}
 		});
 		
@@ -358,9 +367,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuEditAdd.setText("Add");
 		m_menuEditAdd.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuEditAddActionPerformed(evt);
+				m_menuEditAddActionPerformed(e);
 			}
 		});
 		
@@ -371,9 +380,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuEditRemove.setText("Remove");
 		m_menuEditRemove.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuEditRemoveActionPerformed(evt);
+				m_menuEditRemoveActionPerformed(e);
 			}
 		});
 		
@@ -384,9 +393,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuEditAddwordsfromanotherdictionary.setText("Add words from another dictionary...");
 		m_menuEditAddwordsfromanotherdictionary.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuEditAddwordsfromanotherdictionaryActionPerformed(evt);
+				m_menuEditAddwordsfromanotherdictionaryActionPerformed(e);
 			}
 		});
 		
@@ -399,9 +408,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuEditFind.setText("Find...");
 		m_menuEditFind.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuEditFindActionPerformed(evt);
+				m_menuEditFindActionPerformed(e);
 			}
 		});
 		
@@ -412,9 +421,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_menuEditFindAgain.setText("Find again");
 		m_menuEditFindAgain.addActionListener(new java.awt.event.ActionListener()
 		{
-			public void actionPerformed(java.awt.event.ActionEvent evt)
+			public void actionPerformed(java.awt.event.ActionEvent e)
 			{
-				m_menuEditFindAgainActionPerformed(evt);
+				m_menuEditFindAgainActionPerformed(e);
 			}
 		});
 		
@@ -426,6 +435,53 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		pack();
 	}//GEN-END:initComponents
+
+	private void m_tableWordsKeyPressed(java.awt.event.KeyEvent e)//GEN-FIRST:event_m_tableWordsKeyPressed
+	{//GEN-HEADEREND:event_m_tableWordsKeyPressed
+		// By default, JTable handles all keypresses, even those for accelerators.
+		// The result is that using accelerators cause the table goes into the edit mode.
+		// Here is some workaround for that (ugly, however it works):
+		if(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()).equals(m_menuFileNew.getAccelerator()))
+		{
+			newFile();
+			e.consume();
+		}
+		if(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()).equals(m_menuFileOpen.getAccelerator()))
+		{
+			loadFile();
+			e.consume();
+		}
+		if(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()).equals(m_menuFileSave.getAccelerator()))
+		{
+			saveFile(m_dict.getFile());
+			e.consume();
+		}
+		if(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()).equals(m_menuFileSaveas.getAccelerator()))
+		{
+			saveFile(null);
+			e.consume();
+		}
+		if(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()).equals(m_menuEditAdd.getAccelerator()))
+		{
+			insertNewWord();
+			e.consume();
+		}
+		if(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()).equals(m_menuEditRemove.getAccelerator()))
+		{
+			removeSelectedWords();
+			e.consume();
+		}
+		if(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()).equals(m_menuEditFind.getAccelerator()))
+		{
+			findWordNew();
+			e.consume();
+		}
+		if(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()).equals(m_menuEditFindAgain.getAccelerator()))
+		{
+			findWordAgain();
+			e.consume();
+		}
+	}//GEN-LAST:event_m_tableWordsKeyPressed
 
 	private void m_menuEditFindAgainActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuEditFindAgainActionPerformed
 	{//GEN-HEADEREND:event_m_menuEditFindAgainActionPerformed
@@ -866,14 +922,5 @@ public class FrameEditor extends javax.swing.JFrame
 		if(madeLoop)
 			JOptionPane.showMessageDialog(this, "No matching words found.", 
 			"Information", JOptionPane.INFORMATION_MESSAGE);
-//		SwingUtilities.invokeLater(new Runnable()
-//		{
-//			public void run()
-//			{
-//				if(m_tableWords.getCellEditor() != null)
-//					m_tableWords.getCellEditor().cancelCellEditing();
-//				m_tableWords.requestFocus();
-//			}
-//		});
 	}
 }
