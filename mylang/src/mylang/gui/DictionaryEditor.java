@@ -34,8 +34,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JComponent;
+import javax.swing.LookAndFeel;
 import javax.swing.RepaintManager;
 import javax.swing.Scrollable;
+import javax.swing.UIManager;
 
 import mylang.data.Word;
 import mylang.data.WordsContainer;
@@ -46,12 +48,13 @@ import mylang.data.WordsContainer;
  * TODO To change the template for this generated type comment go to Window -
  * Preferences - Java - Code Style - Code Templates
  */
-public class DictionaryEditor extends JComponent implements WordsContainer, Scrollable {
+public class DictionaryEditor extends JComponent implements WordsContainer,
+		Scrollable {
 
-	/* ********************************************************************
+	/***************************************************************************
 	 * Data
 	 */
-	
+
 	private ArrayList m_wordsList = new ArrayList();
 
 	public ArrayList getWordsList() {
@@ -59,34 +62,35 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 	}
 
 	private String getTranslation(int column, int row) {
-		return ((Word)m_wordsList.get(row)).getLanguage(column);
+		return ((Word) m_wordsList.get(row)).getLanguage(column);
 	}
-	
-	/* ********************************************************************
+
+	/***************************************************************************
 	 * Appearance and layout
 	 */
 
 	private Dimension m_preferredSize = new Dimension(600, 300);
-	
+
 	private Color m_selectionBackground = new Color(10, 36, 106);
-	
+
 	private Stroke m_defaultStroke = new BasicStroke(1);
 
 	private Stroke m_gridStroke = new BasicStroke(1, BasicStroke.CAP_BUTT,
 			BasicStroke.JOIN_MITER, 10, new float[] { 1, 2 }, 0);
 
 	public Dimension getPreferredSize() {
-		return new Dimension(this.getWidth(), m_wordsList.size() * (this.getRowHeight(0) + 1)); 
+		return new Dimension(this.getWidth(), m_wordsList.size()
+				* (this.getRowHeight(0) + 1));
 	}
 
-	public void recalcSize() {
+	private void recalcSize() {
 		this.setSize(this.getPreferredSize());
 	}
-	
-	/* ********************************************************************
+
+	/***************************************************************************
 	 * Constructor
 	 */
-	
+
 	public DictionaryEditor() {
 		Word w = new Word(null);
 		w.setLanguage(0, "alfa");
@@ -103,20 +107,22 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 		w.setLanguage(1, "teta");
 		m_wordsList.add(w);
 
-		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.KEY_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK);
-		
-		this.setFont(new Font("Monospaced", Font.PLAIN, 13));
-		
+		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.KEY_EVENT_MASK
+				| AWTEvent.MOUSE_MOTION_EVENT_MASK);
+
+		//this.setFont(new Font("Monospaced", Font.PLAIN, 13));
+		//this.setFont(UIManager.getFont("TableHeader.font"));
+
 		this.setFocusTraversalKeysEnabled(false);
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-		
+
 		this.recalcSize();
 	}
 
-	/* ********************************************************************
+	/***************************************************************************
 	 * Caret location and selection range
 	 */
-	
+
 	private class Position {
 
 		public static final int NO_CHARACTER = -2;
@@ -145,11 +151,11 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 			}
 			return false;
 		}
-	
+
 		public boolean sameCell(Position pos) {
 			return column == pos.column && row == pos.row;
 		}
-		
+
 		public Position previousCharacterInTable() {
 			if (character > 0) {
 				return new Position(column, row, character - 1);
@@ -158,7 +164,8 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 					return new Position(0, row, getTranslation(0, row).length());
 				} else {
 					if (row > 0) {
-						return new Position(1, row - 1, getTranslation(1, row - 1).length());
+						return new Position(1, row - 1, getTranslation(1,
+								row - 1).length());
 					} else {
 						return new Position(this);
 					}
@@ -181,38 +188,54 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 				}
 			}
 		}
-		
-		public Position previousWordInTable() {
+
+		public Position previousWordInCell() {
 			if (character > 0) {
 				String currentTranslation = getTranslation(column, row);
 				int ch;
-				for (ch = m_caretPosition.character - 1; ch > 0; --ch) {
+				for (ch = character - 1; ch > 0; --ch) {
 					if (isWordSeperator(currentTranslation.charAt(ch - 1))
-							&& !isWordSeperator(currentTranslation
-									.charAt(ch))) break;
+							&& !isWordSeperator(currentTranslation.charAt(ch)))
+							break;
 				}
 				return new Position(column, row, ch);
+			} else {
+				return new Position(this);
+			}
+		}
+
+		public Position previousWordInTable() {
+			if (character > 0) {
+				return this.previousWordInCell();
 			} else {
 				return this.previousCharacterInTable();
 			}
 		}
-		
-		public Position nextWordInTable() {
+
+		public Position nextWordInCell() {
 			if (character < getTranslation(column, row).length()) {
 				String currentTranslation = getTranslation(column, row);
 				int ch;
-				for (ch = m_caretPosition.character + 1; ch < currentTranslation
+				for (ch = character + 1; ch < currentTranslation
 						.length(); ++ch) {
 					if (isWordSeperator(currentTranslation.charAt(ch - 1))
 							&& !isWordSeperator(currentTranslation.charAt(ch)))
 							break;
 				}
 				return new Position(column, row, ch);
+			} else {
+				return new Position(this);
+			}
+		}
+
+		public Position nextWordInTable() {
+			if (character < getTranslation(column, row).length()) {
+				return this.nextWordInCell();
 			} else
-				return nextCharacterInTable();
+				return this.nextCharacterInTable();
 		}
 	}
-	
+
 	private Position m_caretPosition = new Position(0, 0, 0);
 
 	private Position m_selectionOrigin = null;
@@ -229,15 +252,15 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 		return false;
 	}
 
-	/* ********************************************************************
+	/***************************************************************************
 	 * Drawing
 	 */
-	
+
 	FontRenderContext m_fontRenderContext = null;
-	
+
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		
+
 		if (m_fontHeight == -1) {
 			m_fontHeight = g2.getFontMetrics().getHeight();
 			m_fontRenderContext = g2.getFontRenderContext();
@@ -248,10 +271,12 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 		g2.fillRect(0, 0, this.getWidth(), this.getHeight());
 
 		Rectangle clip = g2.getClipBounds();
-		if (clip == null) clip = new Rectangle(0, 0, this.getWidth(), this.getHeight());
+		if (clip == null)
+				clip = new Rectangle(0, 0, this.getWidth(), this.getHeight());
 
 		Position posMin = this.findCellAt(clip.x, clip.y);
-		Position posMax = this.findCellAt(clip.x + clip.width, clip.y + clip.height);
+		Position posMax = this.findCellAt(clip.x + clip.width, clip.y
+				+ clip.height);
 		for (int row = posMin.row; row <= posMax.row; ++row) {
 			for (int col = posMin.column; col <= posMax.column; ++col) {
 				paintCell(g2, col, row);
@@ -342,16 +367,17 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 		g2.drawLine(rect.x, rect.y + rect.height, rect.x + rect.width, rect.y
 				+ rect.height);
 		if (column == 0) {
-			g2.drawLine(rect.x + rect.width, rect.y, rect.x + rect.width, rect.y + rect.height);
+			g2.drawLine(rect.x + rect.width, rect.y, rect.x + rect.width,
+					rect.y + rect.height);
 		}
 		g2.setStroke(m_defaultStroke);
 	}
 
-	/* ********************************************************************
+	/***************************************************************************
 	 * Event handling
 	 */
 
-	public void processKeyEvent(KeyEvent e) {
+	protected void processKeyEvent(KeyEvent e) {
 		if (e.getID() == KeyEvent.KEY_TYPED) {
 			if (!Character.isISOControl(e.getKeyChar())) {
 				putText(String.valueOf(e.getKeyChar()));
@@ -364,52 +390,49 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_HOME:
 			case KeyEvent.VK_END:
+			case KeyEvent.VK_PAGE_UP:
+			case KeyEvent.VK_PAGE_DOWN:
 				moveCaretByKey(e);
 				break;
 			case KeyEvent.VK_TAB:
 				if (m_multiSelectionActive) break;
-				if (m_caretPosition.column == 0) 
-					moveCaretTo(new Position(1, m_caretPosition.row, 0), false, false);
+				if (m_caretPosition.column == 0)
+					moveCaretTo(new Position(1, m_caretPosition.row, 0), false,
+							false);
 				else
-					moveCaretTo(new Position(0, m_caretPosition.row, 0), false, false);
+					moveCaretTo(new Position(0, m_caretPosition.row, 0), false,
+							false);
 				break;
 			case KeyEvent.VK_BACK_SPACE: {
 				if (m_multiSelectionActive) break;
 
-				if (m_selectionOrigin == null) {
-					if (m_caretPosition.character > 0) {
-						Word w = (Word) m_wordsList.get(m_caretPosition.row);
-
-						String oldTranslation = w
-								.getLanguage(m_caretPosition.column);
-						w.setLanguage(m_caretPosition.column, oldTranslation
-								.substring(0, m_caretPosition.character - 1)
-								+ oldTranslation
-										.substring(m_caretPosition.character));
-						moveCaretTo(new Position(m_caretPosition.column, m_caretPosition.row, m_caretPosition.character - 1), false, false);
+				if (e.isControlDown()) {
+					if (m_selectionOrigin == null) {
+						moveCaretTo(m_caretPosition.previousWordInCell(), true,
+								false);
+						removeSelectedText();
 					}
 				} else {
-					removeSelectedText();
-				}
-				break;
-			}
-			case KeyEvent.VK_DELETE: {
-				if (m_multiSelectionActive) {
-					removeSelectedRows();
-				} else {
-					Word w = (Word) m_wordsList.get(m_caretPosition.row);
-					String oldTranslation = w
-							.getLanguage(m_caretPosition.column);
 					if (m_selectionOrigin == null) {
-						if (m_caretPosition.character < oldTranslation.length()) {
+						if (m_caretPosition.character > 0) {
+							Word w = (Word) m_wordsList
+									.get(m_caretPosition.row);
+
+							String oldTranslation = w
+									.getLanguage(m_caretPosition.column);
 							w
 									.setLanguage(
 											m_caretPosition.column,
-											oldTranslation.substring(0,
-													m_caretPosition.character)
+											oldTranslation
+													.substring(
+															0,
+															m_caretPosition.character - 1)
 													+ oldTranslation
-															.substring(m_caretPosition.character + 1));
-							this.repaint(this.getCellRectangle(m_caretPosition));
+															.substring(m_caretPosition.character));
+							moveCaretTo(new Position(m_caretPosition.column,
+									m_caretPosition.row,
+									m_caretPosition.character - 1), false,
+									false);
 						}
 					} else {
 						removeSelectedText();
@@ -417,67 +440,131 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 				}
 				break;
 			}
+			case KeyEvent.VK_DELETE: {
+				if (e.isControlDown()) {
+					if (m_selectionOrigin == null) {
+						moveCaretTo(new Position(m_caretPosition
+								.nextWordInCell()), true, false);
+						removeSelectedText();
+					}
+				} else {
+					if (m_multiSelectionActive) {
+						removeSelectedRows();
+					} else {
+						Word w = (Word) m_wordsList.get(m_caretPosition.row);
+						String oldTranslation = w
+								.getLanguage(m_caretPosition.column);
+						if (m_selectionOrigin == null) {
+							if (m_caretPosition.character < oldTranslation
+									.length()) {
+								w
+										.setLanguage(
+												m_caretPosition.column,
+												oldTranslation
+														.substring(
+																0,
+																m_caretPosition.character)
+														+ oldTranslation
+																.substring(m_caretPosition.character + 1));
+								this.repaint(this
+										.getCellRectangle(m_caretPosition));
+							}
+						} else {
+							removeSelectedText();
+						}
+					}
+				}
+				break;
+			}
 			case KeyEvent.VK_ENTER: {
 				if (m_selectionOrigin != null || e.isShiftDown()) break;
-				
+
 				Position oldPos = new Position(m_caretPosition);
-				
+
 				Word w = new Word(null);
-				if (m_caretPosition.column == 0 && m_caretPosition.character == 0) {
+				if (m_caretPosition.column == 0
+						&& m_caretPosition.character == 0) {
 					m_wordsList.add(m_caretPosition.row, w);
 				} else {
 					m_wordsList.add(m_caretPosition.row + 1, w);
 				}
 				this.recalcSize();
-				moveCaretTo(new Position(0, m_caretPosition.row + 1, 0), false, false);
-				
+				moveCaretTo(new Position(0, m_caretPosition.row + 1, 0), false,
+						false);
+
 				Rectangle rect = this.getCellRectangle(oldPos);
-				this.repaint(0, rect.y, this.getWidth(), this.getHeight() - rect.y);
+				this.repaint(0, rect.y, this.getWidth(), this.getHeight()
+						- rect.y);
 				break;
 			}
 			case KeyEvent.VK_V:
-				if (e.isControlDown())
-					this.paste();
+				if (e.isControlDown()) this.paste();
 				break;
 			case KeyEvent.VK_C:
-				if (e.isControlDown())
-					this.copy();
+				if (e.isControlDown()) this.copy();
 				break;
 			case KeyEvent.VK_X:
-				if (e.isControlDown())
-					this.cut();
+				if (e.isControlDown()) this.cut();
 				break;
 			}
 		}
 	}
 
+	private boolean m_mouseSelectsWords = false;
+	
+	private Position m_mouseSelectionOrigin = null;
+	
 	protected void processMouseEvent(MouseEvent e) {
 		if (e.getID() == MouseEvent.MOUSE_PRESSED) {
 			if (e.getButton() == MouseEvent.BUTTON1) {
-				this.moveCaretTo(this.findCellAt(e.getPoint()), e.isShiftDown(), false);
+				if (e.getClickCount() == 1) {
+					this.moveCaretTo(this.findCellAt(e.getPoint()),
+							e.isShiftDown(), false);
+					m_mouseSelectsWords = false;
+				} else if (e.getClickCount() == 2) {
+					Position clickPos = this.findCellAt(e.getPoint());
+					m_mouseSelectionOrigin = clickPos;
+					this.moveCaretTo(clickPos.previousWordInCell(),
+							false, false);
+					this.moveCaretTo(clickPos.nextWordInCell(), true, false);
+					m_mouseSelectsWords = true;
+				}
 			}
-		} 
+		}
 		this.grabFocus();
 	}
 
 	protected void processMouseMotionEvent(MouseEvent e) {
 		if (e.getID() == MouseEvent.MOUSE_DRAGGED) {
 			if ((e.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != 0) {
-				this.moveCaretTo(this.findCellAt(e.getPoint()), true, false);
+				if (m_mouseSelectsWords) {
+					Position mousePos = this.findCellAt(e.getPoint());
+					if (mousePos.character < m_selectionOrigin.character) {
+						if (!m_multiSelectionActive)
+							this.moveCaretTo(m_mouseSelectionOrigin.nextWordInCell(), false, false);
+						this.moveCaretTo(mousePos.previousWordInCell(), true, false);
+					} else {
+						if (!m_multiSelectionActive)
+							this.moveCaretTo(m_mouseSelectionOrigin.previousWordInCell(), false, false);
+						this.moveCaretTo(mousePos.nextWordInCell(), true, false);
+					}
+				} else {
+					this.moveCaretTo(this.findCellAt(e.getPoint()), true, false);
+				}
 			}
 		}
 	}
-	
-	/* ********************************************************************
+
+	/***************************************************************************
 	 * Helper methods
 	 */
-	
+
 	private static boolean isWordSeperator(char c) {
 		if (Character.isWhitespace(c) || "/\"'()[],.:;|+{}\\".indexOf(c) != -1)
-			return true;
+				return true;
 		return false;
 	}
-	
+
 	private void moveCaretTo(Position destination, boolean enableSelection,
 			boolean delayMultiSelection) throws IndexOutOfBoundsException {
 		if (enableSelection) {
@@ -487,27 +574,29 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 					destination = m_caretPosition;
 				}
 				m_multiSelectionActive = true;
-			}			
+			}
 		} else {
 			if (m_multiSelectionActive) {
-				int minRow = Math.min(m_selectionOrigin.row, m_caretPosition.row);
-				int maxRow = Math.max(m_selectionOrigin.row, m_caretPosition.row);
+				int minRow = Math.min(m_selectionOrigin.row,
+						m_caretPosition.row);
+				int maxRow = Math.max(m_selectionOrigin.row,
+						m_caretPosition.row);
 				int minY = this.getCellRectangle(0, minRow).y;
 				Rectangle maxRect = this.getCellRectangle(0, maxRow);
 				int maxY = maxRect.y + maxRect.height;
-				this.repaint(0, minY, this.getWidth(), maxY - minY);				
+				this.repaint(0, minY, this.getWidth(), maxY - minY);
 			}
 			m_selectionOrigin = null;
 			m_multiSelectionActive = false;
 		}
-		
+
 		if (m_multiSelectionActive) {
 			int minRow = Math.min(destination.row, m_caretPosition.row);
 			int maxRow = Math.max(destination.row, m_caretPosition.row);
 			int minY = this.getCellRectangle(0, minRow).y;
 			Rectangle maxRect = this.getCellRectangle(0, maxRow);
 			int maxY = maxRect.y + maxRect.height;
-			this.repaint(0, minY, this.getWidth(), maxY - minY);							
+			this.repaint(0, minY, this.getWidth(), maxY - minY);
 			m_caretPosition = destination;
 			m_desiredCaretCharacter = m_caretPosition.character;
 		} else {
@@ -516,7 +605,7 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 			m_caretPosition = destination;
 			m_desiredCaretCharacter = m_caretPosition.character;
 		}
-		
+
 		this.scrollRectToVisible(getCellRectangle(m_caretPosition));
 	}
 
@@ -525,16 +614,20 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 		case KeyEvent.VK_LEFT:
 			if (m_multiSelectionActive && e.isShiftDown()) break;
 			if (e.isControlDown())
-				moveCaretTo(m_caretPosition.previousWordInTable(), e.isShiftDown(), true);
+				moveCaretTo(m_caretPosition.previousWordInTable(), e
+						.isShiftDown(), true);
 			else
-				moveCaretTo(m_caretPosition.previousCharacterInTable(), e.isShiftDown(), true);
+				moveCaretTo(m_caretPosition.previousCharacterInTable(), e
+						.isShiftDown(), true);
 			break;
 		case KeyEvent.VK_RIGHT:
 			if (m_multiSelectionActive && e.isShiftDown()) break;
 			if (e.isControlDown())
-				moveCaretTo(m_caretPosition.nextWordInTable(), e.isShiftDown(), true);
+				moveCaretTo(m_caretPosition.nextWordInTable(), e.isShiftDown(),
+						true);
 			else
-				moveCaretTo(m_caretPosition.nextCharacterInTable(), e.isShiftDown(), true);
+				moveCaretTo(m_caretPosition.nextCharacterInTable(), e
+						.isShiftDown(), true);
 			break;
 		case KeyEvent.VK_UP:
 			if (m_caretPosition.row > 0) {
@@ -561,26 +654,63 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 			}
 			break;
 		case KeyEvent.VK_HOME:
-			if (m_caretPosition.character == 0 && m_caretPosition.column == 1) {
-				moveCaretTo(new Position(0, m_caretPosition.row,
-						getTranslation(0, m_caretPosition.row).length()), e
-						.isShiftDown(), true);
-			} else
-				moveCaretTo(new Position(m_caretPosition.column,
-						m_caretPosition.row, 0), e.isShiftDown(), true);
+			if (e.isControlDown()) {
+				moveCaretTo(new Position(0, 0, 0), e.isShiftDown(), false);
+			} else {
+				if (m_caretPosition.character == 0 && m_caretPosition.column == 1) {
+					moveCaretTo(new Position(0, m_caretPosition.row,
+							getTranslation(0, m_caretPosition.row).length()), e
+							.isShiftDown(), true);
+				} else
+					moveCaretTo(new Position(m_caretPosition.column,
+							m_caretPosition.row, 0), e.isShiftDown(), true);
+			}
 			break;
 		case KeyEvent.VK_END:
-			if (m_caretPosition.character == getTranslation(
-					m_caretPosition.column, m_caretPosition.row).length()
-					&& m_caretPosition.column == 0) {
-				moveCaretTo(new Position(1, m_caretPosition.row, 0), e
-						.isShiftDown(), true);
-			} else
-				moveCaretTo(new Position(m_caretPosition.column,
-						m_caretPosition.row, getTranslation(
-								m_caretPosition.column, m_caretPosition.row)
-								.length()), e.isShiftDown(), true);
+			if (e.isControlDown()) {
+				moveCaretTo(new Position(1, m_wordsList.size() - 1, getTranslation(1, m_wordsList.size() - 1).length()), e.isShiftDown(), false);
+			} else {
+				if (m_caretPosition.character == getTranslation(
+						m_caretPosition.column, m_caretPosition.row).length()
+						&& m_caretPosition.column == 0) {
+					moveCaretTo(new Position(1, m_caretPosition.row, 0), e
+							.isShiftDown(), true);
+				} else
+					moveCaretTo(new Position(m_caretPosition.column,
+							m_caretPosition.row, getTranslation(
+									m_caretPosition.column, m_caretPosition.row)
+									.length()), e.isShiftDown(), true);
+			}
 			break;
+		case KeyEvent.VK_PAGE_UP: {
+			int desired = m_desiredCaretCharacter;
+			int newRow = Math.max(0, m_caretPosition.row - this.getVisibleRect().height / (this.getRowHeight(0) + 1) + 1);
+			this.moveCaretTo(new Position(
+					m_caretPosition.column, 
+					newRow, 
+					Math.min(
+							m_desiredCaretCharacter, getTranslation(
+									m_caretPosition.column,
+									newRow).length())),
+					e.isShiftDown(), false);
+			m_desiredCaretCharacter = desired;
+			break;
+		}
+		case KeyEvent.VK_PAGE_DOWN: {
+			int desired = m_desiredCaretCharacter;
+			int newRow = Math.min(m_wordsList.size() - 1,
+					m_caretPosition.row + this.getVisibleRect().height / (this.getRowHeight(0) + 1) - 1);
+			this.moveCaretTo(new Position(
+				m_caretPosition.column, 
+				newRow, 
+				Math.min(
+						m_desiredCaretCharacter, getTranslation(
+								m_caretPosition.column,
+								newRow).length())),
+				e.isShiftDown(), false);
+			m_desiredCaretCharacter = desired;
+			break;
+		}
 		}
 	}
 
@@ -594,9 +724,10 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 		sb.delete(leftSel, Math.max(m_caretPosition.character,
 				m_selectionOrigin.character));
 		w.setLanguage(m_caretPosition.column, sb.toString());
-		moveCaretTo(new Position(m_caretPosition.column, m_caretPosition.row, leftSel), false, false);
+		moveCaretTo(new Position(m_caretPosition.column, m_caretPosition.row,
+				leftSel), false, false);
 	}
-	
+
 	private void putText(String text) {
 		// No text edition is allowed if multiple cells are selected
 		if (!m_multiSelectionActive) {
@@ -620,55 +751,59 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 							+ text.length()), false, false);
 		}
 	}
-	
+
 	private void removeSelectedRows() {
-		m_wordsList.subList(Math.min(m_caretPosition.row, m_selectionOrigin.row),
-				Math.max(m_caretPosition.row, m_selectionOrigin.row) + 1).clear();
+		m_wordsList.subList(
+				Math.min(m_caretPosition.row, m_selectionOrigin.row),
+				Math.max(m_caretPosition.row, m_selectionOrigin.row) + 1)
+				.clear();
 		if (m_wordsList.size() == 0) {
 			m_wordsList.add(0, new Word(null));
 			moveCaretTo(new Position(0, 0, 0), false, false);
 		} else {
-			moveCaretTo(new Position(m_caretPosition.column, Math
-					.min(Math.min(m_caretPosition.row,
-							m_selectionOrigin.row), m_wordsList
-							.size() - 1), 0), false, false);
+			moveCaretTo(new Position(m_caretPosition.column, Math.min(Math.min(
+					m_caretPosition.row, m_selectionOrigin.row), m_wordsList
+					.size() - 1), 0), false, false);
 		}
 		Rectangle rect = this.getCellRectangle(m_caretPosition);
 		this.repaint(0, rect.y, this.getWidth(), this.getHeight() - rect.y);
 		this.recalcSize();
 	}
-	
-	/* ********************************************************************
+
+	/***************************************************************************
 	 * Clipboard support
 	 */
-	
+
 	private void transferSelectionToClipboard(boolean removeSelected) {
 		if (m_multiSelectionActive) {
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new WordsListSelection(m_wordsList.subList(Math.min(m_caretPosition.row, m_selectionOrigin.row),
-					Math.max(m_caretPosition.row, m_selectionOrigin.row) + 1)), null);
-			if (removeSelected)
-				this.removeSelectedRows();
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
+					new WordsListSelection(m_wordsList.subList(Math.min(
+							m_caretPosition.row, m_selectionOrigin.row),
+							Math
+									.max(m_caretPosition.row,
+											m_selectionOrigin.row) + 1)), null);
+			if (removeSelected) this.removeSelectedRows();
 		} else {
-			String text = ((Word) m_wordsList.get(m_caretPosition.row)).getLanguage(m_caretPosition.column);
-			StringSelection ss = new StringSelection(
-					text.substring(Math.min(m_caretPosition.character, m_selectionOrigin.character),
-							Math.max(m_caretPosition.character, m_selectionOrigin.character))
-					);
-			Toolkit.getDefaultToolkit().getSystemClipboard()
-					.setContents(ss, null);
-			if (removeSelected) 
-				this.removeSelectedText();
-		}		
+			String text = ((Word) m_wordsList.get(m_caretPosition.row))
+					.getLanguage(m_caretPosition.column);
+			StringSelection ss = new StringSelection(text.substring(Math.min(
+					m_caretPosition.character, m_selectionOrigin.character),
+					Math.max(m_caretPosition.character,
+							m_selectionOrigin.character)));
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,
+					null);
+			if (removeSelected) this.removeSelectedText();
+		}
 	}
-	
+
 	public void cut() {
 		this.transferSelectionToClipboard(true);
 	}
-	
+
 	public void copy() {
 		this.transferSelectionToClipboard(false);
 	}
-	
+
 	public void paste() {
 		if (!m_multiSelectionActive) {
 			Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard()
@@ -709,11 +844,11 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 			}
 		}
 	}
-	
-	/* ********************************************************************
+
+	/***************************************************************************
 	 * Cell sizing and positioning
 	 */
-	
+
 	private int m_cellTopMargin = 2;
 
 	private int m_cellBottomMargin = 2;
@@ -721,35 +856,37 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 	private int m_cellLeftMargin = 2;
 
 	private int m_fontHeight = -1;
-	
+
 	private int getRowHeight(int row) {
 		return m_cellTopMargin + m_fontHeight + m_cellBottomMargin;
 	}
-	
+
 	private int getColumnWidth(int column) {
 		return this.getWidth() / 2;
 	}
-	
+
 	private Rectangle getCellRectangle(int column, int row) {
-		return new Rectangle(
-				column * (getColumnWidth(0) + 1), row * (getRowHeight(0) + 1),
-				getColumnWidth(column), getRowHeight(row));
+		return new Rectangle(column * (getColumnWidth(0) + 1), row
+				* (getRowHeight(0) + 1), getColumnWidth(column),
+				getRowHeight(row));
 	}
+
 	private Rectangle getCellRectangle(Position pos) {
 		return this.getCellRectangle(pos.column, pos.row);
 	}
-	
+
 	private Position findCellAt(int x, int y) {
-		int column = Math.min(1, x / (getColumnWidth(0) + 1));
-		int row = Math.min(m_wordsList.size() - 1, y / (getRowHeight(0) + 1));
+		int column = Math.max(0, Math.min(1, x / (getColumnWidth(0) + 1)));
+		int row = Math.max(0, Math.min(m_wordsList.size() - 1, y / (getRowHeight(0) + 1)));
 		String translation = getTranslation(column, row) + " ";
-		int textX = Math.max(0, x - m_cellLeftMargin - column * (getColumnWidth(0) + 1));
+		int textX = Math.max(0, x - m_cellLeftMargin - column
+				* (getColumnWidth(0) + 1));
 		int prevSize = 0;
 		int clickCharacter;
 		int i;
 		for (i = 0; i < translation.length(); i++) {
-			Rectangle2D rect =
-				this.getFont().getStringBounds(translation, 0, i, m_fontRenderContext);
+			Rectangle2D rect = this.getFont().getStringBounds(translation, 0,
+					i, m_fontRenderContext);
 			if (prevSize <= textX && textX <= rect.getWidth()) {
 				if (textX - prevSize < (rect.getWidth() - prevSize) / 2) {
 					--i;
@@ -761,18 +898,17 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 			prevSize = (int) rect.getWidth();
 		}
 		clickCharacter = Math.min(i, translation.length() - 1);
-		return new Position(
-				column, row, 
-				clickCharacter);
+		return new Position(column, row, clickCharacter);
 	}
+
 	private Position findCellAt(Point p) {
 		return this.findCellAt(p.x, p.y);
 	}
-	
-	/* ********************************************************************
+
+	/***************************************************************************
 	 * Scrollable interface
 	 */
-	
+
 	public boolean getScrollableTracksViewportHeight() {
 		return false;
 	}
@@ -785,11 +921,15 @@ public class DictionaryEditor extends JComponent implements WordsContainer, Scro
 		return this.getPreferredSize();
 	}
 
-	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
-		return visibleRect.height - getScrollableUnitIncrement(visibleRect, orientation, direction);
+	public int getScrollableBlockIncrement(Rectangle visibleRect,
+			int orientation, int direction) {
+		return visibleRect.height
+				- getScrollableUnitIncrement(visibleRect, orientation,
+						direction);
 	}
 
-	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+	public int getScrollableUnitIncrement(Rectangle visibleRect,
+			int orientation, int direction) {
 		return this.getRowHeight(0) + 1;
 	}
 }
