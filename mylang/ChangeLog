@@ -1,6 +1,7 @@
 2004-01-17  Michal Dabrowski <herrmic@users.berlios.de>
 
 	* Moved session logic to Session class.
+	* Preferences and Session dialogs are centered within the FrameMain.
 
 2004-01-04  Michal Dabrowski <herrmic@users.berlios.de>
 
