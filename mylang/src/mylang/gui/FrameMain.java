@@ -84,6 +84,10 @@ public class FrameMain extends javax.swing.JFrame
 		m_checkboxLanguage1 = new javax.swing.JCheckBox();
 		m_checkboxLanguage2 = new javax.swing.JCheckBox();
 		jPanel4 = new javax.swing.JPanel();
+		jPanel6 = new javax.swing.JPanel();
+		m_buttonSelectAllWords = new javax.swing.JButton();
+		m_buttonSelectNoneWords = new javax.swing.JButton();
+		m_buttonInvertWordsSelection = new javax.swing.JButton();
 		jSeparator2 = new javax.swing.JSeparator();
 		m_panelSessionControls = new javax.swing.JPanel();
 		jLabel1 = new javax.swing.JLabel();
@@ -210,11 +214,11 @@ public class FrameMain extends javax.swing.JFrame
 		jScrollPane2.setViewportView(m_tableWords);
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridheight = 4;
+		gridBagConstraints.gridheight = 5;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
 		gridBagConstraints.weighty = 1.0;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(jScrollPane2, gridBagConstraints);
 		
 		m_buttonEnable.setText("Enable");
@@ -295,10 +299,72 @@ public class FrameMain extends javax.swing.JFrame
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
-		gridBagConstraints.gridy = 3;
+		gridBagConstraints.gridy = 4;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
 		gridBagConstraints.weighty = 1.0;
 		jPanel2.add(jPanel4, gridBagConstraints);
+		
+		jPanel6.setLayout(new java.awt.GridBagLayout());
+		
+		jPanel6.setBorder(new javax.swing.border.TitledBorder("Selection"));
+		m_buttonSelectAllWords.setText("All");
+		m_buttonSelectAllWords.setToolTipText("<HTML>Selects all words.</HTML>");
+		m_buttonSelectAllWords.addActionListener(new java.awt.event.ActionListener()
+		{
+			public void actionPerformed(java.awt.event.ActionEvent evt)
+			{
+				m_buttonSelectAllWordsActionPerformed(evt);
+			}
+		});
+		
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.weightx = 1.0;
+		jPanel6.add(m_buttonSelectAllWords, gridBagConstraints);
+		
+		m_buttonSelectNoneWords.setText("None");
+		m_buttonSelectNoneWords.setToolTipText("<HTML>Unselects all words.</HTML>");
+		m_buttonSelectNoneWords.addActionListener(new java.awt.event.ActionListener()
+		{
+			public void actionPerformed(java.awt.event.ActionEvent evt)
+			{
+				m_buttonSelectNoneWordsActionPerformed(evt);
+			}
+		});
+		
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.weightx = 1.0;
+		jPanel6.add(m_buttonSelectNoneWords, gridBagConstraints);
+		
+		m_buttonInvertWordsSelection.setText("Invert");
+		m_buttonInvertWordsSelection.setToolTipText("<HTML>Inverts the selection.</HTML>");
+		m_buttonInvertWordsSelection.addActionListener(new java.awt.event.ActionListener()
+		{
+			public void actionPerformed(java.awt.event.ActionEvent evt)
+			{
+				m_buttonInvertWordsSelectionActionPerformed(evt);
+			}
+		});
+		
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.weightx = 1.0;
+		jPanel6.add(m_buttonInvertWordsSelection, gridBagConstraints);
+		
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanel2.add(jPanel6, gridBagConstraints);
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
@@ -433,6 +499,21 @@ public class FrameMain extends javax.swing.JFrame
 		pack();
 	}//GEN-END:initComponents
 
+	private void m_buttonInvertWordsSelectionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonInvertWordsSelectionActionPerformed
+	{//GEN-HEADEREND:event_m_buttonInvertWordsSelectionActionPerformed
+		invertWordsSelection();
+	}//GEN-LAST:event_m_buttonInvertWordsSelectionActionPerformed
+
+	private void m_buttonSelectNoneWordsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonSelectNoneWordsActionPerformed
+	{//GEN-HEADEREND:event_m_buttonSelectNoneWordsActionPerformed
+		unselectAllWords();
+	}//GEN-LAST:event_m_buttonSelectNoneWordsActionPerformed
+
+	private void m_buttonSelectAllWordsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonSelectAllWordsActionPerformed
+	{//GEN-HEADEREND:event_m_buttonSelectAllWordsActionPerformed
+		selectAllWords();
+	}//GEN-LAST:event_m_buttonSelectAllWordsActionPerformed
+
 	private void m_checkboxLanguage2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_checkboxLanguage2ActionPerformed
 	{//GEN-HEADEREND:event_m_checkboxLanguage2ActionPerformed
 		((WordsListTableModel)m_tableWords.getModel()).shadowColumn(1,
@@ -550,6 +631,7 @@ public class FrameMain extends javax.swing.JFrame
 	private javax.swing.JPanel jPanel3;
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JPanel jPanel5;
+	private javax.swing.JPanel jPanel6;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
 	private javax.swing.JSeparator jSeparator2;
@@ -558,7 +640,10 @@ public class FrameMain extends javax.swing.JFrame
 	private javax.swing.JButton m_buttonDisable;
 	private javax.swing.JButton m_buttonEnable;
 	private javax.swing.JButton m_buttonInfo;
+	private javax.swing.JButton m_buttonInvertWordsSelection;
 	private javax.swing.JButton m_buttonLoad;
+	private javax.swing.JButton m_buttonSelectAllWords;
+	private javax.swing.JButton m_buttonSelectNoneWords;
 	private javax.swing.JButton m_buttonStart;
 	private javax.swing.JButton m_buttonUnload;
 	private javax.swing.JCheckBox m_checkboxLanguage1;
@@ -709,5 +794,25 @@ public class FrameMain extends javax.swing.JFrame
 			.getDictionaries().get(0)).getLanguageNames()[1]);
 		}
 		m_tableWords.getTableHeader().resizeAndRepaint();
+	}
+	
+	public void selectAllWords()
+	{
+		m_tableWords.selectAll();
+	}
+	
+	public void unselectAllWords()
+	{
+		m_tableWords.clearSelection();
+	}
+	
+	public void invertWordsSelection()
+	{
+		m_tableWords.getSelectionModel().setValueIsAdjusting(true);
+		int[] selectedRows = m_tableWords.getSelectedRows();
+		m_tableWords.selectAll();
+		for(int i = 0; i < selectedRows.length; i++)
+			m_tableWords.removeRowSelectionInterval(selectedRows[i], selectedRows[i]);
+		m_tableWords.getSelectionModel().setValueIsAdjusting(false);
 	}
 }
