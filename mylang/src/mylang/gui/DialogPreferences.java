@@ -43,6 +43,8 @@ public class DialogPreferences extends javax.swing.JDialog
 		MyLang.getPrefRequireAllTranslations());
 		m_checkboxEmphasizeMistakes.setSelected(
 		MyLang.getPrefEmphasizeMistakes());
+		
+		setLocationRelativeTo(parent);
 	}
 	
 	/** This method is called from within the constructor to

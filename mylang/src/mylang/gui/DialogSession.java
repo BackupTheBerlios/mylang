@@ -53,18 +53,8 @@ public class DialogSession extends javax.swing.JDialog
 		initComponents();
 		
 		m_session = null;
-		
-//		m_timerElapsed = new javax.swing.Timer(1000, new ActionListener()
-//		{
-//			public void actionPerformed(ActionEvent evt)
-//			{
-//				DecimalFormat df = new DecimalFormat("00");
-//				m_textStatTime.setText(
-//				df.format(m_timeElapsed.get(Calendar.MINUTE)) + ":"
-//				+ df.format(m_timeElapsed.get(Calendar.SECOND)));
-//			}
-//		});
-//		m_timeElapsed = Calendar.getInstance();
+
+		setLocationRelativeTo(parent);
 	}
 	
 	/** This method is called from within the constructor to
