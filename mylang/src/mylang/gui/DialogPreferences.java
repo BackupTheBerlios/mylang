@@ -78,32 +78,34 @@ public class DialogPreferences extends javax.swing.JDialog
 		
 		jPanel1.setLayout(new java.awt.GridBagLayout());
 		
+		m_checkboxRequireAllTranslations.setMnemonic('A');
 		m_checkboxRequireAllTranslations.setText("Require ALL translations");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel1.add(m_checkboxRequireAllTranslations, gridBagConstraints);
 		
+		m_checkboxEmphasizeMistakes.setMnemonic('M');
 		m_checkboxEmphasizeMistakes.setText("Display message box on every wrong answer");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel1.add(m_checkboxEmphasizeMistakes, gridBagConstraints);
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridwidth = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
 		gridBagConstraints.weighty = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(jPanel1, gridBagConstraints);
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -114,6 +116,7 @@ public class DialogPreferences extends javax.swing.JDialog
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(jSeparator1, gridBagConstraints);
 		
+		m_buttonOk.setMnemonic('O');
 		m_buttonOk.setText("OK");
 		m_buttonOk.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -130,6 +133,7 @@ public class DialogPreferences extends javax.swing.JDialog
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(m_buttonOk, gridBagConstraints);
 		
+		m_buttonCancel.setMnemonic('C');
 		m_buttonCancel.setText("Cancel");
 		m_buttonCancel.addActionListener(new java.awt.event.ActionListener()
 		{
@@ -150,8 +154,8 @@ public class DialogPreferences extends javax.swing.JDialog
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 2;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(jPanel2, gridBagConstraints);
 		
 		pack();

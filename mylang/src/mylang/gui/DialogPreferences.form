@@ -25,6 +25,7 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="m_checkboxRequireAllTranslations">
           <Properties>
+            <Property name="mnemonic" type="int" value="65"/>
             <Property name="text" type="java.lang.String" value="Require ALL translations"/>
           </Properties>
           <Constraints>
@@ -35,6 +36,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="m_checkboxEmphasizeMistakes">
           <Properties>
+            <Property name="mnemonic" type="int" value="77"/>
             <Property name="text" type="java.lang.String" value="Display message box on every wrong answer"/>
           </Properties>
           <Constraints>
@@ -54,6 +56,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="m_buttonOk">
       <Properties>
+        <Property name="mnemonic" type="int" value="79"/>
         <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
       <Events>
@@ -67,6 +70,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="m_buttonCancel">
       <Properties>
+        <Property name="mnemonic" type="int" value="67"/>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>

@@ -13,7 +13,7 @@
     <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="closeDialog"/>
   </Events>
   <AuxValues>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,0,-43,0,0,1,-112"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,0,-21,0,0,1,-112"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
@@ -21,7 +21,11 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="11"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="m_textQuestion"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Question"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -33,6 +37,7 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Question is displayed here.&lt;BR&gt;&#xa;This is the word you are asked to translate.&lt;/HTML&gt;"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -40,10 +45,15 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="m_labelAnswer">
       <Properties>
+        <Property name="displayedMnemonic" type="int" value="65"/>
         <Property name="horizontalAlignment" type="int" value="11"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="m_textAnswer"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Answer"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -70,7 +80,11 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="11"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="m_textTranslator"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Translator"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -82,6 +96,7 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Comment of your last answer.&lt;/HTML&gt;"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -103,6 +118,7 @@
             <Property name="horizontalAlignment" type="int" value="11"/>
             <Property name="text" type="java.lang.String" value="Session stats:"/>
             <Property name="verticalAlignment" type="int" value="3"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -113,7 +129,11 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="m_textStatAnswers"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="question:"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -127,6 +147,7 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Number of the question.&lt;/HTML&gt;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -137,7 +158,11 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="m_textStatLeft"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="left:"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -150,6 +175,7 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Number of the words left.&lt;/HTML&gt;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -160,7 +186,11 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="m_textStatCorrect"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="correct:"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -174,6 +204,7 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Number of your correct answers.&lt;/HTML&gt;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -184,7 +215,11 @@
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="m_textStatTime"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="time:"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -198,6 +233,7 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="00:00"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Time that has ellapsed during this session.&lt;/HTML&gt;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -218,6 +254,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="m_buttonCheck">
           <Properties>
+            <Property name="mnemonic" type="int" value="72"/>
             <Property name="text" type="java.lang.String" value="Check"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Use this button to acknowledge your answer.&lt;BR&gt;&#xa;&lt;I&gt;Note: it is usually better to hit Enter instead.&lt;/I&gt;&#xa;&lt;/HTML&gt;"/>
           </Properties>
@@ -232,6 +269,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="m_buttonCancel">
           <Properties>
+            <Property name="mnemonic" type="int" value="67"/>
             <Property name="text" type="java.lang.String" value="Cancel"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Interrupts this session.&lt;BR&gt;&#xa;&lt;I&gt;Note: cancelled session is not counted into the dictioraies stats.&lt;/I&gt;&#xa;&lt;/HTML&gt;"/>
             <Property name="defaultCapable" type="boolean" value="false"/>

@@ -68,7 +68,7 @@ public class DialogSession extends javax.swing.JDialog
 		
 		jLabel1 = new javax.swing.JLabel();
 		m_textQuestion = new javax.swing.JTextField();
-		jLabel2 = new javax.swing.JLabel();
+		m_labelAnswer = new javax.swing.JLabel();
 		m_textAnswer = new javax.swing.JTextField();
 		jLabel3 = new javax.swing.JLabel();
 		m_textTranslator = new javax.swing.JTextField();
@@ -102,7 +102,9 @@ public class DialogSession extends javax.swing.JDialog
 		});
 		
 		jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+		jLabel1.setLabelFor(m_textQuestion);
 		jLabel1.setText("Question");
+		jLabel1.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
@@ -110,20 +112,24 @@ public class DialogSession extends javax.swing.JDialog
 		
 		m_textQuestion.setEditable(false);
 		m_textQuestion.setToolTipText("<HTML>Question is displayed here.<BR>\nThis is the word you are asked to translate.</HTML>");
+		m_textQuestion.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.weightx = 1.0;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(m_textQuestion, gridBagConstraints);
 		
-		jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-		jLabel2.setText("Answer");
+		m_labelAnswer.setDisplayedMnemonic('A');
+		m_labelAnswer.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+		m_labelAnswer.setLabelFor(m_textAnswer);
+		m_labelAnswer.setText("Answer");
+		m_labelAnswer.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-		getContentPane().add(jLabel2, gridBagConstraints);
+		getContentPane().add(m_labelAnswer, gridBagConstraints);
 		
 		m_textAnswer.setToolTipText("<HTML>Type your answer here.<BR>\nHere you type translation of the word displayed in the <B>\"Question\"</B> field.\n</HTML>");
 		m_textAnswer.setPreferredSize(new java.awt.Dimension(508, 21));
@@ -144,7 +150,9 @@ public class DialogSession extends javax.swing.JDialog
 		getContentPane().add(m_textAnswer, gridBagConstraints);
 		
 		jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+		jLabel3.setLabelFor(m_textTranslator);
 		jLabel3.setText("Translator");
+		jLabel3.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 2;
@@ -154,6 +162,7 @@ public class DialogSession extends javax.swing.JDialog
 		
 		m_textTranslator.setEditable(false);
 		m_textTranslator.setToolTipText("<HTML>Comment of your last answer.</HTML>");
+		m_textTranslator.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 2;
@@ -167,6 +176,7 @@ public class DialogSession extends javax.swing.JDialog
 		jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
 		jLabel4.setText("Session stats:");
 		jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+		jLabel4.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridwidth = 2;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -176,7 +186,9 @@ public class DialogSession extends javax.swing.JDialog
 		jPanel1.add(jLabel4, gridBagConstraints);
 		
 		jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+		jLabel5.setLabelFor(m_textStatAnswers);
 		jLabel5.setText("question:");
+		jLabel5.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
@@ -189,6 +201,7 @@ public class DialogSession extends javax.swing.JDialog
 		m_textStatAnswers.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		m_textStatAnswers.setText("0");
 		m_textStatAnswers.setToolTipText("<HTML>Number of the question.</HTML>");
+		m_textStatAnswers.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 1;
@@ -198,7 +211,9 @@ public class DialogSession extends javax.swing.JDialog
 		jPanel1.add(m_textStatAnswers, gridBagConstraints);
 		
 		jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+		jLabel6.setLabelFor(m_textStatLeft);
 		jLabel6.setText("left:");
+		jLabel6.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 2;
@@ -210,6 +225,7 @@ public class DialogSession extends javax.swing.JDialog
 		m_textStatLeft.setEditable(false);
 		m_textStatLeft.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		m_textStatLeft.setToolTipText("<HTML>Number of the words left.</HTML>");
+		m_textStatLeft.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 2;
@@ -219,7 +235,9 @@ public class DialogSession extends javax.swing.JDialog
 		jPanel1.add(m_textStatLeft, gridBagConstraints);
 		
 		jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+		jLabel7.setLabelFor(m_textStatCorrect);
 		jLabel7.setText("correct:");
+		jLabel7.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 3;
@@ -232,6 +250,7 @@ public class DialogSession extends javax.swing.JDialog
 		m_textStatCorrect.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		m_textStatCorrect.setText("0");
 		m_textStatCorrect.setToolTipText("<HTML>Number of your correct answers.</HTML>");
+		m_textStatCorrect.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 3;
@@ -241,7 +260,9 @@ public class DialogSession extends javax.swing.JDialog
 		jPanel1.add(m_textStatCorrect, gridBagConstraints);
 		
 		jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+		jLabel8.setLabelFor(m_textStatTime);
 		jLabel8.setText("time:");
+		jLabel8.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 4;
@@ -254,6 +275,7 @@ public class DialogSession extends javax.swing.JDialog
 		m_textStatTime.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		m_textStatTime.setText("00:00");
 		m_textStatTime.setToolTipText("<HTML>Time that has ellapsed during this session.</HTML>");
+		m_textStatTime.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 4;
@@ -274,6 +296,7 @@ public class DialogSession extends javax.swing.JDialog
 		
 		jPanel2.setLayout(new java.awt.GridBagLayout());
 		
+		m_buttonCheck.setMnemonic('H');
 		m_buttonCheck.setText("Check");
 		m_buttonCheck.setToolTipText("<HTML>Use this button to acknowledge your answer.<BR>\n<I>Note: it is usually better to hit Enter instead.</I>\n</HTML>");
 		m_buttonCheck.addActionListener(new java.awt.event.ActionListener()
@@ -290,6 +313,7 @@ public class DialogSession extends javax.swing.JDialog
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(m_buttonCheck, gridBagConstraints);
 		
+		m_buttonCancel.setMnemonic('C');
 		m_buttonCancel.setText("Cancel");
 		m_buttonCancel.setToolTipText("<HTML>Interrupts this session.<BR>\n<I>Note: cancelled session is not counted into the dictioraies stats.</I>\n</HTML>");
 		m_buttonCancel.setDefaultCapable(false);
@@ -358,7 +382,6 @@ public class DialogSession extends javax.swing.JDialog
 	
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabel5;
@@ -371,6 +394,7 @@ public class DialogSession extends javax.swing.JDialog
 	private javax.swing.JSeparator jSeparator1;
 	private javax.swing.JButton m_buttonCancel;
 	private javax.swing.JButton m_buttonCheck;
+	private javax.swing.JLabel m_labelAnswer;
 	private javax.swing.JTextField m_textAnswer;
 	private javax.swing.JTextField m_textQuestion;
 	private javax.swing.JTextField m_textStatAnswers;
