@@ -5,21 +5,22 @@
         <property name="srcdir" value="src"/>
         <property name="classdir" value="${srcdir}"/>
         <property name="libdir" value="lib"/>
-        <filelist id="lib-jars" dir="${libdir}" files="dom4j.jar,looks-1.1.2.jar"/>
+        <filelist dir="${libdir}" files="dom4j.jar,looks-1.1.2.jar" id="lib-jars"/>
     </target>
     
-    <target name="compile" depends="init">
-        <javac srcdir="${srcdir}" destdir="${classdir}">
+    <target depends="init" name="compile">
+        <javac destdir="${classdir}" srcdir="${srcdir}">
             <classpath>
                 <filelist refid="lib-jars"/>
             </classpath>
         </javac>
     </target>
     
-    <target name="jar" depends="init,compile">
+    <target depends="init,compile" name="jar">
         <jar basedir="${classdir}" compress="true" jarfile="${libdir}/MyLang.jar">
             <include name="**/*.class"/>
-            <include name="**/mylang/gui/resources/*"/>
+            <include name="**/mylang/gui/resources/*.gif"/>
+            <include name="**/mylang/gui/resources/*.png"/>
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
                 <attribute name="Main-Class" value="mylang.MyLang"/>
@@ -27,10 +28,10 @@
         </jar>
     </target>
     
-    <target name="all" depends="init,jar">
+    <target depends="init,jar" name="all">
     </target>
     
-    <target name="clean" depends="init">
+    <target depends="init" name="clean">
         <delete>
             <fileset dir="${classdir}">
                 <include name="**/*.class"/>
