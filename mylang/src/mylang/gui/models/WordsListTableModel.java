@@ -1,6 +1,7 @@
 package mylang.gui.models;
 
 import mylang.data.*;
+import mylang.gui.jsorttable.*;
 import java.util.*;
 import javax.swing.table.*;
 
@@ -32,7 +33,7 @@ import javax.swing.table.*;
  *
  * @author  herrmic
  */
-public class WordsListTableModel extends AbstractTableModel
+public class WordsListTableModel extends AbstractTableModel implements SortTableModel
 {
 	private static ArrayList m_emptyList = new ArrayList();
 	
@@ -144,4 +145,16 @@ public class WordsListTableModel extends AbstractTableModel
 		m_wc = wc;
 		fireTableDataChanged();
 	}
+	
+	public boolean isSortable(int col)
+	{
+		return true;
+	}
+	
+	public void sortColumn(int col, boolean ascending)
+	{
+		Collections.sort(m_wc.getWordsList(), 
+			new WordComparator(col, ascending));
+	}
+	
 }

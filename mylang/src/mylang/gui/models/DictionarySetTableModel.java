@@ -1,6 +1,7 @@
 package mylang.gui.models;
 
 import mylang.data.*;
+import mylang.gui.jsorttable.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.table.*;
@@ -33,7 +34,7 @@ import javax.swing.table.*;
  *
  * @author  herrmic
  */
-public class DictionarySetTableModel extends AbstractTableModel
+public class DictionarySetTableModel extends AbstractTableModel implements SortTableModel
 {
 	DictionarySet m_dset;
 	
@@ -126,4 +127,16 @@ public class DictionarySetTableModel extends AbstractTableModel
 		m_dset = dset;
 		fireTableDataChanged();
 	}
+	
+	public boolean isSortable(int col)
+	{
+		return true;
+	}
+	
+	public void sortColumn(int col, boolean ascending)
+	{
+		Collections.sort(m_dset.getDictionaries(),
+			new DictionaryComparator(col, ascending));
+	}
+	
 }

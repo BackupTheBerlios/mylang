@@ -3,6 +3,7 @@ package mylang.gui;
 import mylang.MyLang;
 import mylang.data.*;
 import mylang.gui.models.*;
+import mylang.gui.jsorttable.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
@@ -43,11 +44,26 @@ public class FrameMain extends javax.swing.JFrame
 	private ArrayList m_editors;
 	private mylang.data.DictionarySet m_dset;
 	
+	private JTable m_tableDictionaries;
+	private JTable m_tableWords;
+	
 	/** Creates new form FrameMain */
 	public FrameMain()
 	{
 		initComponents();
 		
+		m_tableDictionaries = new JSortTable();
+		m_tableDictionaries.setModel(new DictionarySetTableModel());
+		m_tableDictionaries.setShowHorizontalLines(false);
+		m_tableDictionaries.setShowVerticalLines(false);
+		m_scrollpaneDictionaries.setViewportView(m_tableDictionaries);
+
+		m_tableWords = new JSortTable();
+		m_tableWords.setModel(new WordsListTableModel());
+		m_tableWords.setShowHorizontalLines(false);
+		m_tableWords.setShowVerticalLines(false);
+		m_scrollpaneWords.setViewportView(m_tableWords);
+
 		m_tableDictionaries.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		m_tableWords.getColumnModel().getColumn(m_tableWords.convertColumnIndexToView(0)).setHeaderValue("Language 1");
 		m_tableWords.getColumnModel().getColumn(m_tableWords.convertColumnIndexToView(1)).setHeaderValue("Language 2");
@@ -89,15 +105,13 @@ public class FrameMain extends javax.swing.JFrame
 		
 		m_filechooserDictionary = new javax.swing.JFileChooser();
 		jPanel1 = new javax.swing.JPanel();
-		jScrollPane1 = new javax.swing.JScrollPane();
-		m_tableDictionaries = new javax.swing.JTable();
+		m_scrollpaneDictionaries = new javax.swing.JScrollPane();
 		m_buttonLoad = new javax.swing.JButton();
 		m_buttonUnload = new javax.swing.JButton();
 		m_buttonInfo = new javax.swing.JButton();
 		jPanel3 = new javax.swing.JPanel();
 		jPanel2 = new javax.swing.JPanel();
-		jScrollPane2 = new javax.swing.JScrollPane();
-		m_tableWords = new javax.swing.JTable();
+		m_scrollpaneWords = new javax.swing.JScrollPane();
 		m_buttonEnable = new javax.swing.JButton();
 		m_buttonDisable = new javax.swing.JButton();
 		jPanel5 = new javax.swing.JPanel();
@@ -143,20 +157,15 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel1.setLayout(new java.awt.GridBagLayout());
 		
 		jPanel1.setBorder(new javax.swing.border.TitledBorder("Dictionaries"));
-		jScrollPane1.setToolTipText("<HTML>Table displaying short information about each loaded dictionary:<BR>\n<B>Name</B> - file name,<BR>\n<B>Last (date)</B> - date of the last session,<BR>\n<B>Last (score)</B> - number of mistakes during the last session,<BR>\n<B>Size</B> - number of words,<BR>\n<B>Description</B> - short description.\n</HTML>");
-		jScrollPane1.setPreferredSize(new java.awt.Dimension(453, 150));
-		m_tableDictionaries.setModel(new DictionarySetTableModel());
-		m_tableDictionaries.setShowHorizontalLines(false);
-		m_tableDictionaries.setShowVerticalLines(false);
-		jScrollPane1.setViewportView(m_tableDictionaries);
-		
+		m_scrollpaneDictionaries.setToolTipText("<HTML>Table displaying short information about each loaded dictionary:<BR>\n<B>Name</B> - file name,<BR>\n<B>Last (date)</B> - date of the last session,<BR>\n<B>Last (score)</B> - number of mistakes during the last session,<BR>\n<B>Size</B> - number of words,<BR>\n<B>Description</B> - short description.\n</HTML>");
+		m_scrollpaneDictionaries.setPreferredSize(new java.awt.Dimension(453, 150));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridheight = 4;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
 		gridBagConstraints.weightx = 1.0;
 		gridBagConstraints.weighty = 1.0;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-		jPanel1.add(jScrollPane1, gridBagConstraints);
+		jPanel1.add(m_scrollpaneDictionaries, gridBagConstraints);
 		
 		m_buttonLoad.setText("Load...");
 		m_buttonLoad.setToolTipText("<HTML>Loads dictionary files.</HTML>");
@@ -226,20 +235,15 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel2.setLayout(new java.awt.GridBagLayout());
 		
 		jPanel2.setBorder(new javax.swing.border.TitledBorder("Words"));
-		jScrollPane2.setToolTipText("<HTML>Table of words that are contained in loaded dictionaries.<BR>\nFor each word the following information is available:<BR>\n<B>Language <I>n</I></B> - the word in both languages,<BR>\n<B>Last (date)</B> - date of the last session,<BR>\n<B>Last (score)</B> - number of mistakes during the last session,<BR>\n<B>Enabled</B> - indicates if the word is enabled.\n</HTML>");
-		jScrollPane2.setPreferredSize(new java.awt.Dimension(453, 200));
-		m_tableWords.setModel(new WordsListTableModel());
-		m_tableWords.setShowHorizontalLines(false);
-		m_tableWords.setShowVerticalLines(false);
-		jScrollPane2.setViewportView(m_tableWords);
-		
+		m_scrollpaneWords.setToolTipText("<HTML>Table of words that are contained in loaded dictionaries.<BR>\nFor each word the following information is available:<BR>\n<B>Language <I>n</I></B> - the word in both languages,<BR>\n<B>Last (date)</B> - date of the last session,<BR>\n<B>Last (score)</B> - number of mistakes during the last session,<BR>\n<B>Enabled</B> - indicates if the word is enabled.\n</HTML>");
+		m_scrollpaneWords.setPreferredSize(new java.awt.Dimension(453, 200));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridheight = 5;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
 		gridBagConstraints.weighty = 1.0;
-		jPanel2.add(jScrollPane2, gridBagConstraints);
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanel2.add(m_scrollpaneWords, gridBagConstraints);
 		
 		m_buttonEnable.setText("Enable");
 		m_buttonEnable.setToolTipText("<HTML>Enables selected words.<BR>\n<I>Note: enable the words that you want<BR>\nto appear during the next session.</I></HTML>");
@@ -339,8 +343,8 @@ public class FrameMain extends javax.swing.JFrame
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel6.add(m_buttonSelectAllWords, gridBagConstraints);
 		
 		m_buttonSelectNoneWords.setText("None");
@@ -357,8 +361,8 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel6.add(m_buttonSelectNoneWords, gridBagConstraints);
 		
 		m_buttonInvertWordsSelection.setText("Invert");
@@ -375,8 +379,8 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 2;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel6.add(m_buttonInvertWordsSelection, gridBagConstraints);
 		
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -652,8 +656,6 @@ public class FrameMain extends javax.swing.JFrame
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JPanel jPanel5;
 	private javax.swing.JPanel jPanel6;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JScrollPane jScrollPane2;
 	private javax.swing.JSeparator jSeparator2;
 	private javax.swing.JSeparator jSeparator3;
 	private javax.swing.JMenuItem j_menuToolsPreferences;
@@ -675,8 +677,8 @@ public class FrameMain extends javax.swing.JFrame
 	private javax.swing.JMenuItem m_menuHelpAbout;
 	private javax.swing.JMenuItem m_menuToolsNeweditor;
 	private javax.swing.JPanel m_panelSessionControls;
-	private javax.swing.JTable m_tableDictionaries;
-	private javax.swing.JTable m_tableWords;
+	private javax.swing.JScrollPane m_scrollpaneDictionaries;
+	private javax.swing.JScrollPane m_scrollpaneWords;
 	// End of variables declaration//GEN-END:variables
 	
 	private void openNewEditor()
