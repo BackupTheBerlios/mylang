@@ -103,6 +103,9 @@ public class FrameEditor extends javax.swing.JFrame
 		m_tableWords = new javax.swing.JTable();
 		m_buttonAdd = new javax.swing.JButton();
 		m_buttonRemove = new javax.swing.JButton();
+		jPanel3 = new javax.swing.JPanel();
+		m_labelStatusWords = new javax.swing.JLabel();
+		jPanel4 = new javax.swing.JPanel();
 		jMenuBar2 = new javax.swing.JMenuBar();
 		jMenu2 = new javax.swing.JMenu();
 		m_menuFileNew = new javax.swing.JMenuItem();
@@ -252,6 +255,25 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 		
+		jPanel3.setLayout(new java.awt.GridBagLayout());
+		
+		m_labelStatusWords.setText("Words: 0");
+		m_labelStatusWords.setBorder(new javax.swing.border.LineBorder(javax.swing.UIManager.getDefaults().getColor("controlShadow")));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.ipadx = 2;
+		gridBagConstraints.ipady = 2;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 1);
+		jPanel3.add(m_labelStatusWords, gridBagConstraints);
+		
+		jPanel4.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.LineBorder(javax.swing.UIManager.getDefaults().getColor("controlShadow")), new javax.swing.border.EmptyBorder(new java.awt.Insets(1, 1, 1, 1))));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+		gridBagConstraints.insets = new java.awt.Insets(2, 1, 2, 2);
+		gridBagConstraints.weightx = 1.0;
+		jPanel3.add(jPanel4, gridBagConstraints);
+		
+		getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
+		
 		jMenu2.setMnemonic('F');
 		jMenu2.setText("File");
 		m_menuFileNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
@@ -379,22 +401,22 @@ public class FrameEditor extends javax.swing.JFrame
 	
 	private void m_menuEditRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuEditRemoveActionPerformed
 	{//GEN-HEADEREND:event_m_menuEditRemoveActionPerformed
-		((WordsEditorTableModel)m_tableWords.getModel()).removeWords(m_tableWords.getSelectedRows());
+		removeSelectedWords();
 	}//GEN-LAST:event_m_menuEditRemoveActionPerformed
 	
 	private void m_buttonRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonRemoveActionPerformed
 	{//GEN-HEADEREND:event_m_buttonRemoveActionPerformed
-		((WordsEditorTableModel)m_tableWords.getModel()).removeWords(m_tableWords.getSelectedRows());
+		removeSelectedWords();
 	}//GEN-LAST:event_m_buttonRemoveActionPerformed
 	
 	private void m_menuEditAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuEditAddActionPerformed
 	{//GEN-HEADEREND:event_m_menuEditAddActionPerformed
-		((WordsEditorTableModel)m_tableWords.getModel()).addWord();
+		insertNewWord();
 	}//GEN-LAST:event_m_menuEditAddActionPerformed
 	
 	private void m_buttonAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonAddActionPerformed
 	{//GEN-HEADEREND:event_m_buttonAddActionPerformed
-		((WordsEditorTableModel)m_tableWords.getModel()).addWord();
+		insertNewWord();
 	}//GEN-LAST:event_m_buttonAddActionPerformed
 	
 	private void m_menuFileSaveasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuFileSaveasActionPerformed
@@ -417,11 +439,14 @@ public class FrameEditor extends javax.swing.JFrame
 	private javax.swing.JMenuBar jMenuBar2;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
+	private javax.swing.JPanel jPanel3;
+	private javax.swing.JPanel jPanel4;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JSeparator jSeparator1;
 	private javax.swing.JButton m_buttonAdd;
 	private javax.swing.JButton m_buttonRemove;
 	private javax.swing.JFileChooser m_filechooserDictionary;
+	private javax.swing.JLabel m_labelStatusWords;
 	private javax.swing.JMenuItem m_menuEditAdd;
 	private javax.swing.JMenuItem m_menuEditRemove;
 	private javax.swing.JMenuItem m_menuFileClose;
@@ -459,6 +484,7 @@ public class FrameEditor extends javax.swing.JFrame
 					m_textDescription.setText(m_dict.getDescription());
 					((WordsEditorTableModel)m_tableWords.getModel()).setDictionary(m_dict);
 					updateTitle();
+					updateStatusBar();
 					
 					// Set that the file is freshly loaded
 					m_modified = false;
@@ -545,6 +571,7 @@ public class FrameEditor extends javax.swing.JFrame
 			((WordsEditorTableModel)m_tableWords.getModel()).setDictionary(m_dict);
 			m_modified = false;
 			updateTitle();
+			updateStatusBar();
 		}
 	}
 	
@@ -627,5 +654,22 @@ public class FrameEditor extends javax.swing.JFrame
 		{
 			setTitle("MyLang - Editor");
 		}
+	}
+	
+	private void removeSelectedWords()
+	{
+		((WordsEditorTableModel)m_tableWords.getModel()).removeWords(m_tableWords.getSelectedRows());
+		updateStatusBar();
+	}
+	
+	private void insertNewWord()
+	{
+		((WordsEditorTableModel)m_tableWords.getModel()).addWord();
+		updateStatusBar();
+	}
+	
+	private void updateStatusBar()
+	{
+		m_labelStatusWords.setText("Words: " + m_tableWords.getRowCount());
 	}
 }
