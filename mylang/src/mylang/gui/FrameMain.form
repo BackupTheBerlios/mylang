@@ -12,6 +12,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
+            <Property name="mnemonic" type="int" value="70"/>
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
@@ -30,6 +31,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
+            <Property name="mnemonic" type="int" value="84"/>
             <Property name="text" type="java.lang.String" value="Tools"/>
           </Properties>
           <SubComponents>
@@ -55,6 +57,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
+            <Property name="mnemonic" type="int" value="72"/>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
@@ -124,6 +127,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="m_buttonLoad">
           <Properties>
+            <Property name="mnemonic" type="int" value="76"/>
             <Property name="text" type="java.lang.String" value="Load..."/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Loads dictionary files.&lt;/HTML&gt;"/>
           </Properties>
@@ -138,6 +142,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="m_buttonUnload">
           <Properties>
+            <Property name="mnemonic" type="int" value="85"/>
             <Property name="text" type="java.lang.String" value="Unload"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Unloads selected dictionary.&lt;/HTML&gt;"/>
           </Properties>
@@ -152,6 +157,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="m_buttonInfo">
           <Properties>
+            <Property name="mnemonic" type="int" value="73"/>
             <Property name="text" type="java.lang.String" value="Info..."/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Displays additional information about selected dictionary.&lt;/HTML&gt;"/>
           </Properties>
@@ -208,6 +214,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="m_buttonEnable">
           <Properties>
+            <Property name="mnemonic" type="int" value="69"/>
             <Property name="text" type="java.lang.String" value="Enable"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Enables selected words.&lt;BR&gt;&#xa;&lt;I&gt;Note: enable the words that you want&lt;BR&gt;&#xa;to appear during the next session.&lt;/I&gt;&lt;/HTML&gt;"/>
           </Properties>
@@ -222,6 +229,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="m_buttonDisable">
           <Properties>
+            <Property name="mnemonic" type="int" value="68"/>
             <Property name="text" type="java.lang.String" value="Disable"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Disables selected words.&lt;BR&gt;&#xa;&lt;I&gt;Note: disable the words that you want &lt;B&gt;not&lt;/B&gt;&lt;BR&gt;&#xa;to appear during the next session.&lt;/I&gt;&lt;/HTML&gt;"/>
           </Properties>
@@ -252,6 +260,7 @@
           <SubComponents>
             <Component class="javax.swing.JCheckBox" name="m_checkboxLanguage1">
               <Properties>
+                <Property name="mnemonic" type="int" value="49"/>
                 <Property name="text" type="java.lang.String" value="Language 1"/>
                 <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Hides the contents of the appropriate column in the words table.&lt;HTML&gt;"/>
               </Properties>
@@ -266,6 +275,7 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="m_checkboxLanguage2">
               <Properties>
+                <Property name="mnemonic" type="int" value="50"/>
                 <Property name="text" type="java.lang.String" value="Language 2"/>
                 <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Hides the contents of the appropriate column in the words table.&lt;HTML&gt;"/>
               </Properties>
@@ -307,6 +317,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="m_buttonSelectAllWords">
               <Properties>
+                <Property name="mnemonic" type="int" value="65"/>
                 <Property name="text" type="java.lang.String" value="All"/>
                 <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Selects all words.&lt;/HTML&gt;"/>
               </Properties>
@@ -321,6 +332,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="m_buttonSelectNoneWords">
               <Properties>
+                <Property name="mnemonic" type="int" value="78"/>
                 <Property name="text" type="java.lang.String" value="None"/>
                 <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Unselects all words.&lt;/HTML&gt;"/>
               </Properties>
@@ -335,6 +347,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="m_buttonInvertWordsSelection">
               <Properties>
+                <Property name="mnemonic" type="int" value="86"/>
                 <Property name="text" type="java.lang.String" value="Invert"/>
                 <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Inverts the selection.&lt;/HTML&gt;"/>
               </Properties>
@@ -369,7 +382,11 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="displayedMnemonic" type="int" value="82"/>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="m_comboMode"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Start session:"/>
           </Properties>
           <Constraints>
@@ -403,6 +420,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="m_buttonStart">
           <Properties>
+            <Property name="mnemonic" type="int" value="83"/>
             <Property name="text" type="java.lang.String" value="START"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;HTML&gt;Begins the session.&lt;/HTML&gt;"/>
           </Properties>

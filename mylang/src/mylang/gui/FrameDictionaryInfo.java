@@ -46,6 +46,8 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		m_textLanguage1.setText(m_dict.getLanguageNames()[1]);
 		m_textDescription.setText(m_dict.getDescription());
 		updateStats();
+		
+		setLocationRelativeTo(null);
 	}
 	
 	/** This method is called from within the constructor to
@@ -85,6 +87,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		});
 		
 		jLabel1.setText("Languages");
+		jLabel1.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
@@ -92,6 +95,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		
 		m_textLanguage0.setEditable(false);
 		m_textLanguage0.setToolTipText("<HTML>Name of the first language.</HTML>");
+		m_textLanguage0.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.weightx = 1.0;
@@ -100,6 +104,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		
 		m_textLanguage1.setEditable(false);
 		m_textLanguage1.setToolTipText("<HTML>Name of the second language.</HTML>");
+		m_textLanguage1.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.weightx = 1.0;
@@ -107,6 +112,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		getContentPane().add(m_textLanguage1, gridBagConstraints);
 		
 		jLabel2.setText("Description");
+		jLabel2.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
@@ -116,6 +122,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		
 		m_textDescription.setEditable(false);
 		m_textDescription.setToolTipText("<HTML>Short description of the dictionary.</HTML>");
+		m_textDescription.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 1;
@@ -150,8 +157,11 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		
 		jPanel1.setLayout(new java.awt.GridBagLayout());
 		
+		jLabel3.setDisplayedMnemonic('V');
 		jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+		jLabel3.setLabelFor(m_spinnerLeaveStats);
 		jLabel3.setText("Leave last");
+		jLabel3.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.weightx = 1.0;
@@ -166,10 +176,12 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		jPanel1.add(m_spinnerLeaveStats, gridBagConstraints);
 		
 		jLabel4.setText("stats");
+		jLabel4.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
 		jPanel1.add(jLabel4, gridBagConstraints);
 		
+		m_buttonClearStats.setMnemonic('R');
 		m_buttonClearStats.setText("Clear stats");
 		m_buttonClearStats.setToolTipText("<HTML>Deletes all stats except the selected number of the last ones.<BR>\nAdjust the number of stats to keep with the <B>\"Lave last <I>n</I> stats\"</B> control.\n</HTML>");
 		m_buttonClearStats.addActionListener(new java.awt.event.ActionListener()
@@ -184,6 +196,7 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
 		jPanel1.add(m_buttonClearStats, gridBagConstraints);
 		
+		m_buttonClose.setMnemonic('C');
 		m_buttonClose.setText("Close");
 		m_buttonClose.setToolTipText("<HTML>Closes this window.</HTML>");
 		m_buttonClose.addActionListener(new java.awt.event.ActionListener()

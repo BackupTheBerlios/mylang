@@ -77,6 +77,8 @@ public class FrameEditor extends javax.swing.JFrame
 		m_modified = false;
 		newFile();
 		updateTableHeaders();
+		
+		setLocationRelativeTo(null);
 	}
 	
 	/** This method is called from within the constructor to
@@ -127,7 +129,10 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		jPanel2.setLayout(new java.awt.GridBagLayout());
 		
+		jLabel1.setDisplayedMnemonic('L');
+		jLabel1.setLabelFor(m_textLanguage0);
 		jLabel1.setText("Languages");
+		jLabel1.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
@@ -136,6 +141,7 @@ public class FrameEditor extends javax.swing.JFrame
 		jPanel2.add(jLabel1, gridBagConstraints);
 		
 		m_textLanguage0.setToolTipText("<HTML>Name of the first language of the dictionary.</HTML>");
+		m_textLanguage0.setFocusAccelerator('L');
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 0;
@@ -144,7 +150,10 @@ public class FrameEditor extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(m_textLanguage0, gridBagConstraints);
 		
+		jLabel3.setDisplayedMnemonic('D');
+		jLabel3.setLabelFor(m_textDescription);
 		jLabel3.setText("Description");
+		jLabel3.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
@@ -171,7 +180,10 @@ public class FrameEditor extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(m_textDescription, gridBagConstraints);
 		
+		jLabel4.setDisplayedMnemonic('W');
+		jLabel4.setLabelFor(m_tableWords);
 		jLabel4.setText("Words");
+		jLabel4.setFocusable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 2;
@@ -194,6 +206,7 @@ public class FrameEditor extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel1.add(jScrollPane1, gridBagConstraints);
 		
+		m_buttonAdd.setMnemonic('A');
 		m_buttonAdd.setText("Add");
 		m_buttonAdd.setToolTipText("<HTML>Adds new word to the table.</HTML>");
 		m_buttonAdd.addActionListener(new java.awt.event.ActionListener()
@@ -209,6 +222,7 @@ public class FrameEditor extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel1.add(m_buttonAdd, gridBagConstraints);
 		
+		m_buttonRemove.setMnemonic('R');
 		m_buttonRemove.setText("Remove");
 		m_buttonRemove.setToolTipText("<HTML>Removes all selected words from the table.</HTML>");
 		m_buttonRemove.addActionListener(new java.awt.event.ActionListener()
@@ -238,6 +252,7 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 		
+		jMenu2.setMnemonic('F');
 		jMenu2.setText("File");
 		m_menuFileNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
 		m_menuFileNew.setText("New");
@@ -301,6 +316,7 @@ public class FrameEditor extends javax.swing.JFrame
 		
 		jMenuBar2.add(jMenu2);
 		
+		jMenu1.setMnemonic('E');
 		jMenu1.setText("Edit");
 		m_menuEditAdd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_INSERT, 0));
 		m_menuEditAdd.setText("Add");

@@ -94,6 +94,7 @@ public class FrameMain extends javax.swing.JFrame
 		});
 		wordsTableSelectionChanged();
 		
+		setLocationRelativeTo(null);
 	}
 	
 	/** This method is called from within the constructor to
@@ -169,6 +170,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel1.add(m_scrollpaneDictionaries, gridBagConstraints);
 		
+		m_buttonLoad.setMnemonic('L');
 		m_buttonLoad.setText("Load...");
 		m_buttonLoad.setToolTipText("<HTML>Loads dictionary files.</HTML>");
 		m_buttonLoad.addActionListener(new java.awt.event.ActionListener()
@@ -186,6 +188,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel1.add(m_buttonLoad, gridBagConstraints);
 		
+		m_buttonUnload.setMnemonic('U');
 		m_buttonUnload.setText("Unload");
 		m_buttonUnload.setToolTipText("<HTML>Unloads selected dictionary.</HTML>");
 		m_buttonUnload.addActionListener(new java.awt.event.ActionListener()
@@ -203,6 +206,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel1.add(m_buttonUnload, gridBagConstraints);
 		
+		m_buttonInfo.setMnemonic('I');
 		m_buttonInfo.setText("Info...");
 		m_buttonInfo.setToolTipText("<HTML>Displays additional information about selected dictionary.</HTML>");
 		m_buttonInfo.addActionListener(new java.awt.event.ActionListener()
@@ -247,6 +251,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(m_scrollpaneWords, gridBagConstraints);
 		
+		m_buttonEnable.setMnemonic('E');
 		m_buttonEnable.setText("Enable");
 		m_buttonEnable.setToolTipText("<HTML>Enables selected words.<BR>\n<I>Note: enable the words that you want<BR>\nto appear during the next session.</I></HTML>");
 		m_buttonEnable.addActionListener(new java.awt.event.ActionListener()
@@ -262,6 +267,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel2.add(m_buttonEnable, gridBagConstraints);
 		
+		m_buttonDisable.setMnemonic('D');
 		m_buttonDisable.setText("Disable");
 		m_buttonDisable.setToolTipText("<HTML>Disables selected words.<BR>\n<I>Note: disable the words that you want <B>not</B><BR>\nto appear during the next session.</I></HTML>");
 		m_buttonDisable.addActionListener(new java.awt.event.ActionListener()
@@ -282,6 +288,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel5.setLayout(new java.awt.GridBagLayout());
 		
 		jPanel5.setBorder(new javax.swing.border.TitledBorder("Shadow"));
+		m_checkboxLanguage1.setMnemonic('1');
 		m_checkboxLanguage1.setText("Language 1");
 		m_checkboxLanguage1.setToolTipText("<HTML>Hides the contents of the appropriate column in the words table.<HTML>");
 		m_checkboxLanguage1.addActionListener(new java.awt.event.ActionListener()
@@ -299,6 +306,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel5.add(m_checkboxLanguage1, gridBagConstraints);
 		
+		m_checkboxLanguage2.setMnemonic('2');
 		m_checkboxLanguage2.setText("Language 2");
 		m_checkboxLanguage2.setToolTipText("<HTML>Hides the contents of the appropriate column in the words table.<HTML>");
 		m_checkboxLanguage2.addActionListener(new java.awt.event.ActionListener()
@@ -333,6 +341,7 @@ public class FrameMain extends javax.swing.JFrame
 		jPanel6.setLayout(new java.awt.GridBagLayout());
 		
 		jPanel6.setBorder(new javax.swing.border.TitledBorder("Selection"));
+		m_buttonSelectAllWords.setMnemonic('A');
 		m_buttonSelectAllWords.setText("All");
 		m_buttonSelectAllWords.setToolTipText("<HTML>Selects all words.</HTML>");
 		m_buttonSelectAllWords.addActionListener(new java.awt.event.ActionListener()
@@ -349,6 +358,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel6.add(m_buttonSelectAllWords, gridBagConstraints);
 		
+		m_buttonSelectNoneWords.setMnemonic('N');
 		m_buttonSelectNoneWords.setText("None");
 		m_buttonSelectNoneWords.setToolTipText("<HTML>Unselects all words.</HTML>");
 		m_buttonSelectNoneWords.addActionListener(new java.awt.event.ActionListener()
@@ -367,6 +377,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanel6.add(m_buttonSelectNoneWords, gridBagConstraints);
 		
+		m_buttonInvertWordsSelection.setMnemonic('V');
 		m_buttonInvertWordsSelection.setText("Invert");
 		m_buttonInvertWordsSelection.setToolTipText("<HTML>Inverts the selection.</HTML>");
 		m_buttonInvertWordsSelection.addActionListener(new java.awt.event.ActionListener()
@@ -411,7 +422,9 @@ public class FrameMain extends javax.swing.JFrame
 		
 		m_panelSessionControls.setLayout(new java.awt.GridBagLayout());
 		
+		jLabel1.setDisplayedMnemonic('R');
 		jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+		jLabel1.setLabelFor(m_comboMode);
 		jLabel1.setText("Start session:");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
@@ -439,6 +452,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		m_panelSessionControls.add(m_comboDirection, gridBagConstraints);
 		
+		m_buttonStart.setMnemonic('S');
 		m_buttonStart.setText("START");
 		m_buttonStart.setToolTipText("<HTML>Begins the session.</HTML>");
 		m_buttonStart.addActionListener(new java.awt.event.ActionListener()
@@ -464,6 +478,7 @@ public class FrameMain extends javax.swing.JFrame
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		getContentPane().add(m_panelSessionControls, gridBagConstraints);
 		
+		jMenu1.setMnemonic('F');
 		jMenu1.setText("File");
 		m_menuFileQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
 		m_menuFileQuit.setText("Quit");
@@ -479,6 +494,7 @@ public class FrameMain extends javax.swing.JFrame
 		
 		jMenuBar1.add(jMenu1);
 		
+		jMenu2.setMnemonic('T');
 		jMenu2.setText("Tools");
 		m_menuToolsNeweditor.setText("Open dictionary editor...");
 		m_menuToolsNeweditor.addActionListener(new java.awt.event.ActionListener()
@@ -506,6 +522,7 @@ public class FrameMain extends javax.swing.JFrame
 		
 		jMenuBar1.add(jMenu2);
 		
+		jMenu3.setMnemonic('H');
 		jMenu3.setText("Help");
 		m_menuHelpAbout.setText("About...");
 		m_menuHelpAbout.addActionListener(new java.awt.event.ActionListener()
