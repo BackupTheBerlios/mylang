@@ -47,6 +47,8 @@ public class FrameDictionaryInfo extends javax.swing.JFrame
 		m_textDescription.setText(m_dict.getDescription());
 		updateStats();
 		
+		((JComponent)m_spinnerLeaveStats.getEditor().getComponent(0)).setToolTipText(
+			m_spinnerLeaveStats.getToolTipText());
 		setLocationRelativeTo(null);
 	}
 	
