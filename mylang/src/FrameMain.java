@@ -480,8 +480,7 @@ public class FrameMain extends javax.swing.JFrame
 
 	private void m_menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_menuHelpAboutActionPerformed
 	{//GEN-HEADEREND:event_m_menuHelpAboutActionPerformed
-		FrameAbout about = new FrameAbout();
-		about.show();
+		FrameAbout.showAboutFrame();
 	}//GEN-LAST:event_m_menuHelpAboutActionPerformed
 
 	private void m_buttonStartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_m_buttonStartActionPerformed
