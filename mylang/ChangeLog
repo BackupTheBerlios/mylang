@@ -1,3 +1,7 @@
+2004-01-20  Michal Dabrowski <herrmic@users.berlios.de>
+
+	* Unit testing: Added mylang.data.StatTest.
+
 2004-01-19  Michal Dabrowski <herrmic@users.berlios.de>
 
 	* Updated JavaDocs for the data classes.
