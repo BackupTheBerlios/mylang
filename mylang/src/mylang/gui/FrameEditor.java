@@ -764,6 +764,8 @@ public class FrameEditor extends javax.swing.JFrame
 	
 	private void removeSelectedWords()
 	{
+        if (m_tableWords.getCellEditor() != null)
+            m_tableWords.getCellEditor().cancelCellEditing();
 		((WordsEditorTableModel)m_tableWords.getModel()).removeWords(m_tableWords.getSelectedRows());
 		updateStatusBar();
 	}
