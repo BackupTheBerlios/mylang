@@ -492,7 +492,7 @@ public class DialogSession extends javax.swing.JDialog
 			found = false;
 			for(int j = 0; j < set.length; j++)
 			{
-				if(array[i].compareToIgnoreCase(set[j]) == 0)
+				if(array[i].trim().compareToIgnoreCase(set[j].trim()) == 0)
 				{
 					found = true;
 					break;
