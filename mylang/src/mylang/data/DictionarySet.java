@@ -81,19 +81,33 @@ public class DictionarySet implements WordsContainer
 			if(dict.getFile().getAbsoluteFile().compareTo(file.getAbsoluteFile()) == 0)
 				throw new IOException("File is already loaded");
 		}
-		
-		Dictionary dict = new Dictionary(file);
+		addDictionary(new Dictionary(file));
+	}
+	
+	/**
+	 * Adds the given dictionary to the set. Flips the language order if necessary.
+	 * @param dict Dictionary to be added.
+	 * @throws IOException Thrown if dictionary have not matching languages.
+	 */	
+	public void addDictionary(Dictionary dict) throws IOException
+	{
+		// If there are any languages in the set, the new one must contain
+		// the same languages
 		if(m_dictionaries.size() > 0)
 		{
+			// Compare the language names and see if they are: exactly the same,
+			// same but reversed ordering, different
 			String[] so = ((Dictionary)m_dictionaries.get(0)).getLanguageNames();
 			String[] sn = dict.getLanguageNames();
 			if( (so[0].trim().compareToIgnoreCase(sn[0].trim()) == 0) &&
 			(so[1].trim().compareToIgnoreCase(sn[1].trim()) == 0) )
 			{
+				// Languages are exactly the same
 			}
 			else if( (so[0].trim().compareToIgnoreCase(sn[1].trim()) == 0) &&
 			(so[1].trim().compareToIgnoreCase(sn[0].trim()) == 0) )
 			{
+				// Languages are the same but have different order: flip them
 				dict.swapLanguages();
 			}
 			else
